@@ -24,12 +24,12 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        HttpSession session = request.getSession();
         String errorMessage = "登陆成功";
 
         if (username != null && password != null) {
             if (username.equals("admin") && password.equals("password")) {
                 Client user = new Client(username, password);
-                HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 // 登录成功，重定向到主页或其他页面
                 response.sendRedirect("index.jsp");
@@ -37,6 +37,7 @@ public class LoginServlet extends HttpServlet {
                 // 登录失败，显示错误信息
                 errorMessage = "用户名或密码错误";
             }
+            session.setAttribute("ErrorMessage", errorMessage);
         }
     }
 }
