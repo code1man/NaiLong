@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
+@WebServlet(name = "LoginServlet", urlPatterns = "/Login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -20,7 +20,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -36,6 +35,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 // 登录失败，显示错误信息
                 errorMessage = "用户名或密码错误";
+                response.sendRedirect("Login/LoginPage.jsp");
             }
             session.setAttribute("ErrorMessage", errorMessage);
         }
