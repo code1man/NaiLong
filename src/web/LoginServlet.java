@@ -8,13 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/Login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
     }
 
     @Override
@@ -25,7 +23,6 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String errorMessage = "登陆成功";
-
         if (username != null && password != null) {
             if (username.equals("admin") && password.equals("password")) {
                 Client user = new Client(username, password);

@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="LoginApp:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/LoginApp_Web_exploded</output-path>
+  <artifact type="exploded-war" name="NaiLong:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/NaiLong_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="LoginApp/web/Web" />
+      <element id="javaee-facet-resources" facet="NaiLong/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="NaiLong" />

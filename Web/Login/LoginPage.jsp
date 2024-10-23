@@ -161,7 +161,7 @@
 
     <div>
         <h2>登录</h2>
-        <form action="Login" method="post">
+        <form action="../LoginServlet" method="post">
             <label for="username">用户名:</label><br>
             <input type="text" id="username" name="username"><br><br>
             <label for="password">密码:</label><br>
