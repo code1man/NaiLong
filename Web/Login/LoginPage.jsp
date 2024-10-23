@@ -166,11 +166,8 @@
             <input type="text" id="username" name="username"><br><br>
             <label for="password">密码:</label><br>
             <input type="password" id="password" name="password"><br><br>
-            <% String errorMessage = (String) session.getAttribute("ErrorMessage");
-                if (errorMessage != null) {%>
-            <div style="color: red;"><%= errorMessage %>
+            <div style="color: red;">${sessionScope.ErrorMessage}
             </div>
-            <%}%>
             <input type="submit" value="登录">
         </form>
     </div>
