@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>登陆页面</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Login/LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/LoginPage.css">
 </head>
 <body>
 <div class="loader">

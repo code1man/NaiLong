@@ -12,7 +12,7 @@ public class DBUtil {
         Connection connection = null;
         try {
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection =DriverManager.getConnection(URL,USERNAME,PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -20,7 +20,7 @@ public class DBUtil {
     }
 
     public static void closeConnection(Connection connection) {          //关闭连接
-        if (connection != null) {
+        if(connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {
@@ -31,7 +31,7 @@ public class DBUtil {
 
 
     public static void closeStatement(Statement statement) {
-        if (statement != null) {
+        if(statement != null) {
             try {
                 statement.close();
             } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class DBUtil {
     }
 
     public static void closePreparedStatement(PreparedStatement statement) {
-        if (statement != null) {
+        if(statement != null) {
             try {
                 statement.close();
             } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class DBUtil {
     }
 
     public static void closeResultSet(ResultSet resultSet) {
-        if (resultSet != null) {
+        if(resultSet != null) {
             try {
                 resultSet.close();
             } catch (SQLException e) {
