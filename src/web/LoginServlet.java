@@ -1,12 +1,12 @@
 package web;
 
-import domain.Client;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import domain.User;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         String errorMessage = "登陆成功";
         if (username != null && password != null) {
             if (username.equals("admin") && password.equals("password")) {
-                Client user = new Client(username, password);
+                User user = new User();
                 session.setAttribute("user", user);
                 // 登录成功，重定向到主页或其他页面
                 response.sendRedirect("index.jsp");

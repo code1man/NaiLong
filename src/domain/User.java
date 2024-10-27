@@ -9,7 +9,6 @@ public class User {
     private boolean isAdmin;
 
     public User() {
-
     }
 
     public int getId() {

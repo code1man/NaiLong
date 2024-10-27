@@ -1,7 +1,8 @@
 <component name="libraryTable">
   <library name="servlet-api">
     <CLASSES>
-      <root url="jar://D:/Tomcat/apache-tomcat-10.1.30/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../apache-tomcat-9.0.96-windows-x64/apache-tomcat-9.0.96/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../apache-tomcat-9.0.96-windows-x64/apache-tomcat-9.0.96/lib/jsp-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
