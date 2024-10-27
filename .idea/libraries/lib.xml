@@ -1,10 +1,15 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../lib" />
+      <root url="jar://$PROJECT_DIR$/../../../apache-tomcat-9.0.96/lib/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../apache-tomcat-9.0.96/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../jakarta-taglibs-standard-1.1.2/lib/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../jakarta-taglibs-standard-1.1.2/lib/standard.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../jakarta-taglibs-standard-1.1.2/lib/javax.servlet-api-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../jakarta-taglibs-standard-1.1.2/lib/javax.servlet.jsp-api-2.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../jakarta-taglibs-standard-1.1.2/lib/jstl-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../../lib" recursive="false" />
   </library>
 </component>
