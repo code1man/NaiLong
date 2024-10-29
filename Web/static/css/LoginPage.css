@@ -1,107 +1,78 @@
 body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fffde7;
+    /* 淡黄色背景 */
     display: flex;
     justify-content: center;
-    margin-top: 300px;
-    background-color: #e8e8e8;
-}
-
-.loader {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    /* 或者使用 contain，或指定具体大小 */
+    background-image: url("../images/bg.jpg");
 }
 
-.wrapper {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.login-container {
+    background-color:#fffde7;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 350px;
 }
 
-.catContainer {
-    width: 50%;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+.login-container h1 {
+    color: #fbc02d;
+    /* 明亮的黄色标题 */
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
-.wallContainer {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: -1;
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 输入框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
 }
 
-.catBody {
-    width: 80px;
-    z-index: 3;
+.login-container input[type="submit"] {
+    width: 85%;
+    padding: 12px;
+    background-color: #fbc02d;
+    /* 按钮黄色背景 */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
 }
 
-.tail {
-    position: absolute;
-    width: 17px;
-    top: 50%;
-    animation: tail 1s ease-in infinite alternate-reverse;
-    transform-origin: top;
-    z-index: 3;
+.login-container input[type="submit"]:hover {
+    background-color: #fdd835;
+    /* 按钮悬停时浅黄色 */
 }
 
-@keyframes tail {
-    0% {
-        transform: rotateZ(60deg);
-    }
-    50% {
-        transform: rotateZ(0deg);
-    }
-    100% {
-        transform: rotateZ(-20deg);
-    }
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #8d6e63;
+    /* 深棕色小字 */
 }
 
-.wall {
-    width: 300px;
-}
-
-.text {
-    display: flex;
-    flex-direction: column;
-    width: 50px;
-    position: absolute;
-    margin: 0px 0px 100px 120px;
-}
-
-.zzz {
-    color: black;
-    font-weight: 700;
-    font-size: 15px;
-    animation: zzz 2s linear infinite;
-}
-
-.bigzzz {
-    color: black;
-    font-weight: 700;
-    font-size: 25px;
-    margin-left: 10px;
-    animation: zzz 2.3s linear infinite;
-}
-
-@keyframes zzz {
-    0% {
-        color: transparent;
-    }
-    50% {
-        color: black;
-    }
-    100% {
-        color: transparent;
-    }
+.naidragon-image {
+    width: 150px; /* 调整图片宽度 */
+    height: auto; /* 自动适应高度 */
+    margin-bottom: 10px; /* 与下方标题的间距 */
 }
