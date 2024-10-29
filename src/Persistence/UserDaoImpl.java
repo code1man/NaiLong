@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public  boolean addUser(User user) {           //向数据库中添加对象
+    public boolean addUser(User user) {           //向数据库中添加对象
         boolean result = false;
         try {
             Connection connection = DBUtil.getConnection();
