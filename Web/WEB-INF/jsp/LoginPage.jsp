@@ -24,15 +24,15 @@
     <img src="./static/images/welcome.jpg" alt="奶龙图片" class="naidragon-image">
   </div>
   <h1>奶龙商店 </h1>
-  <form action="p" method="post">
+  <form action="${pageContext.request.contextPath}/handler" method="post">
     <span>
       <i class="fa-regular fa-user"></i>
-      <input type="text" placeholder="用户名" required>
+      <input type="text" placeholder="用户名" name="username" required>
     </span>
     </br>
     <span>
       <i class="fa-solid fa-lock"></i>
-      <input type="password" placeholder="密码" required>
+      <input type="password" placeholder="密码" name="password" required>
     </span>
     <input type="submit" value="登录">
   </form>

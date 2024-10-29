@@ -15,7 +15,7 @@
 <html>
 <head>
     <title>奶龙舍</title>
-    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
 </head>
 <body>
 <div>
@@ -47,7 +47,7 @@
                 <%--Logo--%>
                 <div class="header-logo">
                     <a href="https://www.bilibili.com/bangumi/play/ep453031" title="奶龙动画" class="logo ir"
-                       style=" background: url(./images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
+                       style=" background: url(./static/images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
                     </a>
                 </div>
                 <%--测边框--%>
@@ -141,11 +141,11 @@
         <div class="home-hero box">
             <ul>
                 <li>
-                    <img src="${pageContext.request.contextPath}/images/swiper1.jpg"
+                    <img src="./static/images/swiper1.jpg"
                          alt="轮播图1">
                 </li>
                 <li>
-                    <img src="${pageContext.request.contextPath}/images/swiper.png"
+                    <img src="./static/images/swiper.png"
                          alt="轮播图2">
                 </li>
                 <li>
@@ -160,7 +160,7 @@
         <div class="container">
             <div class="home-banner-box">
                 <a href="https://www.163.com/dy/article/JDO2AG060518VHUU.html">
-                    <img src="${pageContext.request.contextPath}/images/leijun.png" alt="借鉴对象金主爸爸的广告"
+                    <img src="./static/images/leijun.png" alt="借鉴对象金主爸爸的广告"
                          width="1226"
                          height="120">
                 </a>
