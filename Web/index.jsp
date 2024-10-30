@@ -99,7 +99,6 @@
                             <div class="item-children">
                                 <div class="container">
                                     <ul class="children-list clearfix">
-
                                     </ul>
                                 </div>
                             </div>
@@ -155,9 +154,10 @@
             </ul>
         </div>
     </div>
-    <%--banner图--%>
+
     <div class="page-main home-main">
         <div class="container">
+            <%--banner图--%>
             <div class="home-banner-box">
                 <a href="https://www.163.com/dy/article/JDO2AG060518VHUU.html">
                     <img src="${pageContext.request.contextPath}/images/leijun.png" alt="借鉴对象金主爸爸的广告"
@@ -165,9 +165,51 @@
                          height="120">
                 </a>
             </div>
+            <%--商品展示--%>
+            <c:forEach var="entry" items="${requestScope.productsByType.entrySet()}">
+                <div class="home-brick-box home-brick-row-2-box xm-plain-box">
+                    <div class="box-hd">
+                        <h2 class="title" style="color: #000000">${entry.key.description}</h2>
+                    </div>
+                    <div class="box-hd clearfix" style="height: 686px">
+                        <div class="row" style="margin-left: -14px">
+                            <div class="span4">
+                                <ul class="brick-promo-list clearfix">
+                                    <li class="brick-item brick-item-l">
+                                        <a href="">
+                                            <img alt=""
+                                                 src=""
+                                                 style="width: 234px; height: 628px">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="span16">
+                                <ul class="brick-list clearfix">
+                                    <c:forEach var="product" items="${entry.value}">
+                                        <li class="brick-item brick-item-m brick-item-m-2">
+                                            <a href="">
+                                                <div class="figure figure-img">
+                                                    <img width="160" height="160" alt="1" src="">
+                                                </div>
+                                                <h3 class="title">${product.name}</h3>
+                                                <p class="price">
+                                                    <span class="num">${product.price}</span>元<span>起</span>
+                                                    <del><span class="num">10000</span>元</del>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </c:forEach>
         </div>
     </div>
-    <%--商品展示--%>
 </div>
+
 </body>
 </html>
