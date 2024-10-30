@@ -110,4 +110,8 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    public static void main(String[] args) {
+        UserDaoImpl userDao = new UserDaoImpl();
+        System.out.println(userDao.getUserByUsernameAndPassword("admin","admin"));
+    }
 }
