@@ -15,4 +15,12 @@ public class UserService {
         return this.userDao.getUserByUsernameAndPassword(username, password);
     }
 
+    public boolean register(User user) {
+        return this.userDao.addUser(user);
+    }
+
+    public static void main(String[] args) {
+        UserService userService = new UserService();
+        System.out.println(userService.login("admin", "admin"));
+    }
 }

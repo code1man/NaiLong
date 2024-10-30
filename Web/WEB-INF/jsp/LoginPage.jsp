@@ -14,7 +14,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./static/css/LoginPage.css">
-  <title>奶龙商店</title>
+  <title>登陆</title>
 </head>
 
 <body>
@@ -36,9 +36,23 @@
     </span>
     <input type="submit" value="登录">
   </form>
-  <div class="footer-text">还没有账号？立即注册！</div>
+  <div class="footer-text">
+    <a href="register">还没有账号？立即注册！</a>
+  </div>
 </div>
-
+ <script>
+  // 检查是否有注册成功的消息
+  window.addEventListener('DOMContentLoaded', (event) => {
+    <%
+        String message = (String) session.getAttribute("message");
+        session.removeAttribute("message"); // 清除消息，避免重复显示
+    %>
+    let message = "<%= message %>";
+    if (message=="注册成功，请登录！") {
+      alert(message); // 显示弹出框
+    }
+  });
+</script>
  <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </body>
 
