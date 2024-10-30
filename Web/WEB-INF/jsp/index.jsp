@@ -14,8 +14,8 @@
 
 <html>
 <head>
-    <title>奶龙舍</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <title>奶龙商店</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
 </head>
 <body>
 <div>
@@ -31,7 +31,7 @@
                     </a>
                 </div>
                 <div class="topBar-info">
-                    <a href="LoginFromServlet" class="link">登录</a>
+                    <a href="login" class="link">登录</a>
                     <span class="sep">|</span>
                     <a href="" data-register="true" class="link">注册</a>
                     <span class="sep">|</span>
@@ -47,7 +47,7 @@
                 <%--Logo--%>
                 <div class="header-logo">
                     <a href="https://www.bilibili.com/bangumi/play/ep453031" title="奶龙动画" class="logo ir"
-                       style=" background: url(./static/images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
+                       style=" background: url(/static/images/Logo.png) no-repeat; background-size: 56px; margin-top: 22px;">
                     </a>
                 </div>
                 <%--测边框--%>
