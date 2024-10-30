@@ -93,7 +93,7 @@ th {
     height: 420px;
     border: 0;
     color: #fff;
-    background: rgba(105, 101, 101, .6)
+    background: rgba(230, 191, 82, 0.6)
 }
 
 .site-category-list.site-category-list-custom .title {
@@ -314,7 +314,7 @@ th {
 .site-header .header-logo {
     float: left;
     width: 62px;
-    margin-top: 22px
+    margin-top: 15px
 }
 
 .ir {
@@ -969,7 +969,6 @@ th {
 }
 
 .home-hero {
-    background: rgba(255, 234, 175, 0.8);
     position: relative;
     margin-bottom: 26px
 }

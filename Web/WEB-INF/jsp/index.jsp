@@ -31,9 +31,9 @@
                     </a>
                 </div>
                 <div class="topBar-info">
-                    <%--<c:choose>
-                        <c:when test="${sessionScope.loginUser.Username}">
-                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.Username}</a>
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser != null}">
+                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.username}</a>
                         </c:when>
                         <c:otherwise>
                             <a href="login" class="link">登录</a>
@@ -44,12 +44,12 @@
                                 <a href="" class="J_needAgreement">消息通知</a>
                             </span>
                         </c:otherwise>
-                    </c:choose>--%>
+                    </c:choose>
                 </div>
             </div>
         </div>
         <%--中间部分--%>
-        <div class="site-header">
+        <div class="site-header" style="opacity: 0.8; background-color: white">
             <div class="container">
                 <%--Logo--%>
                 <div class="header-logo">
@@ -64,7 +64,7 @@
                             <a href="" class="link-category">
                                 <span class="text">全部商品分类</span>
                             </a>
-                            <div class="site-category" style="display: block;">
+                            <div class="site-category" style="display: block">
                                 <ul class="site-category-list clearfix site-category-list-custom">
                                     <c:forEach var="entry" items="${requestScope.productsByType.entrySet()}">
                                         <li class="category-item">
@@ -196,7 +196,7 @@
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="product" items="${entry.value}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
-                                            <a href="">
+                                            <a href="ShoppingCart?${product.id}">
                                                 <div class="figure figure-img">
                                                     <img width="160" height="160" alt="1" src="">
                                                 </div>

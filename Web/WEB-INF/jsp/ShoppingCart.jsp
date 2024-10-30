@@ -11,6 +11,7 @@
 <head>
     <title>购物界面</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ShoppingCart.css">
 </head>
 <body>
 <div>
@@ -26,8 +27,8 @@
             </div>
             <div class="topBar-info">
                 <c:choose>
-                    <c:when test="${sessionScope.loginUser.Username}">
-                        <a href="" class="link">欢迎回来！${sessionScope.loginUser.Username}</a>
+                    <c:when test="${sessionScope.loginUser != null}">
+                        <a href="" class="link">欢迎回来！${sessionScope.loginUser.username}</a>
                     </c:when>
                     <c:otherwise>
                         <a href="login" class="link">登录</a>
@@ -41,7 +42,103 @@
                 </c:choose>
             </div>
         </div>
+        <div class="site-header" style="opacity: 0.8; background-color: white">
+            <div class="container">
+                <div class="header-nav">
+                    <ul class="nav-list  clearfix">
+                        <li class="nav-item">
+                            <a href="" class="link" data-settrack="true"><span class="text">表情包</span></a>
+                            <div class="item-children">
+                                <div class="container">
+                                    <ul class="children-list clearfix">
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="link"><span class="text">手办</span></a>
+                            <div class="item-children">
+                                <div class="container">
+                                    <ul class="children-list clearfix">
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="link"><span class="text">日常用品</span></a>
+                            <div class="item-children">
+                                <div class="container">
+                                    <ul class="children-list clearfix">
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="header-search">
+                    <form action="//search.mi.com/search" method="get" class="search-form clearfix">
+                        <label class="hide">站内搜索</label>
+                        <label for="search"></label>
+                        <input type="search" id="search" name="keyword" autocomplete="off" class="search-text"
+                               placeholder="奶龙">
+                        <a class="no-style-msq">
+                            <input type="submit" value="" class="search-btn iconfont">
+                        </a>
+                        <div class="search-hot-words"></div>
+                        <div class="keyword-list hide">
+                            <ul class="result-list"></ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="floatingWindow" class="floating">
+            <div class="content">商品名字</div>
+        </div>
+
+        <div class="product-box container">
+            <div class="img-left">
+                <img src="" alt="商品图片" class="img-box">
+            </div>
+            <div class="product-con">
+                <div style="flex: 5;">
+                    <h2 data-v-70283663="">
+                        <img data-v-70283663="">
+                        商品名称
+                    </h2>
+                    <div class="price-info">
+                        <span>0.1元</span>
+                    </div>
+                    <div class="price-line"></div>
+                </div>
+                <div class="price-btn-box">
+                    <div class="sale-btn">
+                        <a href="" class="price-btn price-btn-primary">购买</a>
+                    </div>
+                    <div class="favorite-btn">
+                        <a href="" class="btn-like btn-gray">加入购物车</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
+<script>
+    window.onscroll = function () {
+        var floatingWindow = document.getElementById("floatingWindow");
+        var windowScrollY = window.scrollY;
+        // 获取元素的初始位置
+        var initialOffset = floatingWindow.offsetTop; // 初始相对于页面顶部的距离
+
+        // 判断是否需要固定
+        if (windowScrollY > initialOffset) {
+            floatingWindow.classList.add("fixed");
+        } else {
+            floatingWindow.classList.remove("fixed");
+        }
+    };
+</script>
+
 </html>
