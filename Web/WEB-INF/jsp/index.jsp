@@ -31,13 +31,20 @@
                     </a>
                 </div>
                 <div class="topBar-info">
-                    <a href="login" class="link">登录</a>
-                    <span class="sep">|</span>
-                    <a href="" data-register="true" class="link">注册</a>
-                    <span class="sep">|</span>
-                    <span class="message">
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.Username}">
+                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.Username}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="login" class="link">登录</a>
+                            <span class="sep">|</span>
+                            <a href="" data-register="true" class="link">注册</a>
+                            <span class="sep">|</span>
+                            <span class="message">
                         <a href="" class="J_needAgreement">消息通知</a>
                     </span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
