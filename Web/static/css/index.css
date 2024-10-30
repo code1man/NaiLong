@@ -1059,7 +1059,7 @@ th {
     font-size: 22px;
     font-weight: 200;
     line-height: 58px;
-    color: #e0e0e0;
+    color: #7c4e4e;
 }
 
 .xm-plain-box .box-hd .title small {
@@ -1102,7 +1102,7 @@ th {
 
 .brick-list,
 .brick-promo-list {
-    height: 614px;
+    height: 628px;
     margin: 0;
     padding: 0;
     list-style-type: none
@@ -1134,7 +1134,7 @@ th {
 }
 
 .brick-item-l {
-    height: 614px
+    height: 628px
 }
 
 .brick-item-m {
@@ -1187,12 +1187,12 @@ th {
 .brick-item-m .price {
     margin: 0 10px 10px;
     text-align: center;
-    color: #ff6700
+    color: #51694d
 }
 
 .brick-item-m .price del {
     margin-left: .5em;
-    color: #b0b0b0
+    color: #e4242470
 }
 
 .brick-item-m-2 > a {
