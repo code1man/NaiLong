@@ -3,6 +3,7 @@ package Persistence;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import domain.User;
 
 public class UserDaoImpl implements UserDao {
@@ -10,6 +11,7 @@ public class UserDaoImpl implements UserDao {
     private static final String SELECT_USER = "select * from userinfo where id = ?";
     private static final String SELECT_USER_BY_USERNAME_AND_PASSWORD = "select * from userinfo where username = ? and password = ?";
     private static final String SELECT_ALL_USER = "select * from userinfo";
+
     @Override
     public List<User> getAllUsers() {                           //获取表中查询到的所有对象
         List<User> userList = new ArrayList<User>();
@@ -25,7 +27,7 @@ public class UserDaoImpl implements UserDao {
             DBUtil.closeStatement(statement);
             DBUtil.closeConnection(connection);
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return userList;
@@ -39,14 +41,14 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 user = this.resultSetToUser(resultSet);
             }
             DBUtil.closeResultSet(resultSet);
             DBUtil.closeStatement(preparedStatement);
             DBUtil.closeConnection(connection);
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
@@ -64,7 +66,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setInt(4, user.getAge());
             preparedStatement.setBoolean(5, user.isAdmin());
             int rows = preparedStatement.executeUpdate();
-            if(rows > 0) {
+            if (rows > 0) {
                 result = true;
             }
             DBUtil.closePreparedStatement(preparedStatement);
@@ -77,7 +79,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByUsernameAndPassword(String username, String password)   {                      //根据用户名和密码获取用户信息
+    public User getUserByUsernameAndPassword(String username, String password) {                      //根据用户名和密码获取用户信息
         User user = null;
         try {
             Connection connection = DBUtil.getConnection();
@@ -112,6 +114,6 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDaoImpl userDao = new UserDaoImpl();
-        System.out.println(userDao.getUserByUsernameAndPassword("admin","admin"));
+        System.out.println(userDao.getUserByUsernameAndPassword("zkd", "123"));
     }
 }
