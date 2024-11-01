@@ -68,6 +68,14 @@
     </div>
 </div>
 
+
+
+<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
+    <img style="width: 25px !important; height: auto !important; border-radius: 50%;" src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<script src="./static/js/cursorFollow.js"></script>
+
 <script type="text/javascript">
     // 当用户点击“换一换”链接时，调用此函数以刷新验证码图像
     function refreshCaptcha() {

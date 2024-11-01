@@ -15,7 +15,7 @@
 <html>
 <head>
     <title>奶龙商店</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
 </head>
 <body>
 <div>

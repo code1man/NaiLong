@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
 <div class="login-container">
   <div class="cute-dragon">
     <img src="./static/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
@@ -40,7 +39,14 @@
     <a href="register">还没有账号？立即注册！</a>
   </div>
 </div>
- <script>
+
+
+<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
+  <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<script src="./static/js/cursorFollow.js"></script>
+<script>
   // 检查是否有注册成功的消息
   window.addEventListener('DOMContentLoaded', (event) => {
     <%
