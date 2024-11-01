@@ -30,10 +30,37 @@
                         <span class="cart-mini-num">（0）</span>
                     </a>
                 </div>
-                <div class="topBar-info">
+                <div class="topBar-info" style="opacity: 1">
                     <c:choose>
                         <c:when test="${sessionScope.loginUser != null}">
-                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.username}</a>
+                            <%--编辑个人信息--%>
+                            <a href="javascript:void(0)" class="link"
+                               onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
+                            </a>
+                            <div id="modal" class="modal register-container">
+                                <div style="opacity: 1">
+                                    <h2>编辑个人信息</h2>
+                                    <form action="" method="post">
+                                        <span>
+                                            <input type="text" placeholder="用户名" name="username" required>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <input type="password" placeholder="密码" name="password" required>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <input type="email" placeholder="邮箱" name="email" required>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <input type="number" placeholder="年龄" name="age" required min="1">
+                                        </span>
+                                        <br>
+                                        <input type="submit" value="更改个人信息">
+                                    </form>
+                                </div>
+                            </div>
                         </c:when>
                         <c:otherwise>
                             <a href="login" class="link">登录</a>
@@ -217,6 +244,36 @@
         </div>
     </div>
 </div>
-
 </body>
+
+<script>
+    // 打开模态框
+    function openModal(event) {
+        const modal = document.getElementById("modal");
+        modal.style.display = "block";
+
+        // 监听点击事件
+        document.addEventListener('click', closeModalOutside)
+    }
+
+    // 关闭模态框
+    function closeModal() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+
+        // 移除点击事件监听器
+        document.removeEventListener('click', closeModalOutside);
+    }
+
+    // 关闭模态框的外部点击处理
+    function closeModalOutside(event) {
+        const modal = document.getElementById("modal");
+        const modalContent = document.querySelector('.topBar-info');
+
+        // 只有在模态框显示时，并且点击目标不在模态框内部时关闭模态框
+        if (modal.style.display === "block" && !modalContent.contains(event.target)) {
+            closeModal();
+        }
+    }
+</script>
 </html>

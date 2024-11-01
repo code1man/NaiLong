@@ -7,7 +7,7 @@ html {
 body {
     font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
     color: #333;
-    background: rgba(255, 234, 175, 0.8) url(/static/images/IndexBackground.png) repeat 50% 100%;
+    background: rgb(255, 234, 175) url(/static/images/IndexBackground.png) repeat 50% 100%;
     min-width: 1226px;
     margin: 0;
 }
@@ -144,7 +144,6 @@ th {
     font-size: 15px;
     color: #b0b0b0;
     background: #ffeb68;
-    opacity: 0.8;
 }
 
 .site-topBar .topBar-info .link {
@@ -425,6 +424,59 @@ th {
     padding: 0 10px
 }
 
+/*隐藏框*/
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.register-container {
+    background-color: #fffde7;
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+
+.register-container input[type="text"],
+.register-container input[type="password"],
+.register-container input[type="email"],
+.register-container input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 输入框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+}
+
+.register-container input[type="submit"] {
+    width: 85%;
+    padding: 12px;
+    background-color: #fbc02d;
+    /* 按钮黄色背景 */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.register-container input[type="submit"]:hover {
+    background-color: #fdd835;
+    /* 按钮悬停时浅黄色 */
+}
+
 .site-category {
     display: block;
     position: absolute;
@@ -627,20 +679,6 @@ th {
 .site-category-list .children-list-col {
     float: left;
     width: 265px
-}
-
-.site-category-list .children {
-    display: none;
-    position: absolute;
-    left: 234px;
-    top: 0;
-    z-index: 24;
-    height: 458px;
-    border: 1px solid #e0e0e0;
-    border-left: 0;
-    background: #fff;
-    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, .18);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, .18)
 }
 
 .site-category-list .children-col-1 {
@@ -926,43 +964,9 @@ th {
     color: #fff
 }
 
-.site-header .search-hot-words {
-    position: absolute;
-    top: 14px;
-    right: 62px;
-    z-index: 2;
-    text-align: right;
-    -webkit-transition: opacity .2s;
-    transition: opacity .2s
-}
-
-.site-header .search-hot-words a {
-    display: inline-block;
-    margin-left: 5px;
-    padding: 0 5px;
-    font-size: 12px;
-    background: #eee;
-    color: #757575;
-    -webkit-transition: all .2s;
-    transition: all .2s
-}
-
-.site-header .search-hot-words a:hover {
-    background: #ff6700;
-    color: #fff
-}
-
-.site-header .search-hot-words.fade-out {
-    opacity: 0
-}
-
-.site-header .search-hot-words.fade-in {
-    opacity: 1
-}
-
-
 /*轮转屏幕*/
 .home-hero-container {
+    background: rgba(255, 234, 175, 0.8) url(/static/images/IndexBackground.png) repeat 50% 100%;
     position: relative;
     z-index: 10;
     height: 460px;
