@@ -13,4 +13,13 @@
         <url-pattern>/index.jsp</url-pattern>
     </filter-mapping>
 
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>web.servlet.LoginServlet</servlet-class> <!-- 修改为你的包名 -->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/handler</url-pattern>
+    </servlet-mapping>
 </web-app>

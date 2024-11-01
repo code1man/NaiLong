@@ -15,7 +15,7 @@
 <html>
 <head>
     <title>奶龙商店</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
 </head>
 <body>
 <div>
@@ -31,20 +31,20 @@
                     </a>
                 </div>
                 <div class="topBar-info">
-<%--                    <c:choose>--%>
-<%--                        <c:when test="${sessionScope.loginUser.Username}">--%>
-<%--                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.Username}</a>--%>
-<%--                        </c:when>--%>
-<%--                        <c:otherwise>--%>
-<%--                            <a href="login" class="link">登录</a>--%>
-<%--                            <span class="sep">|</span>--%>
-<%--                            <a href="" data-register="true" class="link">注册</a>--%>
-<%--                            <span class="sep">|</span>--%>
-<%--                            <span class="message">--%>
-<%--                        <a href="" class="J_needAgreement">消息通知</a>--%>
-<%--                    </span>--%>
-<%--                        </c:otherwise>--%>
-<%--                    </c:choose>--%>
+                    <%--<c:choose>
+                        <c:when test="${sessionScope.loginUser.Username}">
+                            <a href="" class="link">欢迎回来！${sessionScope.loginUser.Username}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="login" class="link">登录</a>
+                            <span class="sep">|</span>
+                            <a href="" data-register="true" class="link">注册</a>
+                            <span class="sep">|</span>
+                            <span class="message">
+                                <a href="" class="J_needAgreement">消息通知</a>
+                            </span>
+                        </c:otherwise>
+                    </c:choose>--%>
                 </div>
             </div>
         </div>
@@ -176,7 +176,8 @@
             <c:forEach var="entry" items="${requestScope.productsByType.entrySet()}">
                 <div class="home-brick-box home-brick-row-2-box xm-plain-box">
                     <div class="box-hd">
-                        <h2 class="title" style="color: #000000">${entry.key.description}</h2>
+                        <h2 class="title"
+                            style="font-weight: bolder">${entry.key.description}</h2>
                     </div>
                     <div class="box-hd clearfix" style="height: 686px">
                         <div class="row" style="margin-left: -14px">
@@ -211,7 +212,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </c:forEach>
         </div>
