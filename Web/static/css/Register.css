@@ -1,4 +1,5 @@
 body {
+    cursor: none;  /* 隐藏默认光标 */
     margin: 0;
     padding: 0;
     font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -108,4 +109,22 @@ body {
     /* 悬停时边框更亮 */
     background-color: #fff59d;
     /* 悬停时背景更浅 */
+}
+
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
 }
