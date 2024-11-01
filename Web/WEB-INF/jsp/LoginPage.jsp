@@ -21,7 +21,7 @@
 
 <div class="login-container">
   <div class="cute-dragon">
-    <img src="./static/images/welcome.jpg" alt="奶龙图片" class="naidragon-image">
+    <img src="./static/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
   </div>
   <h1>奶龙商店 </h1>
   <form action="${pageContext.request.contextPath}/handler" method="post">
