@@ -88,19 +88,39 @@
                                     <h2>编辑个人信息</h2>
                                     <form action="" method="post">
                                         <span>
-                                            <input type="text" placeholder="用户名" name="username" required>
+                                            <label>用户名：
+                                                <input type="text" placeholder="用户名"
+                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       required>
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="password" placeholder="密码" name="password" required>
+                                            <label>旧密码：
+                                                <input type="password" placeholder="密码" value="" name="OldPassword"
+                                                       required>
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="email" placeholder="邮箱" name="email" required>
+                                            <label>新密码：
+                                                <input type="password" placeholder="密码" value="" name="NewPassword"
+                                                       required>
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="number" placeholder="年龄" name="age" required min="1">
+                                            <label>邮箱：
+                                                <input type="email" placeholder="邮箱" name="email"
+                                                       value="${sessionScope.loginUser.email}" required>
+                                            </label>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <label>年龄：
+                                                <input type="number" placeholder="年龄" name="age"
+                                                       value="${sessionScope.loginUser.age}" required min="1">
+                                            </label>
                                         </span>
                                         <br>
                                         <input type="submit" value="更改个人信息">
