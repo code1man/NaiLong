@@ -1,6 +1,4 @@
 package web.servlet;
-
-import com.google.gson.Gson;
 import domain.User;
 import service.UserService;
 
