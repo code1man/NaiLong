@@ -26,45 +26,46 @@
                 <div class="topBar-cart">
                     <a class="link">
                         <em class="iconfont-cart"></em>
-                        <em class="iconfont-cart-full hide cart-mini cart-mini"></em>购物车
+                        <em class="iconfont-cart-full cart-mini"></em>
+                        购物车
                         <c:choose>
                             <c:when test="${sessionScope.loginUser != null}">
                                 <%--购物车--%>
                                 <span class="cart-mini-num J_cartNum">（${sessionScope.loginUser.getTotalProductsNumber()}）</span>
                                 <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                                     <div class="menu-content">
-                                        <div class="loading">
-                                            <div class="loader">
-                                            </div>
-                                        </div>
                                         <c:choose>
                                             <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
-                                                <ul id="J_miniCartList" class="cart-list hide">
-                                                    <li>
-                                                        <div class="cart-item clearfix first">
-                                                            <a class="thumb"
-                                                               href="//www.mi.com/shop/buy?product_id=1230801081">
-                                                                <img alt="" src="">
-                                                            </a>
-                                                            <a class="name" href="javascript: void(0)">Xiaomi 14
-                                                                16GB+1TB
-                                                                黑色</a>
-                                                            <span class="price"> × 1</span>
-                                                            <a class="btn-del J_delItem" href="javascript: void(0);">
-                                                                <em class="iconfont-close"></em>
-                                                            </a>
-                                                        </div>
-                                                    </li>
+                                                <ul id="J_miniCartList" class="cart-list">
+                                                    <c:forEach var="item"
+                                                               items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
+                                                        <li>
+                                                            <div class="cart-item clearfix first">
+                                                                <a class="thumb"
+                                                                   href="//www.mi.com/shop/buy?product_id=1230801081">
+                                                                    <img alt="" src="">
+                                                                </a>
+                                                                <a class="name" href="javascript: void(0)">
+                                                                        ${item.name}
+                                                                </a>
+                                                                <span class="price"> ${item.price} × 1</span>
+                                                                <a class="btn-del J_delItem"
+                                                                   href="javascript: void(0);">
+                                                                    <em class="iconfont-close"></em>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </c:forEach>
                                                 </ul>
-                                                <div id="J_miniCartListTotal" class="cart-total clearfix hide">
-                                                    <span class="total">共 <em>1</em> 件商品
-                                                        <span class="price"><em>4599</em>元</span>
+                                                <div id="J_miniCartListTotal" class="cart-total clearfix">
+                                                    <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
+                                                        <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
                                                     </span>
                                                     <a href="" class="btn btn-primary btn-cart">结算</a>
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
-                                                <div class="msg msg-empty hide">购物车中还没有商品，赶紧选购吧！</div>
+                                                <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -86,21 +87,44 @@
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
                                     <h2>编辑个人信息</h2>
-                                    <form action="" method="post">
+                                    <form action="${pageContext.request.contextPath}/mainForm" method="post"
+                                          autocomplete="off">
                                         <span>
-                                            <input type="text" placeholder="用户名" name="username" required>
+                                            <label>用户名：
+                                                <input type="text" placeholder="用户名"
+                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       required>
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="password" placeholder="密码" name="password" required>
+                                            <label>邮箱：
+                                                <input type="email" placeholder="邮箱" name="email"
+                                                       value="${sessionScope.loginUser.email}" required>
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="email" placeholder="邮箱" name="email" required>
+                                            <label>年龄：
+                                                <input type="number" placeholder="年龄" name="age"
+                                                       value="${sessionScope.loginUser.age}" required min="1">
+                                            </label>
                                         </span>
                                         <br>
                                         <span>
-                                            <input type="number" placeholder="年龄" name="age" required min="1">
+                                            <label>旧密码：
+                                                <input type="password" placeholder="旧密码" value="" name="OldPassword"
+                                                       autocomplete="off"
+                                                       required>
+                                            </label>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <label>新密码：
+                                                <input type="password" placeholder="新密码" value="" name="NewPassword"
+                                                       autocomplete="off"
+                                                       required>
+                                            </label>
                                         </span>
                                         <br>
                                         <input type="submit" value="更改个人信息">
@@ -139,20 +163,20 @@
                             </a>
                             <div class="site-category" style="display: block">
                                 <ul class="site-category-list clearfix site-category-list-custom">
-                                    <c:forEach var="category" items="${requestScope.categoryList}">
+                                    <c:forEach var="product" items="${requestScope.productList}">
                                         <li class="category-item">
                                             <a href="" class="title">
-                                                    ${category.getCategoryName()}
+                                                    ${product.getProductName()}
                                                 <em class="iconfont-arrow-right-big"></em>
                                             </a>
                                             <div class="children clearfix children-col-2">
                                                 <ul class="children-list children-list-col children-list-col-1">
-                                                    <c:forEach var="product" items="${category.products}">
+                                                    <c:forEach var="item" items="${product.items}">
                                                         <li>
                                                             <a href="#" class="link clearfix">
-                                                                <<img src="${product.URL}" width="40" height="40" alt=""
+                                                                <<img src="${item.URL}" width="40" height="40" alt=""
                                                                       class="thumb">
-                                                                <span class="text">${product.name}</span>
+                                                                <span class="text">${item.name}</span>
                                                             </a>
                                                         </li>
                                                     </c:forEach>
@@ -164,34 +188,18 @@
                             </div>
                         </li>
                         <%--上边框--%>
-                        <li class="nav-item">
-                            <a href="" class="link" data-settrack="true"><span
-                                    class="text">表情包</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
+                        <c:forEach var="category" items="${requestScope.categoryList}">
+                            <li class="nav-item">
+                                <a href="" class="link" data-settrack="true"><span
+                                        class="text">${category.getCategoryName()}</span></a>
+                                <div class="item-children">
+                                    <div class="container">
+                                        <ul class="children-list clearfix">
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="link"><span class="text">手办</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="link"><span class="text">日常用品</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <%--搜索按钮--%>
@@ -248,11 +256,11 @@
                 </a>
             </div>
             <%--商品展示--%>
-            <c:forEach var="category" items="${requestScope.categoryList}">
+            <c:forEach var="product" items="${requestScope.productList}">
                 <div class="home-brick-box home-brick-row-2-box xm-plain-box">
                     <div class="box-hd">
                         <h2 class="title"
-                            style="font-weight: bolder">${category.getCategoryName()}</h2>
+                            style="font-weight: bolder">${product.getProductName()}</h2>
                     </div>
                     <div class="box-hd clearfix" style="height: 686px">
                         <div class="row" style="margin-left: -14px">
@@ -269,15 +277,15 @@
                             </div>
                             <div class="span16">
                                 <ul class="brick-list clearfix">
-                                    <c:forEach var="product" items="${category.products}">
+                                    <c:forEach var="item" items="${product.items}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
-                                            <a href="ShoppingCart?${product.id}">
+                                            <a href="ShoppingCart?id=${item.id}">
                                                 <div class="figure figure-img">
-                                                    <img width="160" height="160" alt="1" src="${product.URL}">
+                                                    <img width="160" height="160" alt="1" src="${item.URL}">
                                                 </div>
-                                                <h3 class="title">${product.name}</h3>
+                                                <h3 class="title">${item.name}</h3>
                                                 <p class="price">
-                                                    <span class="num">${product.price}</span>元<span>起</span>
+                                                    <span class="num">${item.price}</span>元<span>起</span>
                                                     <del><span class="num">1000</span>元</del>
                                                 </p>
                                             </a>
@@ -292,6 +300,8 @@
         </div>
     </div>
 </div>
+
+<%--鼠标--%>
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
@@ -299,7 +309,7 @@
 </body>
 
 <script>
-    // 打开模态框
+    // 对于个人资料编辑
     function openModal(event) {
         const modal = document.getElementById("modal");
         modal.style.display = "block";
@@ -327,6 +337,35 @@
             closeModal();
         }
     }
+
+    /*------------------------------------------------------------------------------------*/
+    // 对于购物车
+    const cartMenu = document.getElementById('J_miniCartMenu');
+    const cartButton = document.querySelector('.topBar-cart');
+
+    // 显示购物车菜单
+    cartButton.addEventListener('mouseenter', () => {
+        cartMenu.style.height = `auto`; // 设置为内容高度
+    });
+
+    // 隐藏购物车菜单
+    document.addEventListener('mousemove', (event) => {
+        if (cartMenu.style.height !== '0px') {
+            const cartMenuRect = cartMenu.getBoundingClientRect();
+            const cartButtonRect = cartButton.getBoundingClientRect();
+
+            // 检查鼠标是否在购物车菜单和按钮外部
+            if (
+                event.clientY < cartButtonRect.top || // 在按钮上方
+                event.clientY > cartMenuRect.bottom || // 在菜单下方
+                event.clientX < cartMenuRect.left || // 在菜单左侧
+                event.clientX > cartMenuRect.right // 在菜单右侧
+            ) {
+                // 隐藏菜单
+                cartMenu.style.height = '0'; // 重置为 0
+            }
+        }
+    });
 </script>
 <script src="./static/js/cursorFollow.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>

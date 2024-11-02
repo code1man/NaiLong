@@ -11,18 +11,20 @@ import service.ProductService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-@WebFilter("/mainForm")
-public class ProductFilter implements Filter {
+@WebFilter(urlPatterns = {"/mainForm", "/ShoppingCart"})
+public class CategoryFilter implements Filter {
     List<Category> categoryList = new ArrayList<>();
+    List<Product> productList = new ArrayList<>();
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         ProductService productService = new ProductService();
         categoryList = productService.getCategories();
+        productList = productService.getProducts();
 
         request.setAttribute("categoryList", categoryList);
+        request.setAttribute("productList", productList);
         // 继续处理请求
         chain.doFilter(request, response);
     }

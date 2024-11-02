@@ -46,33 +46,19 @@
             <div class="container">
                 <div class="header-nav">
                     <ul class="nav-list  clearfix">
-                        <li class="nav-item">
-                            <a href="" class="link" data-settrack="true"><span class="text">表情包</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
+                        <%--上边框--%>
+                        <c:forEach var="category" items="${requestScope.categoryList}">
+                            <li class="nav-item">
+                                <a href="" class="link" data-settrack="true"><span
+                                        class="text">${category.getCategoryName()}</span></a>
+                                <div class="item-children">
+                                    <div class="container">
+                                        <ul class="children-list clearfix">
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="link"><span class="text">手办</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="link"><span class="text">日常用品</span></a>
-                            <div class="item-children">
-                                <div class="container">
-                                    <ul class="children-list clearfix">
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
 
@@ -129,6 +115,7 @@
          style="display: inline-flex; align-items: center; justify-content: center;">
         <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
     </div>
+</div>
 </body>
 <script src="./static/js/cursorFollow.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>

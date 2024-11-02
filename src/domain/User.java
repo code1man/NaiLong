@@ -12,7 +12,7 @@ public class User {
     private String email;
     private boolean isAdmin;
 
-    private List<Product> hasBeenPutInShoppingCartProducts = new ArrayList<Product>();
+    private final List<Item> hasBeenPutInShoppingCartProducts = new ArrayList<Item>();
 
     public User() {
     }
@@ -70,17 +70,17 @@ public class User {
         this.email = email;
     }
 
-    public List<Product> getHasBeenPutInShoppingCartProducts() {
+    public List<Item> getHasBeenPutInShoppingCartProducts() {
         return hasBeenPutInShoppingCartProducts;
     }
 
     /*需要更改（金宇）*/
-    public void addProductToShoppingCart(Product product) {
-        hasBeenPutInShoppingCartProducts.add(product);
+    public void addProductToShoppingCart(Item item) {
+        hasBeenPutInShoppingCartProducts.add(item);
     }
 
-    public void removeProductFromShoppingCart(Product product) {
-        hasBeenPutInShoppingCartProducts.remove(product);
+    public void removeProductFromShoppingCart(Item item) {
+        hasBeenPutInShoppingCartProducts.remove(item);
     }
 
     public int getTotalProductsNumber() {
@@ -89,8 +89,8 @@ public class User {
 
     public int getTotalPrice() {
         int totalPrice = 0;
-        for (Product product : hasBeenPutInShoppingCartProducts) {
-            totalPrice += product.getPrice();
+        for (Item item : hasBeenPutInShoppingCartProducts) {
+            totalPrice += item.getPrice();
         }
         return totalPrice;
     }

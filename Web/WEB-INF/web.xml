@@ -6,7 +6,7 @@
 
     <filter>
         <filter-name>ProductFilter</filter-name>
-        <filter-class>Filter.ProductFilter</filter-class>
+        <filter-class>Filter.CategoryFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ProductFilter</filter-name>

@@ -11,4 +11,6 @@ public interface UserDao {
     public boolean addUser(User user);
 
     public User getUserByUsernameAndPassword(String username, String password);
+
+    public boolean updateUser(User user,String username, String password,String email,int age);
 }

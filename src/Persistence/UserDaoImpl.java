@@ -11,6 +11,7 @@ public class UserDaoImpl implements UserDao {
     private static final String SELECT_USER = "select * from userinfo where id = ?";
     private static final String SELECT_USER_BY_USERNAME_AND_PASSWORD = "select * from userinfo where username = ? and password = ?";
     private static final String SELECT_ALL_USER = "select * from userinfo";
+    private static final String UPDATE_USER = "UPDATE userinfo SET username = ?,password = ?,email = ?,age = ? WHERE id = ?";
 
     @Override
     public List<User> getAllUsers() {                           //获取表中查询到的所有对象
@@ -100,6 +101,29 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    @Override
+    public boolean updateUser(User user,String username, String password, String email, int age) {   //修改用户信息
+        boolean result = false;
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, email);
+            preparedStatement.setInt(4, age);
+            preparedStatement.setInt(5, user.getId());
+            int rows = preparedStatement.executeUpdate();
+            if (rows > 0) {
+                result = true;
+            }
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
     private User resultSetToUser(ResultSet resultSet) throws SQLException {               //查询结果中的一个对象
 
         User user = new User();
@@ -112,8 +136,8 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    public static void main(String[] args) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        System.out.println(userDao.getUserByUsernameAndPassword("zkd", "123"));
-    }
+//    public static void main(String[] args) {
+//        UserDaoImpl userDao = new UserDaoImpl();
+//        System.out.println(userDao.updateUser());
+//    }
 }
