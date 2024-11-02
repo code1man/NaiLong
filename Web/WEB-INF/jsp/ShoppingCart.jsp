@@ -97,34 +97,41 @@
             <div class="content">商品名字</div>
         </div>
 
-        <div class="product-box container">
-            <div class="img-left">
-                <img src="" alt="商品图片" class="img-box">
-            </div>
-            <div class="product-con">
-                <div style="flex: 5;">
-                    <h2 data-v-70283663="">
-                        <img data-v-70283663="">
-                        商品名称
-                    </h2>
-                    <div class="price-info">
-                        <span>0.1元</span>
-                    </div>
-                    <div class="price-line"></div>
+        <div style="background-color: rgba(255, 234, 175, 0.8) ">
+            <div class="product-box container">
+                <div class="img-left">
+                    <img src="" alt="商品图片" class="img-box">
                 </div>
-                <div class="price-btn-box">
-                    <div class="sale-btn">
-                        <a href="" class="price-btn price-btn-primary">购买</a>
+                <div class="product-con">
+                    <div style="flex: 5;">
+                        <h2 data-v-70283663="">
+                            <img data-v-70283663="">
+                            商品名称
+                        </h2>
+                        <div class="price-info">
+                            <span>0.1元</span>
+                        </div>
+                        <div class="price-line"></div>
                     </div>
-                    <div class="favorite-btn">
-                        <a href="" class="btn-like btn-gray">加入购物车</a>
+                    <div class="price-btn-box">
+                        <div class="sale-btn">
+                            <a href="" class="price-btn price-btn-primary">购买</a>
+                        </div>
+                        <div class="favorite-btn">
+                            <a href="" class="btn-like btn-gray">加入购物车</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="mouse-follow-icon" id="mouse-follow-icon"
+         style="display: inline-flex; align-items: center; justify-content: center;">
+        <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
+    </div>
 </body>
+<script src="./static/js/cursorFollow.js"></script>
+<script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 <script>
     window.onscroll = function () {
         var floatingWindow = document.getElementById("floatingWindow");

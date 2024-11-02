@@ -170,22 +170,24 @@
     </div>
 
     <!-- 轮转屏幕 -->
-    <div class="home-hero-container container">
-        <div class="home-hero box">
-            <ul>
-                <li>
-                    <img src="./static/images/swiper1.jpg"
-                         alt="轮播图1">
-                </li>
-                <li>
-                    <img src="./static/images/swiper.png"
-                         alt="轮播图2">
-                </li>
-                <li>
-                    <img src="https://img14.360buyimg.com/n0/jfs/t1/135035/7/42615/34447/660284caFfb4bc8ff/6f5383ba048b6a30.jpg"
-                         alt="轮播图3">
-                </li>
-            </ul>
+    <div style="background-color: rgba(255, 234, 175, 0.8) ">
+        <div class="home-hero-container container">
+            <div class="home-hero box">
+                <ul>
+                    <li>
+                        <img src="./static/images/swiper1.jpg"
+                             alt="轮播图1">
+                    </li>
+                    <li>
+                        <img src="./static/images/swiper.png"
+                             alt="轮播图2">
+                    </li>
+                    <li>
+                        <img src="https://img14.360buyimg.com/n0/jfs/t1/135035/7/42615/34447/660284caFfb4bc8ff/6f5383ba048b6a30.jpg"
+                             alt="轮播图3">
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -244,6 +246,10 @@
         </div>
     </div>
 </div>
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
+</div>
 </body>
 
 <script>
@@ -276,4 +282,6 @@
         }
     }
 </script>
+<script src="./static/js/cursorFollow.js"></script>
+<script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </html>

@@ -7,7 +7,7 @@ html {
 body {
     font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
     color: #333;
-    background: rgb(255, 234, 175) url(/static/images/IndexBackground.png) repeat 50% 100%;
+    background: rgba(255, 234, 175, 0.8) url(/static/images/IndexBackground.png) repeat 50% 100%;
     min-width: 1226px;
     margin: 0;
 }
@@ -966,7 +966,7 @@ th {
 
 /*轮转屏幕*/
 .home-hero-container {
-    background: rgba(255, 234, 175, 0.8) url(/static/images/IndexBackground.png) repeat 50% 100%;
+    background: rgba(255, 234, 175, 0.8);
     position: relative;
     z-index: 10;
     height: 460px;
@@ -1218,6 +1218,29 @@ th {
 
 .brick-item-m-2 .price {
     margin: 0 10px 14px
+}
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.mouse-follow-icon img {
+    width: 25px !important; /* 根据需要调整图片的宽度 */
+    height: auto !important; /* 自动适应高度 */
+    border-radius: 50%; /* 设置为圆形 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
 }
 
 .num {

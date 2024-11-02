@@ -25,12 +25,12 @@ const iconHeight1 = customCursor.offsetHeight / 2;
 // 设置移动延迟时间（以毫秒为单位）
 const delay = 100; // 例如：100毫秒
 document.addEventListener('mousemove', (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = event.pageX; // 使用 pageX 获取鼠标在文档中的水平位置
+    const y = event.pageY; // 使用 pageY 获取鼠标在文档中的垂直位置
 
-    //小圆点移动
+    // 小圆点移动
     customCursor.style.transform = `translate(${x - iconWidth1}px, ${y - iconHeight1}px)`; // 居中显示
-    // 设置鼠标跟随图标的位置，居中显示
+
     // 使用 setTimeout 延迟 mouseFollowIcon 的移动
     setTimeout(() => {
         mouseFollowIcon.style.transform = `translate(${x - iconWidth}px, ${y - iconHeight}px)`; // 居中显示
