@@ -2,7 +2,6 @@ package web.servlet;
 
 
 import Persistence.CaptchaUtil;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -19,6 +19,10 @@ public class UserService {
         return this.userDao.addUser(user);
     }
 
+    public boolean updateUser(User user,String username, String password, String email, int age) {
+        return userDao.updateUser(user,username,password,email,age);
+    }
+
     public static void main(String[] args) {
         UserService userService = new UserService();
         System.out.println(userService.login("admin", "admin"));

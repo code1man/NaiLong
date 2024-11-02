@@ -40,7 +40,7 @@
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
                                     <h2>编辑个人信息</h2>
-                                    <form action="" method="post">
+                                    <form action="${pageContext.request.contextPath}/mainForm" method="post">
                                         <span>
                                             <input type="text" placeholder="用户名" name="username" required>
                                         </span>
