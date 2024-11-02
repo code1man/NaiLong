@@ -1,35 +1,34 @@
 package service;
 
+import domain.Category;
+import domain.CategoryType;
 import domain.Product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/*初始化商品信息*/
 public class ProductService {
-    public Map<Product.ProductType, List<Product>> getProductsByType() {
-        Map<Product.ProductType, List<Product>> productsByType = new HashMap<>();
+    public List<Category> getCategories() {
+        List<Category> Categories = new ArrayList<>();
 
         // 创建产品
-        List<Product> allProducts = new ArrayList<>();
-        allProducts.add(new Product(1, "奶龙唐唐表情包", Product.ProductType.NAILONG_TANGTANG_EMOJI, "", 0));
-        allProducts.add(new Product(1, "奶龙壁纸", Product.ProductType.NAILONG_WALLPAPER, "", 0));
-        allProducts.add(new Product(1, "奶龙玩偶", Product.ProductType.NAILONG_DOLL, "", 0));
-        allProducts.add(new Product(1, "奶龙儿童早教玩具", Product.ProductType.NAILONG_EDUCATIONAL_TOY, "", 0));
-        allProducts.add(new Product(1, "奶龙盲盒", Product.ProductType.NAILONG_BLIND_BOX, "", 0));
-        allProducts.add(new Product(1, "奶龙水杯", Product.ProductType.NAILONG_CUP, "", 0));
-        allProducts.add(new Product(1, "奶龙情绪表情包", Product.ProductType.NAILONG_EMOTION_EMOJI, "", 0));
-        allProducts.add(new Product(1, "奶龙钥匙扣", Product.ProductType.NAILONG_KEYCHAIN, "", 0));
-        allProducts.add(new Product(1, "奶龙手办", Product.ProductType.NAILONG_FIGURE, "", 0));
-        allProducts.add(new Product(1, "奶龙其他他表情包", Product.ProductType.NAILONG_OTHER_EMOJI, "", 0));
+        for (int i = 0; i < CategoryType.values().length; i++) {
+            CategoryType type = CategoryType.values()[i];
+            Category category = new Category(type);
 
-        // 按类型分组
-        for (Product product : allProducts) {
-            productsByType.computeIfAbsent(product.getType(), k -> new ArrayList<>()).add(product);
+            // 后期替换成数据库
+            category.addProduct(new Product(1, "奶龙唐唐表情包", type, "./static/images/Products/tangtang.gif", 0));
+            category.addProduct(new Product(2, "另一个表情包", type, "./static/images/Products/tang.gif", 0));
+            category.addProduct(new Product(3, "有趣的动画", type, "./static/images/Products/tan.gif", 0));
+            category.addProduct(new Product(4, "搞笑表情", type, "./static/images/Products/qiuqiu.gif", 0));
+            category.addProduct(new Product(5, "生动的动画", type, "./static/images/Products/lve.gif", 0));
+            category.addProduct(new Product(6, "可爱的GIF", type, "./static/images/Products/tangshi.jpg", 0));
+
+            Categories.add(category);
         }
 
-        return productsByType;
+        return Categories;
     }
 }
 

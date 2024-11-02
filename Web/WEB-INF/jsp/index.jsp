@@ -27,7 +27,53 @@
                     <a class="link">
                         <em class="iconfont-cart"></em>
                         <em class="iconfont-cart-full hide cart-mini cart-mini"></em>购物车
-                        <span class="cart-mini-num">（0）</span>
+                        <c:choose>
+                            <c:when test="${sessionScope.loginUser != null}">
+                                <%--购物车--%>
+                                <span class="cart-mini-num J_cartNum">（${sessionScope.loginUser.getTotalProductsNumber()}）</span>
+                                <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
+                                    <div class="menu-content">
+                                        <div class="loading">
+                                            <div class="loader">
+                                            </div>
+                                        </div>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
+                                                <ul id="J_miniCartList" class="cart-list hide">
+                                                    <li>
+                                                        <div class="cart-item clearfix first">
+                                                            <a class="thumb"
+                                                               href="//www.mi.com/shop/buy?product_id=1230801081">
+                                                                <img alt="" src="">
+                                                            </a>
+                                                            <a class="name" href="javascript: void(0)">Xiaomi 14
+                                                                16GB+1TB
+                                                                黑色</a>
+                                                            <span class="price"> × 1</span>
+                                                            <a class="btn-del J_delItem" href="javascript: void(0);">
+                                                                <em class="iconfont-close"></em>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div id="J_miniCartListTotal" class="cart-total clearfix hide">
+                                                    <span class="total">共 <em>1</em> 件商品
+                                                        <span class="price"><em>4599</em>元</span>
+                                                    </span>
+                                                    <a href="" class="btn btn-primary btn-cart">结算</a>
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="msg msg-empty hide">购物车中还没有商品，赶紧选购吧！</div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="cart-mini-num">（0）</span>
+                            </c:otherwise>
+                        </c:choose>
                     </a>
                 </div>
                 <div class="topBar-info" style="opacity: 1">
@@ -93,15 +139,15 @@
                             </a>
                             <div class="site-category" style="display: block">
                                 <ul class="site-category-list clearfix site-category-list-custom">
-                                    <c:forEach var="entry" items="${requestScope.productsByType.entrySet()}">
+                                    <c:forEach var="category" items="${requestScope.categoryList}">
                                         <li class="category-item">
                                             <a href="" class="title">
-                                                    ${entry.key.description}
+                                                    ${category.getCategoryName()}
                                                 <em class="iconfont-arrow-right-big"></em>
                                             </a>
                                             <div class="children clearfix children-col-2">
                                                 <ul class="children-list children-list-col children-list-col-1">
-                                                    <c:forEach var="product" items="${entry.value}">
+                                                    <c:forEach var="product" items="${category.products}">
                                                         <li>
                                                             <a href="#" class="link clearfix">
                                                                 <<img src="${product.URL}" width="40" height="40" alt=""
@@ -202,11 +248,11 @@
                 </a>
             </div>
             <%--商品展示--%>
-            <c:forEach var="entry" items="${requestScope.productsByType.entrySet()}">
+            <c:forEach var="category" items="${requestScope.categoryList}">
                 <div class="home-brick-box home-brick-row-2-box xm-plain-box">
                     <div class="box-hd">
                         <h2 class="title"
-                            style="font-weight: bolder">${entry.key.description}</h2>
+                            style="font-weight: bolder">${category.getCategoryName()}</h2>
                     </div>
                     <div class="box-hd clearfix" style="height: 686px">
                         <div class="row" style="margin-left: -14px">
@@ -214,25 +260,25 @@
                                 <ul class="brick-promo-list clearfix">
                                     <li class="brick-item brick-item-l">
                                         <a href="">
-                                            <img alt=""
-                                                 src=""
-                                                 style="width: 234px; height: 628px">
+                                                <%--<img alt=""
+                                                     src=""
+                                                     style="width: 234px; height: 628px">--%>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="span16">
                                 <ul class="brick-list clearfix">
-                                    <c:forEach var="product" items="${entry.value}">
+                                    <c:forEach var="product" items="${category.products}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
                                             <a href="ShoppingCart?${product.id}">
                                                 <div class="figure figure-img">
-                                                    <img width="160" height="160" alt="1" src="">
+                                                    <img width="160" height="160" alt="1" src="${product.URL}">
                                                 </div>
                                                 <h3 class="title">${product.name}</h3>
                                                 <p class="price">
                                                     <span class="num">${product.price}</span>元<span>起</span>
-                                                    <del><span class="num">10000</span>元</del>
+                                                    <del><span class="num">1000</span>元</del>
                                                 </p>
                                             </a>
                                         </li>

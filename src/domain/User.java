@@ -1,5 +1,9 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/*用户*/
 public class User {
     private int id;
     private String username;
@@ -7,6 +11,8 @@ public class User {
     private int age;
     private String email;
     private boolean isAdmin;
+
+    private List<Product> hasBeenPutInShoppingCartProducts = new ArrayList<Product>();
 
     public User() {
     }
@@ -64,4 +70,28 @@ public class User {
         this.email = email;
     }
 
+    public List<Product> getHasBeenPutInShoppingCartProducts() {
+        return hasBeenPutInShoppingCartProducts;
+    }
+
+    /*需要更改（金宇）*/
+    public void addProductToShoppingCart(Product product) {
+        hasBeenPutInShoppingCartProducts.add(product);
+    }
+
+    public void removeProductFromShoppingCart(Product product) {
+        hasBeenPutInShoppingCartProducts.remove(product);
+    }
+
+    public int getTotalProductsNumber() {
+        return hasBeenPutInShoppingCartProducts.size();
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (Product product : hasBeenPutInShoppingCartProducts) {
+            totalPrice += product.getPrice();
+        }
+        return totalPrice;
+    }
 }
