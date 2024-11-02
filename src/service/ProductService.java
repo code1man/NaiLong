@@ -1,34 +1,43 @@
 package service;
 
-import domain.Category;
-import domain.CategoryType;
-import domain.Product;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /*初始化商品信息*/
 public class ProductService {
+
     public List<Category> getCategories() {
-        List<Category> Categories = new ArrayList<>();
+        List<Category> categories = new ArrayList<>();
 
-        // 创建产品
         for (int i = 0; i < CategoryType.values().length; i++) {
-            CategoryType type = CategoryType.values()[i];
-            Category category = new Category(type);
-
-            // 后期替换成数据库
-            category.addProduct(new Product(1, "奶龙唐唐表情包", type, "./static/images/Products/tangtang.gif", 0));
-            category.addProduct(new Product(2, "另一个表情包", type, "./static/images/Products/tang.gif", 0));
-            category.addProduct(new Product(3, "有趣的动画", type, "./static/images/Products/tan.gif", 0));
-            category.addProduct(new Product(4, "搞笑表情", type, "./static/images/Products/qiuqiu.gif", 0));
-            category.addProduct(new Product(5, "生动的动画", type, "./static/images/Products/lve.gif", 0));
-            category.addProduct(new Product(6, "可爱的GIF", type, "./static/images/Products/tangshi.jpg", 0));
-
-            Categories.add(category);
+            Category category = new Category(CategoryType.values()[i]);
+            categories.add(category);
         }
 
-        return Categories;
+        return categories;
+    }
+
+    public List<Product> getProducts() {
+        List<Product> products = new ArrayList<>();
+        // 创建产品
+        for (int i = 0; i < ProductType.values().length; i++) {
+            ProductType productType = ProductType.values()[i];
+            Product product = new Product(productType);
+
+            // 后期替换成数据库
+            product.addProduct(new Item(1 + i * 100, "奶龙唐唐表情包", productType, "./static/images/Products/tangtang.gif", 0));
+            product.addProduct(new Item(2 + i * 100, "另一个表情包", productType, "./static/images/Products/tang.gif", 0));
+            product.addProduct(new Item(3 + i * 100, "有趣的动画", productType, "./static/images/Products/tan.gif", 0));
+            product.addProduct(new Item(4 + i * 100, "搞笑表情", productType, "./static/images/Products/qiuqiu.gif", 0));
+            product.addProduct(new Item(5 + i * 100, "生动的动画", productType, "./static/images/Products/lve.gif", 0));
+            product.addProduct(new Item(6 + i * 100, "可爱的GIF", productType, "./static/images/Products/tangshi.jpg", 0));
+
+            products.add(product);
+        }
+
+        return products;
     }
 }
 

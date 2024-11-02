@@ -1,61 +1,45 @@
 package domain;
 
-/*商品*/
+import java.util.ArrayList;
+import java.util.List;
+
+/*商品大类*/
 public class Product {
-    private int id;
-    private String name;
-    private CategoryType type;
-    private String URL;
-    private int price;
+    private ProductType productType;
+    private int ProductNumber = 0;
+    private final List<Item> items = new ArrayList<Item>();
 
     public Product() {
     }
 
-    public Product(int id, String name, CategoryType type, String URL, int price) {
-        this.name = name;
-        this.type = type;
-        this.id = id;
-        this.URL = URL;
-        this.price = price;
+    // 初始化
+    public Product(ProductType productType) {
+        this.productType = productType;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getProductName() {
+        return productType.getDescription();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
-    public void setType(CategoryType type) {
-        this.type = type;
+    public int getProductNumber() {
+        return ProductNumber;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void addProduct(Item item) {
+        items.add(item);
+        ProductNumber++;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public CategoryType getType() {
-        return type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getURL() {
-        return URL;
-    }
-
-    public int getPrice() {
-        return price;
+    public void deleteProduct(Item item) {
+        items.remove(item);
+        ProductNumber--;
     }
 }

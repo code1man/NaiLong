@@ -3,43 +3,32 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/*商品大类*/
 public class Category {
     private CategoryType categoryType;
-    private int categoryNumber = 0;
-    private final List<Product> products = new ArrayList<Product>();
+    private List<ProductType> products;
 
     public Category() {
     }
 
-    // 初始化
     public Category(CategoryType categoryType) {
         this.categoryType = categoryType;
+
+        products = CategoryType.getContainingProductTypes(categoryType);
+    }
+
+    public List<ProductType> getItems() {
+        return products;
     }
 
     public String getCategoryName() {
         return categoryType.getDescription();
     }
 
-    public void setCategoryName(CategoryType categoryType) {
-        this.categoryType = categoryType;
+    public void addProductType(ProductType productType) {
+        products.add(productType);
     }
 
-    public int getCategoryNumber() {
-        return categoryNumber;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-        categoryNumber++;
-    }
-
-    public void deleteProduct(Product product) {
-        products.remove(product);
-        categoryNumber--;
+    public void deleteProductType(ProductType productType) {
+        products.remove(productType);
     }
 }

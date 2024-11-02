@@ -13,6 +13,8 @@ public class ShoppingCartFromServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String itemId = req.getParameter("id");
+        /*通过数据库找到对应商品*/
         req.getRequestDispatcher(SHOPPINGCART).forward(req, resp);
     }
 
