@@ -14,14 +14,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./static/css/LoginPage.css">
-  <title>奶龙商店</title>
+  <title>登陆</title>
 </head>
 
 <body>
-
 <div class="login-container">
   <div class="cute-dragon">
-    <img src="./static/images/welcome.jpg" alt="奶龙图片" class="naidragon-image">
+    <img src="./static/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
   </div>
   <h1>奶龙商店 </h1>
   <form action="${pageContext.request.contextPath}/handler" method="post">
@@ -36,9 +35,30 @@
     </span>
     <input type="submit" value="登录">
   </form>
-  <div class="footer-text">还没有账号？立即注册！</div>
+  <div class="footer-text">
+    <a href="register">还没有账号？立即注册！</a>
+  </div>
 </div>
 
+
+<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
+  <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<script src="./static/js/cursorFollow.js"></script>
+<script>
+  // 检查是否有注册成功的消息
+  window.addEventListener('DOMContentLoaded', (event) => {
+    <%
+        String message = (String) session.getAttribute("message");
+        session.removeAttribute("message"); // 清除消息，避免重复显示
+    %>
+    let message = "<%= message %>";
+    if (message=="注册成功，请登录！") {
+      alert(message); // 显示弹出框
+    }
+  });
+</script>
  <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </body>
 

@@ -15,8 +15,8 @@ body {
     background-image: url("../images/bg.jpg");
 }
 
-.login-container {
-    background-color:#fffde7;
+.register-container {
+    background-color: #fffde7;
     border-radius: 25px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
@@ -24,15 +24,12 @@ body {
     width: 350px;
 }
 
-.login-container h1 {
-    color: #fbc02d;
-    /* 明亮的黄色标题 */
-    font-size: 32px;
-    margin-bottom: 20px;
-}
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.register-container input[type="text"],
+.register-container input[type="password"] ,
+.register-container input[type="email"],
+.register-container input[type="number"]
+{
     width: 80%;
     padding: 10px;
     margin: 10px 0;
@@ -46,7 +43,7 @@ body {
     /* 深棕色字体 */
 }
 
-.login-container input[type="submit"] {
+.register-container input[type="submit"] {
     width: 85%;
     padding: 12px;
     background-color: #fbc02d;
@@ -59,7 +56,7 @@ body {
     margin-top: 15px;
 }
 
-.login-container input[type="submit"]:hover {
+.register-container input[type="submit"]:hover {
     background-color: #fdd835;
     /* 按钮悬停时浅黄色 */
 }
@@ -73,9 +70,45 @@ body {
 }
 
 .naidragon-image {
-    width: 150px; /* 调整图片宽度 */
-    height: auto; /* 自动适应高度 */
-    margin-bottom: 10px; /* 与下方标题的间距 */
+    width: 150px;
+    /* 调整图片宽度 */
+    height: auto;
+    /* 自动适应高度 */
+    margin-bottom: 10px;
+    /* 与下方标题的间距 */
+}
+
+.register-container select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 下拉框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+    font-size: 16px;
+    appearance: none;
+    /* 移除默认样式 */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23fdd835" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+    /* 鼠标悬停效果 */
+    box-sizing: border-box;
+}
+
+/* 添加悬停和聚焦效果 */
+.login-container select:hover,
+.login-container select:focus {
+    border-color: #ffc107;
+    /* 悬停时边框更亮 */
+    background-color: #fff59d;
+    /* 悬停时背景更浅 */
 }
 
 
@@ -84,12 +117,6 @@ body {
     pointer-events: none; /* 防止干扰鼠标事件 */
     transition: transform 0.1s ease; /* 动画效果 */
     z-index: 10; /* 确保图标在最上层 */
-}
-
-.mouse-follow-icon img {
-    width: 25px !important; /* 根据需要调整图片的宽度 */
-    height: auto !important; /* 自动适应高度 */
-    border-radius: 50%; /* 设置为圆形 */
 }
 
 .custom-cursor {

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebFilter("/index.jsp")
+@WebFilter("/mainForm")
 public class ProductFilter implements Filter {
     ProductService productService = new ProductService();
     Map<Product.ProductType, List<Product>> productsByType;

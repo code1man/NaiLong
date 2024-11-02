@@ -7,7 +7,7 @@ html {
 body {
     font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
     color: #333;
-    background-color: #fff;
+    background: rgba(255, 234, 175, 0.8) url(/static/images/IndexBackground.png) repeat 50% 100%;
     min-width: 1226px;
     margin: 0;
 }
@@ -77,6 +77,10 @@ th {
     margin-left: auto;
 }
 
+.header {
+    background: rgba(255, 234, 175, 0.8);
+}
+
 .site-header .nav-category .link-category {
     visibility: hidden
 }
@@ -89,7 +93,7 @@ th {
     height: 420px;
     border: 0;
     color: #fff;
-    background: rgba(105, 101, 101, .6)
+    background: rgba(230, 191, 82, 0.6)
 }
 
 .site-category-list.site-category-list-custom .title {
@@ -137,56 +141,9 @@ th {
     position: relative;
     z-index: 30;
     height: 40px;
-    font-size: 12px;
+    font-size: 15px;
     color: #b0b0b0;
-    background: #333
-}
-
-.site-topBar a {
-    color: #b0b0b0;
-    line-height: 40px;
-    display: inline-block
-}
-
-.site-topBar a:hover {
-    color: #fff
-}
-
-.site-topBar .sep {
-    margin: 0 .3em;
-    color: #424242
-}
-
-.site-topBar .topBar-nav {
-    float: left;
-    height: 40px;
-    line-height: 40px
-}
-
-.site-topBar .topBar-download {
-    position: relative
-}
-
-.site-topBar .topBar-download img {
-    display: block;
-    margin: 18px auto 12px
-}
-
-.site-topBar .topBar-download.active:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    margin-left: -8px;
-    border-width: 0 8px 8px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fff
-}
-
-.site-topBar .topBar-download.active .appcode {
-    height: 148px
+    background: #ffeb68;
 }
 
 .site-topBar .topBar-info .link {
@@ -241,17 +198,8 @@ th {
     transition: color .2s
 }
 
-.site-topBar {
-    position: relative;
-    z-index: 30;
-    height: 40px;
-    font-size: 12px;
-    color: #b0b0b0;
-    background: #333
-}
-
 .site-topBar a {
-    color: #b0b0b0;
+    color: #3a6c2f;
     line-height: 40px;
     display: inline-block
 }
@@ -273,6 +221,19 @@ th {
 
 .site-topBar .topBar-download {
     position: relative
+}
+
+.site-topBar .topBar-download.active:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    border-width: 0 8px 8px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fff
 }
 
 .site-topBar .topBar-download .appcode {
@@ -314,6 +275,7 @@ th {
 }
 
 .site-header .header-nav {
+    color: #3a6c2f;
     float: left;
     width: 850px
 }
@@ -351,7 +313,7 @@ th {
 .site-header .header-logo {
     float: left;
     width: 62px;
-    margin-top: 22px
+    margin-top: 15px
 }
 
 .ir {
@@ -460,6 +422,59 @@ th {
 
 .site-topBar .message {
     padding: 0 10px
+}
+
+/*隐藏框*/
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.register-container {
+    background-color: #fffde7;
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+
+.register-container input[type="text"],
+.register-container input[type="password"],
+.register-container input[type="email"],
+.register-container input[type="number"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    /* 边框为黄色 */
+    border-radius: 15px;
+    outline: none;
+    background-color: #fff9c4;
+    /* 输入框淡黄色背景 */
+    color: #6d4c41;
+    /* 深棕色字体 */
+}
+
+.register-container input[type="submit"] {
+    width: 85%;
+    padding: 12px;
+    background-color: #fbc02d;
+    /* 按钮黄色背景 */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.register-container input[type="submit"]:hover {
+    background-color: #fdd835;
+    /* 按钮悬停时浅黄色 */
 }
 
 .site-category {
@@ -666,20 +681,6 @@ th {
     width: 265px
 }
 
-.site-category-list .children {
-    display: none;
-    position: absolute;
-    left: 234px;
-    top: 0;
-    z-index: 24;
-    height: 458px;
-    border: 1px solid #e0e0e0;
-    border-left: 0;
-    background: #fff;
-    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, .18);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, .18)
-}
-
 .site-category-list .children-col-1 {
     width: 265px
 }
@@ -701,6 +702,7 @@ th {
 }
 
 .site-header .nav-list {
+    color: #3a6c2f;
     position: relative;
     z-index: 10;
     float: left;
@@ -962,43 +964,9 @@ th {
     color: #fff
 }
 
-.site-header .search-hot-words {
-    position: absolute;
-    top: 14px;
-    right: 62px;
-    z-index: 2;
-    text-align: right;
-    -webkit-transition: opacity .2s;
-    transition: opacity .2s
-}
-
-.site-header .search-hot-words a {
-    display: inline-block;
-    margin-left: 5px;
-    padding: 0 5px;
-    font-size: 12px;
-    background: #eee;
-    color: #757575;
-    -webkit-transition: all .2s;
-    transition: all .2s
-}
-
-.site-header .search-hot-words a:hover {
-    background: #ff6700;
-    color: #fff
-}
-
-.site-header .search-hot-words.fade-out {
-    opacity: 0
-}
-
-.site-header .search-hot-words.fade-in {
-    opacity: 1
-}
-
-
 /*轮转屏幕*/
 .home-hero-container {
+    background: rgba(255, 234, 175, 0.8);
     position: relative;
     z-index: 10;
     height: 460px;
@@ -1050,7 +1018,7 @@ th {
 
 /*商品展示部分*/
 .page-main {
-    background: #f5f5f5
+    background: rgba(255, 234, 175, 0.8);
 }
 
 .home-main {
@@ -1058,11 +1026,225 @@ th {
     padding-bottom: 12px
 }
 
-/*横条*/
+/*banner*/
 .home-banner-box {
     height: 120px;
     margin: 22px 0;
     overflow: hidden
+}
+
+/*商品展示部分*/
+.home-brick-box {
+    margin-bottom: 8px
+}
+
+.home-brick-box .box-hd .more .tab-list li {
+    margin: 0 0 0 30px
+}
+
+.home-brick-box .brick-list,
+.home-brick-box .brick-promo-list {
+    margin: 0 0 -14px -14px
+}
+
+.home-brick-box .tab-content-hide {
+    display: none
+}
+
+.xm-plain-box .box-hd {
+    position: relative;
+    height: 58px;
+    -webkit-font-smoothing: antialiased
+}
+
+.xm-plain-box .box-hd .title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #7c4e4e;
+}
+
+.xm-plain-box .box-hd .title small {
+    margin-left: 10px;
+    font-size: 14px
+}
+
+.xm-plain-box .box-hd .title .tip {
+    color: #757575
+}
+
+.row {
+    margin-left: -14px
+}
+
+.row:after,
+.row:before {
+    content: " ";
+    display: table
+}
+
+.row:after {
+    clear: both
+}
+
+.span4,
+.span16 {
+    float: left;
+    margin-left: 14px;
+    min-height: 1px
+}
+
+.span4 {
+    width: 234px
+}
+
+.span16 {
+    width: 978px
+}
+
+.brick-list,
+.brick-promo-list {
+    height: 628px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none
+}
+
+.brick-list {
+    width: 992px
+}
+
+.brick-item {
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 234px;
+    margin-left: 14px;
+    margin-bottom: 14px;
+    background: #d99878;
+    color: #ffe2b9;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear
+}
+
+.brick-item:hover {
+    z-index: 2;
+    -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0)
+}
+
+.brick-item-l {
+    height: 628px
+}
+
+.brick-item-m {
+    height: 246px;
+    padding: 34px 0 20px
+}
+
+.brick-item-m-2 {
+    height: 300px;
+    padding: 0
+}
+
+.brick-item-m .figure-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px
+}
+
+.brick-item-m .figure-img a {
+    display: block
+}
+
+.brick-item-m .figure-img img {
+    width: 150px;
+    height: 150px
+}
+
+.brick-item-m .title {
+    margin: 0 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333
+}
+
+.brick-item-m .desc,
+.brick-item-m .title {
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.brick-item-m .desc {
+    margin: 0 10px 10px;
+    height: 18px;
+    font-size: 12px;
+    color: #b0b0b0
+}
+
+.brick-item-m .price {
+    margin: 0 10px 10px;
+    text-align: center;
+    color: #51694d
+}
+
+.brick-item-m .price del {
+    margin-left: .5em;
+    color: #e4242470
+}
+
+.brick-item-m-2 > a {
+    display: block;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px 0
+}
+
+.brick-item-m-2 .figure-img,
+.brick-item-m-2 .figure-img img {
+    width: 160px;
+    height: 160px
+}
+
+.brick-item-m-2 .title {
+    margin: 0 10px 2px
+}
+
+.brick-item-m-2 .price {
+    margin: 0 10px 14px
+}
+
+.mouse-follow-icon {
+    position: absolute;
+    pointer-events: none; /* 防止干扰鼠标事件 */
+    transition: transform 0.1s ease; /* 动画效果 */
+    z-index: 10; /* 确保图标在最上层 */
+}
+
+.mouse-follow-icon img {
+    width: 25px !important; /* 根据需要调整图片的宽度 */
+    height: auto !important; /* 自动适应高度 */
+    border-radius: 50%; /* 设置为圆形 */
+}
+
+.custom-cursor {
+    width: 5px; /* 圆点的宽度 */
+    height: 5px; /* 圆点的高度 */
+    background-color: yellow; /* 圆点颜色 */
+    border-radius: 50%; /* 使其为圆形 */
+    position: absolute; /* 绝对定位 */
+    pointer-events: none; /* 使其不捕获鼠标事件 */
+    z-index: 1000; /* 确保在其他元素上方 */
+}
+
+.num {
+    font-size: 14px
 }
 
 .iconfont-cart:before {

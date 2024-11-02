@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         if(!validate())
         {
-            req.setAttribute("loginMsg", "用户名或密码为空");
+            req.setAttribute("loginMsg", loginMsg);
             req.getRequestDispatcher("/login").forward(req, resp);
         }
         else
