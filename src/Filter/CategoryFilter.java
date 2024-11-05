@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebFilter(urlPatterns = {"/mainForm", "/ShoppingCart"})
+@WebFilter(urlPatterns = {"/mainForm", "/ShoppingCart", "/AddItemToCart"})
 public class CategoryFilter implements Filter {
     List<Category> categoryList = new ArrayList<>();
     List<Product> productList = new ArrayList<>();

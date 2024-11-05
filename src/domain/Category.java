@@ -1,13 +1,30 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable {
     private CategoryType categoryType;
     private List<ProductType> products;
 
     public Category() {
+    }
+
+    public CategoryType getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public List<ProductType> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductType> products) {
+        this.products = products;
     }
 
     public Category(CategoryType categoryType) {

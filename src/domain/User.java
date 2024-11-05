@@ -70,6 +70,7 @@ public class User {
         this.email = email;
     }
 
+
     public List<Item> getHasBeenPutInShoppingCartProducts() {
         return hasBeenPutInShoppingCartProducts;
     }

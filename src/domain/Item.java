@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
+
 /*商品*/
-public class Item {
+public class Item implements Serializable {
     private int id;
     private String name;
     private ProductType type;
@@ -11,7 +13,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, String name, ProductType type, String URL, int price) {
+    public Item  (int id, String name, ProductType type, String URL, int price) {
         this.name = name;
         this.type = type;
         this.id = id;

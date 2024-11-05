@@ -92,7 +92,7 @@
                     <div style="flex: 5;">
                         <h2 data-v-70283663="">
                             <img data-v-70283663="">
-                            商品名称
+                            ${requestScope.item}
                         </h2>
                         <div class="price-info">
                             <span>0.1元</span>
@@ -104,7 +104,7 @@
                             <a href="" class="price-btn price-btn-primary">购买</a>
                         </div>
                         <div class="favorite-btn">
-                            <a href="" class="btn-like btn-gray">加入购物车</a>
+                            <a href="AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
                         </div>
                     </div>
                 </div>

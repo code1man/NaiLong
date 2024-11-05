@@ -1,10 +1,11 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /*商品大类*/
-public class Product {
+public class Product implements Serializable {
     private ProductType productType;
     private int ProductNumber = 0;
     private final List<Item> items = new ArrayList<Item>();

@@ -41,16 +41,18 @@
                                                                items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
                                                         <li>
                                                             <div class="cart-item clearfix first">
+
                                                                 <a class="thumb"
                                                                    href="//www.mi.com/shop/buy?product_id=1230801081">
-                                                                    <img alt="" src="">
+                                                                    <img alt="" src="${item.URL}">
                                                                 </a>
                                                                 <a class="name" href="javascript: void(0)">
                                                                         ${item.name}
                                                                 </a>
                                                                 <span class="price"> ${item.price} × 1</span>
                                                                 <a class="btn-del J_delItem"
-                                                                   href="javascript: void(0);">
+                                                                   href="
+">
                                                                     <em class="iconfont-close"></em>
                                                                 </a>
                                                             </div>
@@ -279,7 +281,7 @@
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="item" items="${product.items}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
-                                            <a href="ShoppingCart?id=${item.id}">
+                                            <a href="ShoppingCart?item=${item.id}">
                                                 <div class="figure figure-img">
                                                     <img width="160" height="160" alt="1" src="${item.URL}">
                                                 </div>

@@ -1,7 +1,7 @@
 package web.servlet;
+import com.mysql.cj.Session;
 import domain.User;
 import service.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Map;
 
 @WebServlet(name = "RegisterServlet",urlPatterns = {"/handlerRegister"})
 public class RegisterServlet extends HttpServlet {
@@ -58,4 +60,8 @@ public class RegisterServlet extends HttpServlet {
         }
 
      }
+    
+
+
+
 }
