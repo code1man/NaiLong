@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% Boolean notLoggedIn = (Boolean) request.getAttribute("notLoggedIn"); %>
 
 <% if (notLoggedIn != null && notLoggedIn) { %>
@@ -48,13 +49,40 @@
     <section class="address-section">
         <h2>收货地址</h2>
         <div class="address-grid">
-            <div class="address active">湖南 长沙 (XXX) 收<br>天心区中南大学铁道校区XX舍</div>
-            <div class="address">湖南 长沙 (XXX) 收<br>天心区中南大学铁道校区XX舍</div>
-            <div class="address">湖南 长沙 (XXX) 收<br>天心区中南大学铁道校区XX舍</div>
-            <div class="address">湖南 长沙 (XXX) 收<br>天心区中南大学铁道校区XX舍</div>
-            <div class="address add-new">+ 使用新地址</div>
+            <c:forEach var="address" items="${sessionScope.addressList}">
+                <div class="address <c:if test="${address.is_default}">active</c:if>">
+                        ${address.province} ${address.city} ${address.district} (收)<br>
+                        ${address.detail_address}<br>
+                        ${address.receiver_name}<br>
+                    电话：${address.phone_number}
+                </div>
+            </c:forEach>
+            <div class="address add-new" id="addNewAddressBtn">+ 使用新地址</div>
+        </div>
+        <!-- 模态框 -->
+        <div id="addAddressModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>添加新地址</h2>
+                <form id="addAddressForm">
+                    <label for="province">省：</label>
+                    <input type="text" id="province" name="province" required><br>
+                    <label for="city">市：</label>
+                    <input type="text" id="city" name="city" required><br>
+                    <label for="district">区：</label>
+                    <input type="text" id="district" name="district" required><br>
+                    <label for="detailAddress">详细地址：</label>
+                    <input type="text" id="detailAddress" name="detailAddress" required><br>
+                    <label for="phoneNumber">电话：</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+                    <label for="receiverName">收件人姓名：</label>
+                    <input type="text" id="receiverName" name="receiverName" required><br>
+                    <button type="submit">确认</button>
+                </form>
+            </div>
         </div>
     </section>
+
 
     <section class="order-summary">
         <h2>商品清单</h2>
@@ -107,7 +135,70 @@
         }
     });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const modal = document.getElementById("addAddressModal");
+        const btn = document.getElementById("addNewAddressBtn");
+        const span = document.getElementsByClassName("close")[0];
 
+        // 点击“+ 使用新地址”按钮时打开模态框
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // 点击关闭按钮时关闭模态框
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 点击模态框外部时关闭模态框
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // 表单提交事件
+        const form = document.getElementById("addAddressForm");
+        form.onsubmit = function(e) {
+            e.preventDefault(); // 防止页面刷新
+
+            // 获取表单数据
+            const province = document.getElementById("province").value;
+            const city = document.getElementById("city").value;
+            const district = document.getElementById("district").value;
+            const detailAddress = document.getElementById("detailAddress").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const receiverName = document.getElementById("receiverName").value;
+
+            // 这里可以进行 AJAX 请求，将数据发送到服务器
+            // 例如，使用 fetch API:
+            /*
+            fetch('/addAddress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    province, city, district, detailAddress, phoneNumber, receiverName
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // 关闭模态框
+                modal.style.display = "none";
+                // 可以在这里更新地址列表
+            })
+            .catch(error => console.error('Error:', error));
+            */
+
+            // 关闭模态框
+            modal.style.display = "none";
+        }
+    });
+
+</script>
 </body>
 
 </html>
