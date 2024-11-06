@@ -199,7 +199,7 @@
                     </div>
                     <div class="price-btn-box">
                         <div class="sale-btn">
-                            <a href="${pageContext.request.contextPath}/order" class="price-btn price-btn-primary">购买</a>
+                            <a href="${pageContext.request.contextPath}/orderForm" class="price-btn price-btn-primary">购买</a>
                         </div>
                         <div class="favorite-btn">
                             <a href="" class="btn-like btn-gray">加入购物车</a>
