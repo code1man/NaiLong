@@ -37,7 +37,16 @@ public class AddressDaoImpl implements AddressDao {
     public void addAddress(Address address) { // 添加新地址
         try {
             Connection connection = DBUtil.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS);
+            PreparedStatement preparedStatement;
+            boolean is_Default = address.getIs_default();
+            int user_id = address.getUser_id();
+            if(is_Default) {
+                String updateQuery = "UPDATE address SET is_default = false WHERE user_id = ?";
+                preparedStatement = connection.prepareStatement(updateQuery);
+                preparedStatement.setInt(1, user_id);
+                preparedStatement.executeUpdate();
+            }
+            preparedStatement = connection.prepareStatement(INSERT_ADDRESS);
             preparedStatement.setInt(1, address.getUser_id());
             preparedStatement.setString(2, address.getProvince());
             preparedStatement.setString(3, address.getCity());

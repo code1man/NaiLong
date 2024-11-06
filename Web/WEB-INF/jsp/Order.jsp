@@ -77,6 +77,10 @@
                     <input type="text" id="phoneNumber" name="phoneNumber" required><br>
                     <label for="receiverName">收件人姓名：</label>
                     <input type="text" id="receiverName" name="receiverName" required><br>
+                    <label>
+                        <input type="checkbox" id="isDefault">
+                        设为默认地址
+                    </label><br>
                     <button type="submit">确认</button>
                 </form>
             </div>
@@ -167,34 +171,37 @@
             const province = document.getElementById("province").value;
             const city = document.getElementById("city").value;
             const district = document.getElementById("district").value;
-            const detailAddress = document.getElementById("detailAddress").value;
-            const phoneNumber = document.getElementById("phoneNumber").value;
-            const receiverName = document.getElementById("receiverName").value;
+            const detail_address = document.getElementById("detailAddress").value;
+            const phone_number = document.getElementById("phoneNumber").value;
+            const receiver_name = document.getElementById("receiverName").value;
+            const is_default = document.getElementById("isDefault").checked;
 
-            // 这里可以进行 AJAX 请求，将数据发送到服务器
-            // 例如，使用 fetch API:
-            /*
-            fetch('/addAddress', {
+
+            // 发送 AJAX 请求到服务器
+            fetch('${pageContext.request.contextPath}/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    province, city, district, detailAddress, phoneNumber, receiverName
+                    province: province,
+                    city: city,
+                    district: district,
+                    detail_address: detail_address,
+                    phone_number: phone_number,
+                    receiver_name: receiver_name,
+                    is_default: is_default
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // 关闭模态框
-                modal.style.display = "none";
-                // 可以在这里更新地址列表
-            })
-            .catch(error => console.error('Error:', error));
-            */
-
-            // 关闭模态框
-            modal.style.display = "none";
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // 关闭模态框
+                    modal.style.display = "none";
+                    location.reload();
+                    // 可以在这里更新地址列表（例如，在页面上动态添加新地址）
+                })
+                .catch(error => console.error('Error:', error));
         }
     });
 

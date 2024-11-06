@@ -22,6 +22,7 @@
           <element id="library" level="project" name="Java EE 6-Java EE 6" />
           <element id="library" level="project" name="jstl" />
           <element id="library" level="project" name="mysql-connector-java-8.0.11" />
+          <element id="library" level="project" name="gson-2.10.1" />
         </element>
       </element>
     </root>
