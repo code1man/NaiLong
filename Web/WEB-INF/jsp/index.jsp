@@ -82,7 +82,7 @@
                         <c:when test="${sessionScope.loginUser != null}">
                             <%--编辑个人信息--%>
                             <a href="javascript:void(0)" class="link"
-                               onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
+                               onclick="openModal()">欢迎回来！${sessionScope.userLog.userId}${sessionScope.userLog.action}${sessionScope.userLog.itemId}${sessionScope.loginUser.username}
                             </a>
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
@@ -363,7 +363,7 @@
 </body>
 
 <script>
-    window.onload = function() {
+    window.onload = function () {
         let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
         if (updateMsg) {
             alert(updateMsg); // 显示警告消息
