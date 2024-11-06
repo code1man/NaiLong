@@ -82,7 +82,7 @@
                         <c:when test="${sessionScope.loginUser != null}">
                             <%--编辑个人信息--%>
                             <a href="javascript:void(0)" class="link"
-                               onclick="openModal()">欢迎回来！${sessionScope.userLog.userId}${sessionScope.userLog.action}${sessionScope.userLog.itemId}${sessionScope.loginUser.username}
+                               onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
                             </a>
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
@@ -135,7 +135,7 @@
                         <c:otherwise>
                             <a href="login" class="link">登录</a>
                             <span class="sep">|</span>
-                            <a href="" data-register="true" class="link">注册</a>
+                            <a href="register" data-register="true" class="link">注册</a>
                             <span class="sep">|</span>
                             <span class="message">
                                 <a href="" class="J_needAgreement">消息通知</a>
@@ -361,6 +361,16 @@
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 </body>
+
+<script>
+    window.onload = function() {
+        let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
+        if (updateMsg) {
+            alert(updateMsg); // 显示警告消息
+            <% session.removeAttribute("UpdateMsg"); %> // 移除消息
+        }
+    };
+</script>
 
 <script src="./static/js/topBar.js"></script>
 <script src="./static/js/cursorFollow.js"></script>
