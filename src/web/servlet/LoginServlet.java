@@ -1,5 +1,6 @@
 package web.servlet;
 
+import domain.Cart;
 import domain.User;
 import service.UserService;
 
@@ -40,6 +41,8 @@ public class LoginServlet extends HttpServlet {
                 //此后可以加入是否管理员验证
                 HttpSession session = req.getSession();
                 session.setAttribute("loginUser", loginUser);
+                Cart cart=new Cart();
+                session.setAttribute("cart",cart);
                 resp.sendRedirect("mainForm");     //用session储存信息后即可重定向
             }
             else
