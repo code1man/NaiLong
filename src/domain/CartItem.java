@@ -8,7 +8,9 @@ public class CartItem implements Serializable {
     private int userId;
     private int total;
 
-    public CartItem(){}
+    public CartItem(){
+
+    }
     public CartItem(Item item, int quantity)
     {
         this.item = item;

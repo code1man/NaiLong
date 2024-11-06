@@ -4,10 +4,8 @@ import Persistence.*;
 import com.mysql.cj.Session;
 import domain.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +56,15 @@ public class CatalogService {
         Connection connection=DBUtil.getConnection();
         PreparedStatement statement= connection.prepareStatement(Add_Item);
 
-                statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getUserId());
-                statement.setInt(2,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
-                statement.setInt(3,cart.itemList.get(cart.itemList.size()-1).getQuantity());
+        statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getUserId());
+        statement.setInt(2,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
+        statement.setInt(3,cart.itemList.get(cart.itemList.size()-1).getQuantity());
+        LocalDate currentDate = LocalDate.now();
+        Date sqlDate = Date.valueOf(currentDate);
+        statement.setDate(4,sqlDate);
+
+        statement.executeUpdate();
+
         DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
     }
@@ -68,6 +72,9 @@ public class CatalogService {
          Connection connection=DBUtil.getConnection();
          PreparedStatement statement= connection.prepareStatement(Remove_Item);
          statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
+
+         statement.executeUpdate();
+
          DBUtil.closeStatement(statement);
          DBUtil.closeConnection(connection);
      }
@@ -81,7 +88,7 @@ public class CatalogService {
              int quantity = resultSet.getInt(3);
 
              CartItem cartItem=new CartItem(itemDao.getItem(itemID), quantity);
-
+             cart.addItem(cartItem);
          }
 
          return cart;

@@ -31,8 +31,10 @@ public class AddItemToCartServlet extends HttpServlet {
         Cart cart = (Cart) httpSession.getAttribute("cart");
         if (cart == null) {
             cart = new Cart();
-        }
 
+        }
+        HttpSession session = req.getSession();
+        session.setAttribute("cart", cart);
         if (cart.containsItemId(workingItemId)) {
             cart.incrementQuantityByItemId(workingItemId);
         } else {
@@ -45,13 +47,7 @@ public class AddItemToCartServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-
         }
-
-        HttpSession session = req.getSession();
-        session.setAttribute("cart", cart);
-
         new MainFormServlet().doGet(req, resp);
     }
 

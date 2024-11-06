@@ -104,7 +104,7 @@
                             <a href="${pageContext.request.contextPath}/order" class="price-btn price-btn-primary">购买</a>
                         </div>
                         <div class="favorite-btn">
-                            <a href="AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
+                            <a href="/AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
                         </div>
                     </div>
                 </div>

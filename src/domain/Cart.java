@@ -34,21 +34,42 @@ public class Cart implements Serializable {
 //        this.itemList=new ArrayList<>();
 //
 //}
+    public int count(Iterator iterator)
+    {   int count1=0;
+        iterator=this.getAllCartItems();
+        while(iterator.hasNext())
+        {
+            CartItem cartItem=(CartItem) iterator.next();
+            count1+=cartItem.getQuantity();
+        }
+
+        return count1;
+    }
 
     public void addItem(Item item) {
         CartItem cartItem = null;
-        if (!itemList.isEmpty())
-            cartItem = (CartItem) itemList.get(item.getId());
+        if (!containsItemId(String.valueOf(item.getId()))) {
+            for (CartItem cartItem1: itemList)
+            {
+                int itemId = cartItem1.getItem().getId();
+                if (item.getId() == itemId)
+                {
+                    itemList.remove(cartItem1);
+                    cartItem = cartItem1;
+                    break;
+                }
+            }
+        }
         if (cartItem == null) {
             cartItem = new CartItem();
             cartItem.setItem(item);
             cartItem.setQuantity(0);
-            itemList.add(cartItem);
         }
         cartItem.incrementQuantity();
+        itemList.add(cartItem);
     }
 
-    public void addIUtem(CartItem cartItem)
+    public void addItem(CartItem cartItem)
     {
         itemList.add(cartItem);
     }
@@ -86,7 +107,10 @@ public class Cart implements Serializable {
         return subTotal;
 
     }
-
+public int getTotalNum()
+{
+  return this.count(this.getAllCartItems());
+}
 }
 
 
