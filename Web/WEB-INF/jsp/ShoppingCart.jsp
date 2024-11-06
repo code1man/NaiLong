@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>购物界面</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/ShoppingCart.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/ShoppingCart.css">
 </head>
 <body>
 <div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="price-btn-box">
                         <div class="sale-btn">
-                            <a href="" class="price-btn price-btn-primary">购买</a>
+                            <a href="${pageContext.request.contextPath}/order" class="price-btn price-btn-primary">购买</a>
                         </div>
                         <div class="favorite-btn">
                             <a href="AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
@@ -116,8 +116,9 @@
         <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
     </div>
 </div>
-</body>
 <script src="./static/js/cursorFollow.js"></script>
+</body>
+
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 <script>
     window.onscroll = function () {

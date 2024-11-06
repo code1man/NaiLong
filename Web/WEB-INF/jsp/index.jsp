@@ -137,7 +137,7 @@
                         <c:otherwise>
                             <a href="login" class="link">登录</a>
                             <span class="sep">|</span>
-                            <a href="" data-register="true" class="link">注册</a>
+                            <a href="register" data-register="true" class="link">注册</a>
                             <span class="sep">|</span>
                             <span class="message">
                                 <a href="" class="J_needAgreement">消息通知</a>
@@ -310,6 +310,15 @@
 </div>
 </body>
 
+<script>
+    window.onload = function() {
+        let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
+        if (updateMsg) {
+            alert(updateMsg); // 显示警告消息
+            <% session.removeAttribute("UpdateMsg"); %> // 移除消息
+        }
+    };
+</script>
 <script>
     // 对于个人资料编辑
     function openModal(event) {
