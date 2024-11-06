@@ -64,6 +64,13 @@ public class CatalogService {
         DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
     }
+     public void executeRemove(Cart cart) throws SQLException {
+         Connection connection=DBUtil.getConnection();
+         PreparedStatement statement= connection.prepareStatement(Remove_Item);
+         statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
+         DBUtil.closeStatement(statement);
+         DBUtil.closeConnection(connection);
+     }
      public Cart ResultToCart(ResultSet resultSet) throws SQLException {
          ItemDaoImpl itemDao = new ItemDaoImpl();
          Cart cart=new Cart();
@@ -79,6 +86,13 @@ public class CatalogService {
 
          return cart;
      }
-
+    public Cart executeUpdate(Cart cart) throws SQLException {
+        Connection connection=DBUtil.getConnection();
+        PreparedStatement statement= connection.prepareStatement(Update_Item);
+        statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getUserId());
+        ResultSet resultSet=statement.executeQuery();
+        Cart cart1= ResultToCart(resultSet);
+        return cart1;
+    }
 
 }

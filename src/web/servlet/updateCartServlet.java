@@ -2,6 +2,7 @@ package web.servlet;
 
 import domain.Cart;
 import domain.CartItem;
+import service.CatalogService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 @WebServlet(name = "updateCartServlet",urlPatterns = {"/updateCart"})
@@ -34,6 +36,12 @@ public class updateCartServlet extends HttpServlet {
             } catch (Exception e) {
                 //ignore parse exceptions on purpose
             }
+        }
+        CatalogService catalogService = new CatalogService();
+        try {
+            cart= catalogService.executeUpdate(cart);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
