@@ -26,6 +26,7 @@ public class MainFormServlet extends HttpServlet {
     private User user;
     private String newPassword;
     private String UpdateMsg;
+    private static final  String Update_Item="SELECT * FROM cart where userID=?";
 
     private static final String LOGIN_FORM = "/WEB-INF/jsp/index.jsp";
     @Override
