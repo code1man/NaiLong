@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @WebServlet(name = "ShoppingCartServlet", urlPatterns = {"/ShoppingCart"})
 public class ShoppingCartFromServlet extends HttpServlet {
-    private static final String SHOPPINGCART = "/WEB-INF/jsp/ShoppingCart.jsp";
+    private final String SHOPPINGCART = "/WEB-INF/jsp/ShoppingCart.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

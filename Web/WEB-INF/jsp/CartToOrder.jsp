@@ -43,7 +43,7 @@
 
 <main>
     <div class="breadcrumb">
-        <p>NaiLongStore &gt; 订单确认</p>
+        <p>NaiLongStore &gt; 购物车</p>
     </div>
 
     <section class="address-section">

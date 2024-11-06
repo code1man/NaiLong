@@ -14,12 +14,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "OrderFormServlet",urlPatterns = {"/order"})
+//用session存储当前界面的商品信息（图片，名称，价格），总价要计算得出
+@WebServlet(name = "OrderFormServlet",urlPatterns = {"/orderForm"})
 public class OrderFormServlet extends HttpServlet {
     private User user;
     private static final String ORDER_FORM = "/WEB-INF/jsp/Order.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         //判断用户是否登陆，未登录则需提醒用户未登录，不能访问订单界面
         HttpSession session = req.getSession();
         this.user = (User)session.getAttribute("loginUser");

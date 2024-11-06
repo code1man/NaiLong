@@ -21,14 +21,111 @@
             <div class="topBar-cart">
                 <a class="link">
                     <em class="iconfont-cart"></em>
-                    <em class="iconfont-cart-full hide cart-mini cart-mini"></em>购物车
-                    <span class="cart-mini-num">（0）</span>
+                    <em class="iconfont-cart-full cart-mini"></em>
+                    购物车
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser != null}">
+                            <%--购物车--%>
+                            <span class="cart-mini-num J_cartNum">（${sessionScope.loginUser.getTotalProductsNumber()}）</span>
+                            <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
+                                <div class="menu-content">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
+                                            <ul id="J_miniCartList" class="cart-list">
+                                                <c:forEach var="item"
+                                                           items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
+                                                    <li>
+                                                        <div class="cart-item clearfix first">
+                                                            <a class="thumb"
+                                                               href="//www.mi.com/shop/buy?product_id=1230801081">
+                                                                <img alt="" src="">
+                                                            </a>
+                                                            <a class="name" href="javascript: void(0)">
+                                                                    ${item.name}
+                                                            </a>
+                                                            <span class="price"> ${item.price} × 1</span>
+                                                            <a class="btn-del J_delItem"
+                                                               href="javascript: void(0);">
+                                                                <em class="iconfont-close"></em>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                            <div id="J_miniCartListTotal" class="cart-total clearfix">
+                                                    <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
+                                                        <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
+                                                    </span>
+                                                <a href="" class="btn btn-primary btn-cart">结算</a>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="cart-mini-num">（0）</span>
+                        </c:otherwise>
+                    </c:choose>
                 </a>
             </div>
-            <div class="topBar-info">
+            <div class="topBar-info" style="opacity: 1">
                 <c:choose>
                     <c:when test="${sessionScope.loginUser != null}">
-                        <a href="" class="link">欢迎回来！${sessionScope.loginUser.username}</a>
+                        <%--编辑个人信息--%>
+                        <a href="javascript:void(0)" class="link"
+                           onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
+                        </a>
+                        <div id="modal" class="modal register-container">
+                            <div style="opacity: 1">
+                                <h2>编辑个人信息</h2>
+                                <form action="${pageContext.request.contextPath}/mainForm" method="post"
+                                      autocomplete="off">
+                                        <span>
+                                            <label>用户名：
+                                                <input type="text" placeholder="用户名"
+                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       required>
+                                            </label>
+                                        </span>
+                                    <br>
+                                    <span>
+                                            <label>邮箱：
+                                                <input type="email" placeholder="邮箱" name="email"
+                                                       value="${sessionScope.loginUser.email}" required>
+                                            </label>
+                                        </span>
+                                    <br>
+                                    <span>
+                                            <label>年龄：
+                                                <input type="number" placeholder="年龄" name="age"
+                                                       value="${sessionScope.loginUser.age}" required min="1">
+                                            </label>
+                                        </span>
+                                    <br>
+                                    <span>
+                                            <label>旧密码：
+                                                <input type="password" placeholder="旧密码" value="" name="OldPassword"
+                                                       autocomplete="off"
+                                                       required>
+                                            </label>
+                                        </span>
+                                    <br>
+                                    <span>
+                                            <label>新密码：
+                                                <input type="password" placeholder="新密码" value="" name="NewPassword"
+                                                       autocomplete="off"
+                                                       required>
+                                            </label>
+                                        </span>
+                                    <br>
+                                    <input type="submit" value="更改个人信息">
+                                </form>
+                            </div>
+                        </div>
                     </c:when>
                     <c:otherwise>
                         <a href="login" class="link">登录</a>
@@ -36,12 +133,13 @@
                         <a href="" data-register="true" class="link">注册</a>
                         <span class="sep">|</span>
                         <span class="message">
-                            <a href="" class="J_needAgreement">消息通知</a>
-                        </span>
+                                <a href="" class="J_needAgreement">消息通知</a>
+                            </span>
                     </c:otherwise>
                 </c:choose>
             </div>
         </div>
+
         <div class="site-header" style="opacity: 0.8; background-color: white">
             <div class="container">
                 <div class="header-nav">
@@ -62,18 +160,23 @@
                     </ul>
                 </div>
 
+                <%--搜索按钮--%>
                 <div class="header-search">
-                    <form action="//search.mi.com/search" method="get" class="search-form clearfix">
+                    <form action="${pageContext.request.contextPath}/SearchServlet" method="get"
+                          class="search-form clearfix">
                         <label class="hide">站内搜索</label>
                         <label for="search"></label>
-                        <input type="search" id="search" name="keyword" autocomplete="off" class="search-text"
-                               placeholder="奶龙">
+                        <input type="search" id="search" name="keyword" autocomplete="off"
+                               class="search-text"
+                               placeholder="奶龙"
+                               oninput="SearchItem()">
                         <a class="no-style-msq">
                             <input type="submit" value="" class="search-btn iconfont">
                         </a>
                         <div class="search-hot-words"></div>
-                        <div class="keyword-list hide">
-                            <ul class="result-list"></ul>
+                        <div id="J_keywordList" class="keyword-list">
+                            <ul class="result-list">
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -101,7 +204,7 @@
                     </div>
                     <div class="price-btn-box">
                         <div class="sale-btn">
-                            <a href="${pageContext.request.contextPath}/order" class="price-btn price-btn-primary">购买</a>
+                            <a href="${pageContext.request.contextPath}/orderForm" class="price-btn price-btn-primary">购买</a>
                         </div>
                         <div class="favorite-btn">
                             <a href="/AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
@@ -120,6 +223,8 @@
 </body>
 
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
+<script src="./static/js/topBar.js"></script>
+<script src="./static/js/Search.js"></script>
 <script>
     window.onscroll = function () {
         var floatingWindow = document.getElementById("floatingWindow");

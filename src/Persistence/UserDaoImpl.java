@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean updateUser(User user,String username, String password, String email, int age) {   //修改用户信息
+    public boolean updateUser(User user, String username, String password, String email, int age) {   //修改用户信息
         boolean result = false;
         try {
             Connection connection = DBUtil.getConnection();
@@ -138,6 +138,6 @@ public class UserDaoImpl implements UserDao {
 
 //    public static void main(String[] args) {
 //        UserDaoImpl userDao = new UserDaoImpl();
-//        System.out.println(userDao.updateUser());
+//        System.out.println(userDao.getAllUsers());
 //    }
 }

@@ -50,8 +50,7 @@
                                                                 </a>
                                                                 <span class="price"> ${item.getItem().price} </span>
                                                                 <a class="btn-del J_delItem"
-                                                                   href="
-">
+                                                                   href="javascript: void(0);">
                                                                     <em class="iconfont-close"></em>
                                                                 </a>
                                                             </div>
@@ -78,7 +77,7 @@
                         </c:choose>
                     </a>
                 </div>
-                <div class="topBar-info" style="opacity: 1">
+                <div class="topBar-info">
                     <c:choose>
                         <c:when test="${sessionScope.loginUser != null}">
                             <%--编辑个人信息--%>
@@ -205,18 +204,21 @@
                 </div>
                 <%--搜索按钮--%>
                 <div class="header-search">
-                    <form action="//search.mi.com/search" method="get" class="search-form clearfix">
+                    <form action="${pageContext.request.contextPath}/SearchServlet" method="get"
+                          class="search-form clearfix">
                         <label class="hide">站内搜索</label>
                         <label for="search"></label>
                         <input type="search" id="search" name="keyword" autocomplete="off"
                                class="search-text"
-                               placeholder="奶龙">
+                               placeholder="奶龙"
+                               oninput="SearchItem()">
                         <a class="no-style-msq">
                             <input type="submit" value="" class="search-btn iconfont">
                         </a>
                         <div class="search-hot-words"></div>
-                        <div class="keyword-list hide">
-                            <ul class="result-list"></ul>
+                        <div id="J_keywordList" class="keyword-list">
+                            <ul class="result-list">
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -310,73 +312,72 @@
 </body>
 
 <script>
-    window.onload = function() {
+    window.onload = function () {
         let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
         if (updateMsg) {
             alert(updateMsg); // 显示警告消息
             <% session.removeAttribute("UpdateMsg"); %> // 移除消息
         }
     };
-</script>
-<script>
-    // 对于个人资料编辑
-    function openModal(event) {
-        const modal = document.getElementById("modal");
-        modal.style.display = "block";
 
-        // 监听点击事件
-        document.addEventListener('click', closeModalOutside)
-    }
+    function SearchItem() {
+        var query = document.getElementById("search").value;
+        console.log(query);
 
-    // 关闭模态框
-    function closeModal() {
-        const modal = document.getElementById("modal");
-        modal.style.display = "none";
-
-        // 移除点击事件监听器
-        document.removeEventListener('click', closeModalOutside);
-    }
-
-    // 关闭模态框的外部点击处理
-    function closeModalOutside(event) {
-        const modal = document.getElementById("modal");
-        const modalContent = document.querySelector('.topBar-info');
-
-        // 只有在模态框显示时，并且点击目标不在模态框内部时关闭模态框
-        if (modal.style.display === "block" && !modalContent.contains(event.target)) {
-            closeModal();
+        if (query.length < 3) { // 当输入小于3个字符时不进行搜索
+            document.getElementById("J_keywordList").style.display = 'none';
+            return;
         }
-    }
 
-    /*------------------------------------------------------------------------------------*/
-    // 对于购物车
-    const cartMenu = document.getElementById('J_miniCartMenu');
-    const cartButton = document.querySelector('.topBar-cart');
-
-    // 显示购物车菜单
-    cartButton.addEventListener('mouseenter', () => {
-        cartMenu.style.height = `auto`; // 设置为内容高度
-    });
-
-    // 隐藏购物车菜单
-    document.addEventListener('mousemove', (event) => {
-        if (cartMenu.style.height !== '0px') {
-            const cartMenuRect = cartMenu.getBoundingClientRect();
-            const cartButtonRect = cartButton.getBoundingClientRect();
-
-            // 检查鼠标是否在购物车菜单和按钮外部
-            if (
-                event.clientY < cartButtonRect.top || // 在按钮上方
-                event.clientY > cartMenuRect.bottom || // 在菜单下方
-                event.clientX < cartMenuRect.left || // 在菜单左侧
-                event.clientX > cartMenuRect.right // 在菜单右侧
-            ) {
-                // 隐藏菜单
-                cartMenu.style.height = '0'; // 重置为 0
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/SearchServlet?SearchContent=" + encodeURIComponent(query), true);
+        xhr.onreadystatechange = function () {
+            console.log(xhr.responseText);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                displayResults(results);
             }
+        };
+        xhr.send();
+    }
+
+    function displayResults(results) {
+        var resultsContainer = document.getElementById("J_keywordList");
+        var resultList = resultsContainer.querySelector('.result-list');
+        resultList.innerHTML = "";  // 清空之前的搜索结果
+
+        if (results.length > 0) {
+            resultsContainer.style.display = 'block';
+            results.forEach(function (item) {
+                // 创建一个 <li> 元素来包含每个搜索结果
+                var li = document.createElement("li");
+
+                // 创建一个 <a> 元素，将商品的名称作为链接
+                var a = document.createElement("a");
+                a.textContent = item.name;
+                a.href = "/ShoppingCart?item=" + item.id; // 假设商品详情页面使用产品 ID 作为查询参数
+                a.classList.add("result-item");  // 添加样式类，方便你进行样式设置
+
+                // 将 <a> 标签添加到 <li> 元素中
+                li.appendChild(a);
+
+                // 将 <li> 元素添加到搜索结果列表中
+                resultList.appendChild(li);
+            });
+        } else {
+            resultsContainer.style.display = 'none';
+            resultList.innerHTML = ''; // 如果没有结果，清空列表
+
+            // 添加一个"没有结果"的提示
+            var li = document.createElement("li");
+            li.textContent = "没有找到相关商品";
+            resultList.appendChild(li);
         }
-    });
+    }
 </script>
+
+<script src="./static/js/topBar.js"></script>
 <script src="./static/js/cursorFollow.js"></script>
+<script src="./static/js/Search.js"></script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 </html>
