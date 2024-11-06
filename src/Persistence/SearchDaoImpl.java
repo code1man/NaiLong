@@ -13,6 +13,7 @@ import java.util.List;
 public class SearchDaoImpl implements SearchDao {
     @Override
     public List<Item> SearchItems(String keyword) {
+        items.clear();
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(SEARCH_SQL)) {
 

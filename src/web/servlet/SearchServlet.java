@@ -22,7 +22,7 @@ public class SearchServlet extends HttpServlet {
             List<Item> searchResults = searchDao.SearchItems(SearchContent);  // 调用服务层方法查询数据库
             String json = new Gson().toJson(searchResults);  // 使用 Gson 将结果转换为 JSON 字符串
 
-            resp.setContentType("application/json");
+            resp.setContentType("application/json; charset=UTF-8");
             resp.getWriter().write(json);
         }
     }
