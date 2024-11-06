@@ -1022,15 +1022,18 @@ th {
 
 .keyword-list {
     position: absolute;
-    left: 0;
+    left: 20px;
     top: 50px;
-    _top: 51px;
+    _top: 51px; /* 兼容老版本 IE */
     z-index: 20;
-    width: 243px;
+    width: 223px;
+    max-height: 200px; /* 设置最大高度 */
+    overflow-y: auto; /* 使其可滚动 */
     border: 1px solid #ff6700;
     border-top: 0;
-    background: #fff
+    background: #fff;
 }
+
 
 .site-header .search-form .keyword-list ul {
     margin: 0;

@@ -82,7 +82,7 @@
                         <c:when test="${sessionScope.loginUser != null}">
                             <%--编辑个人信息--%>
                             <a href="javascript:void(0)" class="link"
-                               onclick="openModal()">欢迎回来！${sessionScope.userLog.userId}${sessionScope.userLog.action}${sessionScope.userLog.itemId}${sessionScope.loginUser.username}
+                               onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
                             </a>
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
@@ -211,12 +211,12 @@
                         <input type="search" id="search" name="keyword" autocomplete="off"
                                class="search-text"
                                placeholder="奶龙"
-                               oninput="search()">
+                               oninput="SearchItem()">
                         <a class="no-style-msq">
                             <input type="submit" value="" class="search-btn iconfont">
                         </a>
                         <div class="search-hot-words"></div>
-                        <div id="J_keywordList" class="keyword-list hide">
+                        <div id="J_keywordList" class="keyword-list">
                             <ul class="result-list">
                             </ul>
                         </div>
@@ -304,8 +304,23 @@
     </div>
 </div>
 
+<%--鼠标--%>
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
+</div>
+</body>
+
 <script>
-    function search() {
+    window.onload = function () {
+        let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
+        if (updateMsg) {
+            alert(updateMsg); // 显示警告消息
+            <% session.removeAttribute("UpdateMsg"); %> // 移除消息
+        }
+    };
+
+    function SearchItem() {
         var query = document.getElementById("search").value;
         console.log(query);
 
@@ -351,25 +366,14 @@
             });
         } else {
             resultsContainer.style.display = 'none';
+            resultList.innerHTML = ''; // 如果没有结果，清空列表
+
+            // 添加一个"没有结果"的提示
+            var li = document.createElement("li");
+            li.textContent = "没有找到相关商品";
+            resultList.appendChild(li);
         }
     }
-</script>
-
-<%--鼠标--%>
-<div class="mouse-follow-icon" id="mouse-follow-icon"
-     style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
-</div>
-</body>
-
-<script>
-    window.onload = function () {
-        let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
-        if (updateMsg) {
-            alert(updateMsg); // 显示警告消息
-            <% session.removeAttribute("UpdateMsg"); %> // 移除消息
-        }
-    };
 </script>
 
 <script src="./static/js/topBar.js"></script>

@@ -160,18 +160,23 @@
                     </ul>
                 </div>
 
+                <%--搜索按钮--%>
                 <div class="header-search">
-                    <form action="//search.mi.com/search" method="get" class="search-form clearfix">
+                    <form action="${pageContext.request.contextPath}/SearchServlet" method="get"
+                          class="search-form clearfix">
                         <label class="hide">站内搜索</label>
                         <label for="search"></label>
-                        <input type="search" id="search" name="keyword" autocomplete="off" class="search-text"
-                               placeholder="奶龙">
+                        <input type="search" id="search" name="keyword" autocomplete="off"
+                               class="search-text"
+                               placeholder="奶龙"
+                               oninput="SearchItem()">
                         <a class="no-style-msq">
                             <input type="submit" value="" class="search-btn iconfont">
                         </a>
                         <div class="search-hot-words"></div>
-                        <div class="keyword-list hide">
-                            <ul class="result-list"></ul>
+                        <div id="J_keywordList" class="keyword-list">
+                            <ul class="result-list">
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -219,6 +224,7 @@
 
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
 <script src="./static/js/topBar.js"></script>
+<script src="./static/js/Search.js"></script>
 <script>
     window.onscroll = function () {
         var floatingWindow = document.getElementById("floatingWindow");

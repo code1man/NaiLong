@@ -1,4 +1,4 @@
-function search() {
+function SearchItem() {
     var query = document.getElementById("search").value;
     console.log(query);
 
@@ -44,5 +44,11 @@ function displayResults(results) {
         });
     } else {
         resultsContainer.style.display = 'none';
+        resultList.innerHTML = ''; // 如果没有结果，清空列表
+
+        // 添加一个"没有结果"的提示
+        var li = document.createElement("li");
+        li.textContent = "没有找到相关商品";
+        resultList.appendChild(li);
     }
 }
