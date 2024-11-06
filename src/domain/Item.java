@@ -11,6 +11,11 @@ public class Item {
     public Item() {
     }
 
+    public Item(int id, String name) {
+        this.name = name;
+        this.id = id;
+    }
+
     public Item(int id, String name, ProductType type, String URL, int price) {
         this.name = name;
         this.type = type;
