@@ -105,29 +105,30 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="cartItem" items="${sessionScope.cartItems}">
             <tr>
-                <td>华为/HUAWEI nova 9 SE 一亿像素超清摄影 创新Vlog体验 支持66W快充 8GB+256GB珊瑚 蓝 华为手机 [无充版]</td>
-                <td>¥100.00</td>
-                <td>5</td>
-                <td>¥500.00</td>
+                <td>${cartItem.item.URL}</td>
+                <td>${cartItem.item.name}</td>
+                <td>¥${cartItem.item.price}</td>
+                <td>${cartItem.quantity}</td>
+                <td>¥${cartItem.total}</td>
             </tr>
-            <tr>
-                <td>Apple iPhone 14 128GB 蓝色A284手机 支持移动联通电信5G MPV93CH/A [企业客户专享]</td>
-                <td>¥100.00</td>
-                <td>5</td>
-                <td>¥500.00</td>
-            </tr>
-            </tbody>
+            </c:forEach>
         </table>
 
         <div class="total-container">
             <span class="total-text">订单总价：</span>
-            <span class="price">¥8999.00</span>
+            <span class="price">¥${sessionScope.totalAmount}</span>
             <button class="submit-order">提交订单</button>
         </div>
 
     </section>
 </main>
+<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<script src="./static/js/cursorFollow.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // 检查是否有未登录的标志

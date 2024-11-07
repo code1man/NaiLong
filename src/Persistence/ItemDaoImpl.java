@@ -1,6 +1,6 @@
 package Persistence;
 
-import domain.Category;
+import domain.CartItem;
 import domain.Item;
 import domain.ProductType;
 
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDaoImpl implements ItemDao{
-    private static final  String Get_ItemList_By_Product="SELECT  * from item where type=?";
-    private static final  String Get_Item="SELECT *from item where id=?";
+    private static final  String Get_ItemList_By_Product=" SELECT  * from item where type = ?";
+    private static final  String Get_Item="SELECT * from item where id=?";
     @Override
     public List<Item> getItemListByProduct(String product_type) throws SQLException {
             List<Item>itemList=new ArrayList<>();
@@ -73,6 +73,13 @@ public class ItemDaoImpl implements ItemDao{
             default: return null;
         }
 
+    }
+
+    public List<CartItem> getCartItemsByUserId(int userId) {
+        List<CartItem> cartItems = new ArrayList<>();
+        // 执行查询语句获取指定用户的购物车商品及详细信息
+        // 将结果映射到CartItem对象中并添加到列表
+        return cartItems;
     }
 
 }

@@ -7,6 +7,30 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="Persistence.ItemDaoImpl, domain.Item" %>
+<%@ page import="java.sql.SQLException" %>
+<%
+    // 从 session 中获取商品 ID，先作为 String 获取
+    String itemIdStr = (String) session.getAttribute("item");
+    Item item = null;
+
+    if (itemIdStr != null) {
+        try {
+            // 将字符串转换为 Integer
+            Integer itemId = Integer.parseInt(itemIdStr);
+
+            // 继续调用数据库操作获取商品信息
+            ItemDaoImpl itemDao = new ItemDaoImpl();
+            item = itemDao.getItem(itemId);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            // 处理转换失败的情况
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // 处理数据库操作异常
+        }
+    }
+%>
 <% Boolean notLoggedIn = (Boolean) request.getAttribute("notLoggedIn"); %>
 
 <% if (notLoggedIn != null && notLoggedIn) { %>
@@ -106,28 +130,31 @@
             </thead>
             <tbody>
             <tr>
-                <td>华为/HUAWEI nova 9 SE 一亿像素超清摄影 创新Vlog体验 支持66W快充 8GB+256GB珊瑚 蓝 华为手机 [无充版]</td>
-                <td>¥100.00</td>
-                <td>5</td>
-                <td>¥500.00</td>
-            </tr>
-            <tr>
-                <td>Apple iPhone 14 128GB 蓝色A284手机 支持移动联通电信5G MPV93CH/A [企业客户专享]</td>
-                <td>¥100.00</td>
-                <td>5</td>
-                <td>¥500.00</td>
+                <td>
+                    <img src="<%= item.getURL() %>" alt="<%= item.getName() %>" style="width: 100px; height: auto;">
+                    <%= item.getName() %>
+                </td>
+                <td>¥<%= item.getPrice() %></td>
+                <td>1</td> <!-- 假设数量为 1，如果需要，可以修改为实际数量 -->
+                <td>¥<%= item.getPrice() %></td>
             </tr>
             </tbody>
         </table>
 
         <div class="total-container">
             <span class="total-text">订单总价：</span>
-            <span class="price">¥8999.00</span>
+            <span class="price">¥<%= item.getPrice() %></span> <!-- 订单总价等于商品价格 -->
             <button class="submit-order">提交订单</button>
         </div>
 
     </section>
 </main>
+
+<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+</div>
+
+<script src="./static/js/cursorFollow.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // 检查是否有未登录的标志
