@@ -26,6 +26,8 @@
           <element id="library" level="project" name="mysql-connector-java-8.0.11" />
           <element id="library" level="project" name="mysql-connector-java-8.0.111" />
           <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="taglibs-standard-impl-1.2.5" />
+          <element id="library" level="project" name="gson-2.10.1" />
         </element>
       </element>
     </root>

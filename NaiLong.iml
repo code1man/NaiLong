@@ -4,6 +4,7 @@
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Web/web/web/WEB-INF/web.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Web/web/WEB-INF/web.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Web/web/WEB-INF/web.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Web/WEB-INF/web.xml" />
@@ -25,11 +26,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" exported="" name="jstl" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.111" level="project" />
-    <orderEntry type="library" exported="" name="servlet-api" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="jstl" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.111" level="project" />
+    <orderEntry type="library" name="taglibs-standard-impl-1.2.5" level="project" />
     <orderEntry type="library" name="gson-2.10.1" level="project" />
-    <orderEntry type="library" name="gson-2.10.11" level="project" />
   </component>
 </module>
