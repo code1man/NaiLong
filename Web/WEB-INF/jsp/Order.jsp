@@ -264,7 +264,6 @@
                     // 关闭模态框
                     modal.style.display = "none";
                     location.reload();
-                    // 可以在这里更新地址列表（例如，在页面上动态添加新地址）
                 })
                 .catch(error => console.error('Error:', error));
         }

@@ -56,7 +56,7 @@
                                                     <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
                                                         <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
                                                     </span>
-                                                <a href="" class="btn btn-primary btn-cart">结算</a>
+                                                <a href="${pageContext.request.contextPath}/CartCount" class="btn btn-primary btn-cart">结算</a>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
