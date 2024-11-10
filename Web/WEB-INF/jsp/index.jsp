@@ -31,24 +31,24 @@
                         <c:choose>
                             <c:when test="${sessionScope.loginUser != null}">
                                 <%--购物车--%>
-                                <span class="cart-mini-num J_cartNum">（${sessionScope.loginUser.getTotalProductsNumber()}）</span>
+                                <span class="cart-mini-num J_cartNum">（${sessionScope.cart.getTotalNum()}）</span>
                                 <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                                     <div class="menu-content">
                                         <c:choose>
-                                            <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
+                                            <c:when test="${sessionScope.cart.getTotalNum() > 0}">
                                                 <ul id="J_miniCartList" class="cart-list">
                                                     <c:forEach var="item"
-                                                               items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
+                                                               items="${sessionScope.cart.getCartItemList()}">
                                                         <li>
                                                             <div class="cart-item clearfix first">
                                                                 <a class="thumb"
-                                                                   href="">
-                                                                    <img alt="" src="${item.URL}">
+                                                                   href="//www.mi.com/shop/buy?product_id=1230801081">
+                                                                    <img alt="" src="${item.getItem().URL}">
                                                                 </a>
                                                                 <a class="name" href="javascript: void(0)">
-                                                                        ${item.name}
+                                                                        ${item.getItem().name}
                                                                 </a>
-                                                                <span class="price"> ${item.price} × 1</span>
+                                                                <span class="price"> ${item.getItem().price} </span>
                                                                 <a class="btn-del J_delItem"
                                                                    href="javascript: void(0);">
                                                                     <em class="iconfont-close"></em>
@@ -58,8 +58,8 @@
                                                     </c:forEach>
                                                 </ul>
                                                 <div id="J_miniCartListTotal" class="cart-total clearfix">
-                                                    <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
-                                                        <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
+                                                    <span class="total">共 <em>${sessionScope.cart.getTotalNum()}</em> 件商品
+                                                        <span class="price"><em>${sessionScope.cart.getSubTotal()}</em>元</span>
                                                     </span>
                                                     <a href="" class="btn btn-primary btn-cart">结算</a>
                                                 </div>
@@ -282,7 +282,7 @@
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="item" items="${product.items}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
-                                            <a href="ShoppingCart?id=${item.id}">
+                                            <a href="ShoppingCart?item=${item.id}">
                                                 <div class="figure figure-img">
                                                     <img width="160" height="160" alt="1" src="${item.URL}">
                                                 </div>

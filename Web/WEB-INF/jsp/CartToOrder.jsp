@@ -7,30 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="Persistence.ItemDaoImpl, domain.Item" %>
-<%@ page import="java.sql.SQLException" %>
-<%
-    // 从 session 中获取商品 ID，先作为 String 获取
-    String itemIdStr = (String) session.getAttribute("item");
-    Item item = null;
-
-    if (itemIdStr != null) {
-        try {
-            // 将字符串转换为 Integer
-            Integer itemId = Integer.parseInt(itemIdStr);
-
-            // 继续调用数据库操作获取商品信息
-            ItemDaoImpl itemDao = new ItemDaoImpl();
-            item = itemDao.getItem(itemId);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            // 处理转换失败的情况
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // 处理数据库操作异常
-        }
-    }
-%>
 <% Boolean notLoggedIn = (Boolean) request.getAttribute("notLoggedIn"); %>
 
 <% if (notLoggedIn != null && notLoggedIn) { %>
@@ -67,7 +43,7 @@
 
 <main>
     <div class="breadcrumb">
-        <p>NaiLongStore &gt; 订单确认</p>
+        <p>NaiLongStore &gt; 购物车</p>
     </div>
 
     <section class="address-section">
@@ -129,27 +105,25 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="cartItem" items="${sessionScope.cartItems}">
             <tr>
-                <td>
-                    <img src="<%= item.getURL() %>" alt="<%= item.getName() %>" style="width: 100px; height: auto;">
-                    <%= item.getName() %>
-                </td>
-                <td>¥<%= item.getPrice() %></td>
-                <td>1</td> <!-- 假设数量为 1，如果需要，可以修改为实际数量 -->
-                <td>¥<%= item.getPrice() %></td>
+                <td>${cartItem.item.URL}</td>
+                <td>${cartItem.item.name}</td>
+                <td>¥${cartItem.item.price}</td>
+                <td>${cartItem.quantity}</td>
+                <td>¥${cartItem.total}</td>
             </tr>
-            </tbody>
+            </c:forEach>
         </table>
 
         <div class="total-container">
             <span class="total-text">订单总价：</span>
-            <span class="price">¥<%= item.getPrice() %></span> <!-- 订单总价等于商品价格 -->
+            <span class="price">¥${sessionScope.totalAmount}</span>
             <button class="submit-order">提交订单</button>
         </div>
 
     </section>
 </main>
-
 <div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
 </div>

@@ -20,6 +20,9 @@ public class OrderFormServlet extends HttpServlet {
     private static final String ORDER_FORM = "/WEB-INF/jsp/Order.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         //判断用户是否登陆，未登录则需提醒用户未登录，不能访问订单界面
         HttpSession session = req.getSession();
         this.user = (User)session.getAttribute("loginUser");
@@ -29,6 +32,7 @@ public class OrderFormServlet extends HttpServlet {
               req.getRequestDispatcher(ORDER_FORM).forward(req, resp);
         }
         else{
+
             int userId = user.getId();            // 从 session 中获取用户 ID
             AddressDao addressDao = new AddressDaoImpl();
             List<Address> addressList = addressDao.getAllAddressById(userId);
