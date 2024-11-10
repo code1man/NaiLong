@@ -7,17 +7,16 @@ public class DBUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=Asia/Shanghai";
 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "12345678";
+    private static final String PASSWORD = "zkd2621023939";
 
     public static Connection getConnection() {            //获取连接
-        Connection connection=null;
-
+        Connection connection = null;
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         } catch (Exception e) {
-            System.err.println("Connection failed: " + e.getMessage());
+            System.out.println("数据库连接失败");
             e.printStackTrace();
         }
         return connection;

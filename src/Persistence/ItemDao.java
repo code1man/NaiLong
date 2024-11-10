@@ -1,5 +1,6 @@
 package Persistence;
 
+import domain.CartItem;
 import domain.Item;
 
 import java.sql.SQLException;

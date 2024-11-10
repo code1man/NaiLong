@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-//用session存储当前界面的商品信息（图片，名称，价格），总价要计算得出
 @WebServlet(name = "OrderFormServlet",urlPatterns = {"/orderForm"})
 public class OrderFormServlet extends HttpServlet {
     private User user;
@@ -33,6 +32,7 @@ public class OrderFormServlet extends HttpServlet {
               req.getRequestDispatcher(ORDER_FORM).forward(req, resp);
         }
         else{
+
             int userId = user.getId();            // 从 session 中获取用户 ID
             AddressDao addressDao = new AddressDaoImpl();
             List<Address> addressList = addressDao.getAllAddressById(userId);
