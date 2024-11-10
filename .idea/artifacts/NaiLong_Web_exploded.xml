@@ -15,6 +15,8 @@
           <element id="extracted-dir" path="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" path-in-jar="/" />
           <element id="extracted-dir" path="$PROJECT_DIR$/lib/javax.transaction.jar" path-in-jar="/" />
           <element id="extracted-dir" path="$PROJECT_DIR$/lib/javax.ejb.jar" path-in-jar="/" />
+          <element id="extracted-dir" path="$PROJECT_DIR$/../../apache-tomcat-9.0.96-windows-x64/apache-tomcat-9.0.96/lib/servlet-api.jar" path-in-jar="/" />
+          <element id="extracted-dir" path="$PROJECT_DIR$/../../apache-tomcat-9.0.96-windows-x64/apache-tomcat-9.0.96/lib/jsp-api.jar" path-in-jar="/" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl1" />
@@ -24,6 +26,10 @@
           <element id="library" level="project" name="gson-2.10.1" />
           <element id="library" level="project" name="jsp-api" />
           <element id="library" level="project" name="mysql-connector-java-8.0.11" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.111" />
+          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="taglibs-standard-impl-1.2.5" />
+          <element id="library" level="project" name="gson-2.10.1" />
         </element>
       </element>
     </root>
