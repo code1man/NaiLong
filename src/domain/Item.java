@@ -10,6 +10,7 @@ public class Item implements Serializable {
     private String URL;
     private int price;
 
+
     public Item() {
     }
 
@@ -65,4 +66,6 @@ public class Item implements Serializable {
     public int getPrice() {
         return price;
     }
+
+
 }

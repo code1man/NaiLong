@@ -3,6 +3,7 @@ package domain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -46,7 +47,7 @@ public class Cart implements Serializable {
         return count1;
     }
 
-    public void addItem(Item item) {
+    public CartItem addItem(Item item) {
         CartItem cartItem = null;
         if (!containsItemId(String.valueOf(item.getId()))) {
             for (CartItem cartItem1: itemList)
@@ -60,6 +61,7 @@ public class Cart implements Serializable {
                 }
             }
         }
+
         if (cartItem == null) {
             cartItem = new CartItem();
             cartItem.setItem(item);
@@ -67,6 +69,7 @@ public class Cart implements Serializable {
         }
         cartItem.incrementQuantity();
         itemList.add(cartItem);
+        return  cartItem;
     }
 
     public void addItem(CartItem cartItem)

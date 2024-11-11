@@ -1,6 +1,5 @@
 package Filter;
 
-import com.mysql.cj.Session;
 import domain.LogActionType;
 import domain.User;
 import domain.UserLog;

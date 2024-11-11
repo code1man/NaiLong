@@ -2,7 +2,11 @@ package web.servlet;
 
 import com.mysql.cj.Session;
 import domain.Cart;
+import domain.CartItem;
+import domain.CartItem;
 import domain.Item;
+import domain.User;
+import domain.User;
 import service.CatalogService;
 
 import javax.servlet.ServletException;
@@ -35,12 +39,16 @@ public class AddItemToCartServlet extends HttpServlet {
         }
         HttpSession session = req.getSession();
         session.setAttribute("cart", cart);
+
         if (cart.containsItemId(String.valueOf(item.getId()))) {
             cart.incrementQuantityByItemId(String.valueOf(item.getId()));
         } else {
             try {
                 CatalogService catalogService = new CatalogService();
                 cart.addItem(item);
+
+                User user=(User)session.getAttribute("loginUser");
+
                 catalogService.executeAdd(cart);
             } catch (SQLException e) {
                 throw new RuntimeException(e);

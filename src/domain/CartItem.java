@@ -61,6 +61,9 @@ public class CartItem implements Serializable {
         }
     }
 
+    public void setTotal(int total) {
+        this.total = total;
+    }
 }
 
 
