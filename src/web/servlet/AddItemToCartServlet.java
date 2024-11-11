@@ -16,12 +16,12 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
 
-@WebServlet(name = "AddServlet",urlPatterns = {"/AddItemToCart"})
+@WebServlet(name = "AddServlet", urlPatterns = {"/AddItemToCart"})
 public class AddItemToCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String workingItemId = req.getParameter("item");
-        if (workingItemId == null || workingItemId.isEmpty()) {
+        Item item = (Item) req.getSession().getAttribute("item");
+        if (item == null) {
             // 处理错误：ItemId为空
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "item is required.");
             return; // 结束方法执行
@@ -35,13 +35,11 @@ public class AddItemToCartServlet extends HttpServlet {
         }
         HttpSession session = req.getSession();
         session.setAttribute("cart", cart);
-        if (cart.containsItemId(workingItemId)) {
-            cart.incrementQuantityByItemId(workingItemId);
+        if (cart.containsItemId(String.valueOf(item.getId()))) {
+            cart.incrementQuantityByItemId(String.valueOf(item.getId()));
         } else {
-            Item item = null;
             try {
                 CatalogService catalogService = new CatalogService();
-                item = catalogService.getItem(Integer.parseInt(workingItemId));
                 cart.addItem(item);
                 catalogService.executeAdd(cart);
             } catch (SQLException e) {

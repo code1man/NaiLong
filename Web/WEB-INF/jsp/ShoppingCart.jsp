@@ -189,16 +189,15 @@
         <div style="background-color: rgba(255, 234, 175, 0.8) ">
             <div class="product-box container">
                 <div class="img-left">
-                    <img src="" alt="商品图片" class="img-box">
+                    <img src="${requestScope.item.URL}" alt="商品图片" class="img-box">
                 </div>
                 <div class="product-con">
                     <div style="flex: 5;">
-                        <h2 data-v-70283663="">
-                            <img data-v-70283663="">
-                            ${requestScope.item}
+                        <h2>
+                            ${requestScope.item.name}
                         </h2>
                         <div class="price-info">
-                            <span>0.1元</span>
+                            <span>${requestScope.item.price}</span>
                         </div>
                         <div class="price-line"></div>
                     </div>

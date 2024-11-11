@@ -11,25 +11,24 @@
 <%@ page import="java.sql.SQLException" %>
 <%
     // 从 session 中获取商品 ID，先作为 String 获取
-    String itemIdStr = (String) session.getAttribute("item");
-    Item item = null;
-
-    if (itemIdStr != null) {
-        try {
-            // 将字符串转换为 Integer
-            Integer itemId = Integer.parseInt(itemIdStr);
-
-            // 继续调用数据库操作获取商品信息
-            ItemDaoImpl itemDao = new ItemDaoImpl();
-            item = itemDao.getItem(itemId);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            // 处理转换失败的情况
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // 处理数据库操作异常
-        }
-    }
+    Item item = (Item) session.getAttribute("item");
+//
+//    if (itemIdStr != null) {
+//        try {
+//            // 将字符串转换为 Integer
+//            Integer itemId = Integer.parseInt(itemIdStr);
+//
+//            // 继续调用数据库操作获取商品信息
+//            ItemDaoImpl itemDao = new ItemDaoImpl();
+//            item = itemDao.getItem(itemId);
+//        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+//            // 处理转换失败的情况
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            // 处理数据库操作异常
+//        }
+//    }
 %>
 <% Boolean notLoggedIn = (Boolean) request.getAttribute("notLoggedIn"); %>
 
@@ -134,9 +133,11 @@
                     <img src="<%= item.getURL() %>" alt="<%= item.getName() %>" style="width: 100px; height: auto;">
                     <%= item.getName() %>
                 </td>
-                <td>¥<%= item.getPrice() %></td>
+                <td>¥<%= item.getPrice() %>
+                </td>
                 <td>1</td> <!-- 假设数量为 1，如果需要，可以修改为实际数量 -->
-                <td>¥<%= item.getPrice() %></td>
+                <td>¥<%= item.getPrice() %>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -150,13 +151,14 @@
     </section>
 </main>
 
-<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 
 <script src="./static/js/cursorFollow.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // 检查是否有未登录的标志
         let notLoggedIn = <%= notLoggedIn %>;
 
@@ -176,7 +178,7 @@
     function selectAddress(addressElement) {
         // 移除所有地址的active类
         const allAddresses = document.querySelectorAll('.address');
-        allAddresses.forEach(function(address) {
+        allAddresses.forEach(function (address) {
             address.classList.remove('active');
         });
 
@@ -205,23 +207,23 @@
     }
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById("addAddressModal");
         const btn = document.getElementById("addNewAddressBtn");
         const span = document.getElementsByClassName("close")[0];
 
         // 点击“+ 使用新地址”按钮时打开模态框
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // 点击关闭按钮时关闭模态框
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // 点击模态框外部时关闭模态框
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -229,7 +231,7 @@
 
         // 表单提交事件
         const form = document.getElementById("addAddressForm");
-        form.onsubmit = function(e) {
+        form.onsubmit = function (e) {
             e.preventDefault(); // 防止页面刷新
 
             // 获取表单数据

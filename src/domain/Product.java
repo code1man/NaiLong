@@ -43,4 +43,9 @@ public class Product implements Serializable {
         items.remove(item);
         ProductNumber--;
     }
+
+    public void setItems(List<Item> items) {
+        this.items.clear();
+        this.items.addAll(items);
+    }
 }
