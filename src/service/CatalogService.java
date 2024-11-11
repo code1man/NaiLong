@@ -19,6 +19,7 @@ public class CatalogService {
         this.productDao = new ProductDaoImpl();
         this.itemDao = new ItemDaoImpl();
     }
+
     public List<Category> getCategoryList() {
         return categoryDao.getCategoryList();
     }
@@ -39,7 +40,7 @@ public class CatalogService {
 //        return productMapper.searchProductList("%" + keyword.toLowerCase() + "%");
 //    }可能需要改
 
-    public List<Item> getItemListByProduct(String productId) throws SQLException {
+    public List<Item> getItemListByProduct(int productId) throws SQLException {
         return itemDao.getItemListByProduct(productId);
     }
 
@@ -47,58 +48,60 @@ public class CatalogService {
         return itemDao.getItem(itemId);
     }
 
-    private static final  String Add_Item="INSERT INTO cart (userID,ItemID,ItemNum,date) VALUES(?,?,?,?)";
-    private static final  String Remove_Item="DELETE FROM cart where ItemID=?";
-    private static final  String Update_Item="SELECT * FROM cart where userID=?";
+    private static final String Add_Item = "INSERT INTO cart (userID,ItemID,ItemNum,date) VALUES(?,?,?,?)";
+    private static final String Remove_Item = "DELETE FROM cart where ItemID=?";
+    private static final String Update_Item = "SELECT * FROM cart where userID=?";
 
     public void executeAdd(Cart cart) throws SQLException {
 
-        Connection connection=DBUtil.getConnection();
-        PreparedStatement statement= connection.prepareStatement(Add_Item);
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(Add_Item);
 
-        statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getUserId());
-        statement.setInt(2,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
-        statement.setInt(3,cart.itemList.get(cart.itemList.size()-1).getQuantity());
+        statement.setInt(1, cart.itemList.get(cart.itemList.size() - 1).getUserId());
+        statement.setInt(2, cart.itemList.get(cart.itemList.size() - 1).getItem().getId());
+        statement.setInt(3, cart.itemList.get(cart.itemList.size() - 1).getQuantity());
         LocalDate currentDate = LocalDate.now();
         Date sqlDate = Date.valueOf(currentDate);
-        statement.setDate(4,sqlDate);
+        statement.setDate(4, sqlDate);
 
         statement.executeUpdate();
 
         DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
     }
-     public void executeRemove(Cart cart) throws SQLException {
-         Connection connection=DBUtil.getConnection();
-         PreparedStatement statement= connection.prepareStatement(Remove_Item);
-         statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getItem().getId());
 
-         statement.executeUpdate();
+    public void executeRemove(int id) throws SQLException {
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(Remove_Item);
+        statement.setInt(1, id);
 
-         DBUtil.closeStatement(statement);
-         DBUtil.closeConnection(connection);
-     }
-     public Cart ResultToCart(ResultSet resultSet) throws SQLException {
-         ItemDaoImpl itemDao = new ItemDaoImpl();
-         Cart cart=new Cart();
+        statement.executeUpdate();
 
-         while(resultSet.next())
-         {
-             int itemID = resultSet.getInt(2);
-             int quantity = resultSet.getInt(3);
+        DBUtil.closeStatement(statement);
+        DBUtil.closeConnection(connection);
+    }
 
-             CartItem cartItem=new CartItem(itemDao.getItem(itemID), quantity);
-             cart.addItem(cartItem);
-         }
+    public Cart ResultToCart(ResultSet resultSet) throws SQLException {
+        ItemDaoImpl itemDao = new ItemDaoImpl();
+        Cart cart = new Cart();
 
-         return cart;
-     }
+        while (resultSet.next()) {
+            int itemID = resultSet.getInt(2);
+            int quantity = resultSet.getInt(3);
+
+            CartItem cartItem = new CartItem(itemDao.getItem(itemID), quantity);
+            cart.addItem(cartItem);
+        }
+
+        return cart;
+    }
+
     public Cart executeUpdate(Cart cart) throws SQLException {
-        Connection connection=DBUtil.getConnection();
-        PreparedStatement statement= connection.prepareStatement(Update_Item);
-        statement.setInt(1,cart.itemList.get(cart.itemList.size()-1).getUserId());
-        ResultSet resultSet=statement.executeQuery();
-        Cart cart1= ResultToCart(resultSet);
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(Update_Item);
+        statement.setInt(1, cart.itemList.get(cart.itemList.size() - 1).getUserId());
+        ResultSet resultSet = statement.executeQuery();
+        Cart cart1 = ResultToCart(resultSet);
         return cart1;
     }
 

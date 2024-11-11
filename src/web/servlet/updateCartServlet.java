@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Iterator;
-@WebServlet(name = "updateCartServlet",urlPatterns = {"/updateCart"})
+
+@WebServlet(name = "updateCartServlet", urlPatterns = {"/updateCart"})
 
 public class updateCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session=req.getSession();
-        Cart cart=(Cart)session.getAttribute("cart");
+        HttpSession session = req.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
         Iterator<CartItem> cartItems = cart.getAllCartItems();
 
         while (cartItems.hasNext()) {
@@ -39,7 +39,8 @@ public class updateCartServlet extends HttpServlet {
         }
         CatalogService catalogService = new CatalogService();
         try {
-            cart= catalogService.executeUpdate(cart);
+            cart = catalogService.executeUpdate(cart);
+            session.setAttribute("cart", cart);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
