@@ -37,20 +37,20 @@
                                         <c:choose>
                                             <c:when test="${sessionScope.cart.getTotalNum() > 0}">
                                                 <ul id="J_miniCartList" class="cart-list">
-                                                    <c:forEach var="item"
+                                                    <c:forEach var="cartItem"
                                                                items="${sessionScope.cart.getCartItemList()}">
                                                         <li>
                                                             <div class="cart-item clearfix first">
                                                                 <a class="thumb"
                                                                    href="//www.mi.com/shop/buy?product_id=1230801081">
-                                                                    <img alt="" src="${item.getItem().URL}">
+                                                                    <img alt="" src="${cartItem.getItem().URL}">
                                                                 </a>
                                                                 <a class="name" href="javascript: void(0)">
-                                                                        ${item.getItem().name}
+                                                                        ${cartItem.getItem().name}
                                                                 </a>
-                                                                <span class="price"> ${item.getItem().price} </span>
+                                                                <span class="price"> ${cartItem.getItem().price} </span>
                                                                 <a class="btn-del J_delItem"
-                                                                   href="javascript: void(0);">
+                                                                   href="/RemoveItem?id=${cartItem.getItem().id}&pageFrom=/mainForm">
                                                                     <em class="iconfont-close"></em>
                                                                 </a>
                                                             </div>
@@ -61,7 +61,8 @@
                                                     <span class="total">共 <em>${sessionScope.cart.getTotalNum()}</em> 件商品
                                                         <span class="price"><em>${sessionScope.cart.getSubTotal()}</em>元</span>
                                                     </span>
-                                                    <a href="${pageContext.request.contextPath}/CartCount" class="btn btn-primary btn-cart">结算</a>
+                                                    <a href="${pageContext.request.contextPath}/CartCount"
+                                                       class="btn btn-primary btn-cart">结算</a>
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
@@ -171,12 +172,13 @@
                                             </a>
                                             <div class="children clearfix children-col-2">
                                                 <ul class="children-list children-list-col children-list-col-1">
-                                                    <c:forEach var="item" items="${product.items}">
+                                                    <c:forEach var="cartItem" items="${product.items}">
                                                         <li>
                                                             <a href="#" class="link clearfix">
-                                                                <<img src="${item.URL}" width="40" height="40" alt=""
+                                                                <<img src="${cartItem.URL}" width="40" height="40"
+                                                                      alt=""
                                                                       class="thumb">
-                                                                <span class="text">${item.name}</span>
+                                                                <span class="text">${cartItem.name}</span>
                                                             </a>
                                                         </li>
                                                     </c:forEach>
@@ -280,15 +282,15 @@
                             </div>
                             <div class="span16">
                                 <ul class="brick-list clearfix">
-                                    <c:forEach var="item" items="${product.items}">
+                                    <c:forEach var="cartItem" items="${product.items}">
                                         <li class="brick-item brick-item-m brick-item-m-2">
-                                            <a href="ShoppingCart?item=${item.id}">
+                                            <a href="ShoppingCart?item=${cartItem.id}">
                                                 <div class="figure figure-img">
-                                                    <img width="160" height="160" alt="1" src="${item.URL}">
+                                                    <img width="160" height="160" alt="1" src="${cartItem.URL}">
                                                 </div>
-                                                <h3 class="title">${item.name}</h3>
+                                                <h3 class="title">${cartItem.name}</h3>
                                                 <p class="price">
-                                                    <span class="num">${item.price}</span>元<span>起</span>
+                                                    <span class="num">${cartItem.price}</span>元<span>起</span>
                                                     <del><span class="num">1000</span>元</del>
                                                 </p>
                                             </a>

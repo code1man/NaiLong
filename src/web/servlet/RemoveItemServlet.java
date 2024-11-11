@@ -13,23 +13,26 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "RemoveServlet",urlPatterns = {"/RemoveItem"})
+@WebServlet(name = "RemoveServlet", urlPatterns = {"/RemoveItem"})
 
 public class RemoveItemServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+        String pageFrom = req.getParameter("pageFrom");
         String string = req.getParameter("id");
-        cart.removeItemById(Integer.parseInt(string));
+        Item item = cart.removeItemById(Integer.parseInt(string));
         CatalogService catalogService = new CatalogService();
         try {
-            catalogService.executeRemove(cart);
+            catalogService.executeRemove(item.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        new MainFormServlet().doGet(req, resp);
     }
-    }
+}
 
 
 

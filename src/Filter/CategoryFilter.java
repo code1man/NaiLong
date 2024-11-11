@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebFilter(urlPatterns = {"/mainForm", "/ShoppingCart", "/AddItemToCart"})
+@WebFilter(urlPatterns = {"/mainForm", "/ShoppingCart", "/AddItemToCart", "/RemoveItem"})
 public class CategoryFilter implements Filter {
     List<Category> categoryList = new ArrayList<>();
     List<Product> productList = new ArrayList<>();
@@ -25,13 +25,14 @@ public class CategoryFilter implements Filter {
 
         request.setAttribute("categoryList", categoryList);
         request.setAttribute("productList", productList);
+
+        System.out.println("123456");
         // 继续处理请求
         chain.doFilter(request, response);
     }
 
     @Override
     public void init(FilterConfig filterConfig) {
-
     }
 
     @Override

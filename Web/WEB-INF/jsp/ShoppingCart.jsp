@@ -32,7 +32,7 @@
                                     <c:choose>
                                         <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
                                             <ul id="J_miniCartList" class="cart-list">
-                                                <c:forEach var="item"
+                                                <c:forEach var="cartItem"
                                                            items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
                                                     <li>
                                                         <div class="cart-item clearfix first">
@@ -41,9 +41,9 @@
                                                                 <img alt="" src="">
                                                             </a>
                                                             <a class="name" href="javascript: void(0)">
-                                                                    ${item.name}
+                                                                    ${cartItem.name}
                                                             </a>
-                                                            <span class="price"> ${item.price} × 1</span>
+                                                            <span class="price"> ${cartItem.price} × 1</span>
                                                             <a class="btn-del J_delItem"
                                                                href="javascript: void(0);">
                                                                 <em class="iconfont-close"></em>
@@ -56,7 +56,8 @@
                                                     <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
                                                         <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
                                                     </span>
-                                                <a href="${pageContext.request.contextPath}/CartCount" class="btn btn-primary btn-cart">结算</a>
+                                                <a href="${pageContext.request.contextPath}/CartCount"
+                                                   class="btn btn-primary btn-cart">结算</a>
                                             </div>
                                         </c:when>
                                         <c:otherwise>

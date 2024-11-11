@@ -70,10 +70,10 @@ public class CatalogService {
         DBUtil.closeConnection(connection);
     }
 
-    public void executeRemove(Cart cart) throws SQLException {
+    public void executeRemove(int id) throws SQLException {
         Connection connection = DBUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(Remove_Item);
-        statement.setInt(1, cart.itemList.get(cart.itemList.size() - 1).getItem().getId());
+        statement.setInt(1, id);
 
         statement.executeUpdate();
 
