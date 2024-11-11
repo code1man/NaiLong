@@ -47,8 +47,8 @@ public class AddItemToCartServlet extends HttpServlet {
                 HttpSession session1 = req.getSession();
                 User user=(User)session1.getAttribute("loginUser");
 
-               CartItem cartItem= cart.addItem(item);
-               cartItem.setUserId(user.getId());
+                CartItem cartItem= cart.addItem(item);
+                cartItem.setUserId(user.getId());
                 catalogService.executeAdd(cart);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
