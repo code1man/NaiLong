@@ -107,8 +107,9 @@
             <tbody>
             <c:forEach var="cartItem" items="${sessionScope.cartItems}">
             <tr>
-                <td>${cartItem.item.URL}</td>
-                <td>${cartItem.item.name}</td>
+                <td>
+                    <img src="${cartItem.item.URL}" style="width: 100px; height: auto;">${cartItem.item.name}
+                </td>
                 <td>¥${cartItem.item.price}</td>
                 <td>${cartItem.quantity}</td>
                 <td>¥${cartItem.total}</td>
@@ -246,5 +247,6 @@
 
 </script>
 </body>
+
 
 </html>

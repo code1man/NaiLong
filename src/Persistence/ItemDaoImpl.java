@@ -14,6 +14,7 @@ import java.util.List;
 public class ItemDaoImpl implements ItemDao{
     private static final  String Get_ItemList_By_Product=" SELECT  * from item where type = ?";
     private static final  String Get_Item="SELECT * from item where id=?";
+    private static final  String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ?";
     @Override
     public List<Item> getItemListByProduct(String product_type) throws SQLException {
             List<Item>itemList=new ArrayList<>();
@@ -75,11 +76,38 @@ public class ItemDaoImpl implements ItemDao{
 
     }
 
-    public List<CartItem> getCartItemsByUserId(int userId) {
+
+    public List<CartItem> getCartItemsByUserId(int userId) throws SQLException {
         List<CartItem> cartItems = new ArrayList<>();
-        // 执行查询语句获取指定用户的购物车商品及详细信息
-        // 将结果映射到CartItem对象中并添加到列表
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userId); //
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                CartItem cartItem = new CartItem();
+                cartItem.setUserId(userId);
+                cartItem.setTotal(resultSet.getInt("ItemNum")*resultSet.getInt("price"));//总价格获取有问题，不会改！！！！
+                cartItem.setQuantity(resultSet.getInt("itemNum"));
+
+                // 将 item 信息映射到 Item 对象
+                Item item = new Item(resultSet.getInt("id"),resultSet.getString("name"));
+                item.setURL(resultSet.getString("url"));
+                item.setPrice(resultSet.getInt("price"));
+                cartItem.setItem(item);
+                cartItems.add(cartItem);
+            }
+        } finally {
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closeStatement(statement);
+            DBUtil.closeConnection(connection);
+        }
+
         return cartItems;
     }
-
 }
