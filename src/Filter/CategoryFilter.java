@@ -26,7 +26,6 @@ public class CategoryFilter implements Filter {
         request.setAttribute("categoryList", categoryList);
         request.setAttribute("productList", productList);
 
-        System.out.println("123456");
         // 继续处理请求
         chain.doFilter(request, response);
     }

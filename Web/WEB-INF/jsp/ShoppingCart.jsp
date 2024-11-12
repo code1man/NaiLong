@@ -204,10 +204,35 @@
                     </div>
                     <div class="price-btn-box">
                         <div class="sale-btn">
-                            <a href="${pageContext.request.contextPath}/orderForm" class="price-btn price-btn-primary">购买</a>
+
+                            <c:choose>
+                                <c:when test="${sessionScope.LoginUser != null}">
+                                    <a href="${pageContext.request.contextPath}/orderForm"
+                                       class="price-btn price-btn-primary">
+                                        购买
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="price-btn price-btn-primary" href="javascript: void(0)">
+                                        购买
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="favorite-btn">
                             <a href="${pageContext.request.contextPath}/AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">加入购物车</a>
+                            <c:choose>
+                                <c:when test="${sessionScope.LoginUser != null}">
+                                    <a href="/AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">
+                                        加入购物车
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="javascript:void(0)" class="btn-like btn-gray">
+                                        加入购物车
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
