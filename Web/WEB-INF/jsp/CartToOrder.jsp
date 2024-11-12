@@ -1,4 +1,4 @@
-<%--
+<%@ page import="domain.User" %><%--
   Created by IntelliJ IDEA.
   User: adolbook
   Date: 2024/11/3
@@ -7,8 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    User loginUser = (User) session.getAttribute("loginUser");
+    int userId = (loginUser != null) ? loginUser.getId() : -1;
+%>
 <% Boolean notLoggedIn = (Boolean) request.getAttribute("notLoggedIn"); %>
-
 <% if (notLoggedIn != null && notLoggedIn) { %>
 <script type="text/javascript">
     // 页面加载时立即执行未登录提示
@@ -120,7 +123,7 @@
         <div class="total-container">
             <span class="total-text">订单总价：</span>
             <span class="price">¥${sessionScope.totalAmount}</span>
-            <button class="submit-order">提交订单</button>
+            <button class="submit-order" onclick="submitOrder(<%= userId %>)">提交订单</button>
         </div>
 
     </section>
@@ -131,6 +134,33 @@
 
 <script src="./static/js/cursorFollow.js"></script>
 <script>
+    function submitOrder(userId) {
+        if (userId === -1) {
+            alert("用户未登录！");
+            return;
+        }
+
+        fetch('${pageContext.request.contextPath}/CartServlet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'action=submitOrder&userId=' + userId
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("订单提交成功！");
+                    sessionStorage.setItem('loginUser',${loginUser});
+                    window.location.href = "${pageContext.request.contextPath}/mainForm"; // 跳转到订单确认页面
+                } else {
+                    console.log(userId);
+                    alert("提交订单失败，请稍后重试！");
+                }
+            })
+            .catch(error => console.error("提交订单请求失败:", error));
+    }
+
+
     document.addEventListener("DOMContentLoaded", function() {
         // 检查是否有未登录的标志
         let notLoggedIn = <%= notLoggedIn %>;

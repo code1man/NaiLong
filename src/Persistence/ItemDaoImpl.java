@@ -14,6 +14,7 @@ import java.util.List;
 public class ItemDaoImpl implements ItemDao {
     private static final String Get_ItemList_By_Product = " SELECT  * from item where product_id = ?";
     private static final String Get_Item = "SELECT * from item where id=?";
+    private static final String deleteQuery = "DELETE FROM Cart WHERE userID = ?";
     private static final  String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ?";
     @Override
     public List<Item> getItemListByProduct(int product_id) throws SQLException {
@@ -107,5 +108,20 @@ public class ItemDaoImpl implements ItemDao {
         }
 
         return cartItems;
+    }
+
+    public void deleteCartItemsByUserId(int userId) throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = DBUtil.getConnection();
+            statement = connection.prepareStatement(deleteQuery);
+            statement.setInt(1, userId);
+            statement.executeUpdate();
+        } finally {
+            DBUtil.closeStatement(statement);
+            DBUtil.closeConnection(connection);
+        }
     }
 }

@@ -9,6 +9,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="Persistence.ItemDaoImpl, domain.Item" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="domain.User" %>
+<%
+    User loginUser = (User) session.getAttribute("loginUser");
+    int userId = (loginUser != null) ? loginUser.getId() : -1;
+%>
 <%
     // 从 session 中获取商品 ID，先作为 String 获取
     Item item = (Item) session.getAttribute("item");
