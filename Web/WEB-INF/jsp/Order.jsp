@@ -136,6 +136,7 @@
             <tr>
                 <td>
                     <img src="<%= item.getURL() %>" alt="<%= item.getName() %>" style="width: 100px; height: auto;">
+                    <br>
                     <%= item.getName() %>
                 </td>
                 <td>¥<%= item.getPrice() %>
