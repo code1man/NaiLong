@@ -18,6 +18,12 @@
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
 </head>
 <body>
+<%
+    if ("logout".equals(request.getParameter("action"))) {
+        session.removeAttribute("loginUser");  // 清除 loginUser 对象
+        response.sendRedirect(request.getContextPath() + "/mainForm"); // 可选：重定向到登录页面
+    }
+%>
 <div>
     <div class="header">
         <!-- topBar -->
@@ -85,7 +91,7 @@
                             <a href="javascript:void(0)" class="link"
                                onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
                             </a>
-                            <a href="javascript:void(0)" class="link" style="margin-left: 20px;">
+                            <a href="<%= request.getContextPath() %>/mainForm?action=logout" class="link" style="margin-left: 20px;">
                                 退出登录
                             </a>
                             <div id="modal" class="modal register-container">

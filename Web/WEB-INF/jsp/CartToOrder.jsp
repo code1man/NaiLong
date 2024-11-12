@@ -36,6 +36,7 @@
 </head>
 
 <body>
+
 <header>
     <div class="header-container">
         <h1>NaiLong Store</h1>
@@ -132,7 +133,6 @@
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
 </div>
 
-<script src="./static/js/cursorFollow.js"></script>
 <script>
     function submitOrder(userId) {
         if (userId === -1) {
@@ -150,7 +150,6 @@
             .then(response => {
                 if (response.ok) {
                     alert("订单提交成功！");
-                    sessionStorage.setItem('loginUser',${loginUser});
                     window.location.href = "${pageContext.request.contextPath}/mainForm"; // 跳转到订单确认页面
                 } else {
                     console.log(userId);
@@ -160,6 +159,10 @@
             .catch(error => console.error("提交订单请求失败:", error));
     }
 
+</script>
+
+<script src="./static/js/cursorFollow.js"></script>
+<script>
 
     document.addEventListener("DOMContentLoaded", function() {
         // 检查是否有未登录的标志
