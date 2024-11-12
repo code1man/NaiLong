@@ -166,7 +166,7 @@ th {
 }
 
 .site-category-list .children-list .link:hover {
-    color: #ff6700
+    color: #ff6700 !important;
 }
 
 .site-topBar .topBar-cart {

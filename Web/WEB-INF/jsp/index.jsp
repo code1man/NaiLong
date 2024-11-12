@@ -85,6 +85,9 @@
                             <a href="javascript:void(0)" class="link"
                                onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
                             </a>
+                            <a href="javascript:void(0)" class="link" style="margin-left: 20px;">
+                                退出登录
+                            </a>
                             <div id="modal" class="modal register-container">
                                 <div style="opacity: 1">
                                     <h2>编辑个人信息</h2>
