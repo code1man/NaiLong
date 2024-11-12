@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
+<% boolean notLoggedIn = request.getSession().getAttribute("loginUser") == null; %>
+<% if (notLoggedIn) { %>
 <script type="text/javascript">
     // 页面加载时立即执行未登录提示
     if (confirm("您尚未登录，是否前往登录界面？")) {
@@ -18,6 +19,7 @@
         window.location.href = "${pageContext.request.contextPath}/ShoppingCart";
     }
 </script>
+<% } %>
 
 <head>
     <title>购物界面</title>
@@ -37,26 +39,26 @@
                     <c:choose>
                         <c:when test="${sessionScope.loginUser != null}">
                             <%--购物车--%>
-                            <span class="cart-mini-num J_cartNum">（${sessionScope.loginUser.getTotalProductsNumber()}）</span>
+                            <span class="cart-mini-num J_cartNum">（${sessionScope.cart.getTotalNum()}）</span>
                             <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
                                 <div class="menu-content">
                                     <c:choose>
-                                        <c:when test="${sessionScope.loginUser.getTotalProductsNumber()} > 0">
+                                        <c:when test="${sessionScope.cart.getTotalNum() > 0}">
                                             <ul id="J_miniCartList" class="cart-list">
                                                 <c:forEach var="cartItem"
-                                                           items="${sessionScope.loginUser.hasBeenPutInShoppingCartProducts}">
+                                                           items="${sessionScope.cart.getCartItemList()}">
                                                     <li>
                                                         <div class="cart-item clearfix first">
                                                             <a class="thumb"
                                                                href="//www.mi.com/shop/buy?product_id=1230801081">
-                                                                <img alt="" src="">
+                                                                <img alt="" src="${cartItem.getItem().URL}">
                                                             </a>
                                                             <a class="name" href="javascript: void(0)">
-                                                                    ${cartItem.name}
+                                                                    ${cartItem.getItem().name}
                                                             </a>
-                                                            <span class="price"> ${cartItem.price} × 1</span>
+                                                            <span class="price"> ${cartItem.getItem().price} </span>
                                                             <a class="btn-del J_delItem"
-                                                               href="javascript: void(0);">
+                                                               href="/RemoveItem?id=${cartItem.getItem().id}&pageFrom=/mainForm">
                                                                 <em class="iconfont-close"></em>
                                                             </a>
                                                         </div>
@@ -64,8 +66,8 @@
                                                 </c:forEach>
                                             </ul>
                                             <div id="J_miniCartListTotal" class="cart-total clearfix">
-                                                    <span class="total">共 <em>${sessionScope.loginUser.getTotalProductsNumber()}</em> 件商品
-                                                        <span class="price"><em>${sessionScope.loginUser.getTotalPrice()}</em>元</span>
+                                                    <span class="total">共 <em>${sessionScope.cart.getTotalNum()}</em> 件商品
+                                                        <span class="price"><em>${sessionScope.cart.getSubTotal()}</em>元</span>
                                                     </span>
                                                 <a href="${pageContext.request.contextPath}/CartCount"
                                                    class="btn btn-primary btn-cart">结算</a>
@@ -216,7 +218,7 @@
                     <div class="price-btn-box">
                         <div class="sale-btn">
                             <c:choose>
-                                <c:when test="${sessionScope.LoginUser != null}">
+                                <c:when test="${sessionScope.loginUser != null}">
                                     <a href="${pageContext.request.contextPath}/orderForm"
                                        class="price-btn price-btn-primary"
                                        onclick="">
@@ -232,7 +234,7 @@
                         </div>
                         <div class="favorite-btn">
                             <c:choose>
-                                <c:when test="${sessionScope.LoginUser != null}">
+                                <c:when test="${sessionScope.loginUser != null}">
                                     <a href="/AddItemToCart?item=${requestScope.item}" class="btn-like btn-gray">
                                         加入购物车
                                     </a>
