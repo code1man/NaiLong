@@ -24,7 +24,6 @@
 </script>
 <% } %>
 
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -128,8 +127,9 @@
 
     </section>
 </main>
-<div class="mouse-follow-icon" id="mouse-follow-icon" style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF" />
+<div class="mouse-follow-icon" id="mouse-follow-icon"
+     style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 
 <script src="./static/js/cursorFollow.js"></script>
@@ -150,7 +150,7 @@
             .then(response => {
                 if (response.ok) {
                     alert("订单提交成功！");
-                    sessionStorage.setItem('loginUser',${loginUser});
+                    sessionStorage.setItem('loginUser', ${loginUser});
                     window.location.href = "${pageContext.request.contextPath}/mainForm"; // 跳转到订单确认页面
                 } else {
                     console.log(userId);
@@ -161,7 +161,7 @@
     }
 
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // 检查是否有未登录的标志
         let notLoggedIn = <%= notLoggedIn %>;
 
@@ -181,7 +181,7 @@
     function selectAddress(addressElement) {
         // 移除所有地址的active类
         const allAddresses = document.querySelectorAll('.address');
-        allAddresses.forEach(function(address) {
+        allAddresses.forEach(function (address) {
             address.classList.remove('active');
         });
 
@@ -210,23 +210,23 @@
     }
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById("addAddressModal");
         const btn = document.getElementById("addNewAddressBtn");
         const span = document.getElementsByClassName("close")[0];
 
         // 点击“+ 使用新地址”按钮时打开模态框
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // 点击关闭按钮时关闭模态框
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // 点击模态框外部时关闭模态框
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -234,7 +234,7 @@
 
         // 表单提交事件
         const form = document.getElementById("addAddressForm");
-        form.onsubmit = function(e) {
+        form.onsubmit = function (e) {
             e.preventDefault(); // 防止页面刷新
 
             // 获取表单数据
@@ -276,6 +276,7 @@
     });
 
 </script>
+
 </body>
 
 
