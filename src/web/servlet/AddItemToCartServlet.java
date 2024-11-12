@@ -56,7 +56,7 @@ public class AddItemToCartServlet extends HttpServlet {
             }
         }
 
-        resp.sendRedirect(req.getContextPath() + "/MainForm");
+        resp.sendRedirect(req.getContextPath() + "/mainForm");
     }
 
 }

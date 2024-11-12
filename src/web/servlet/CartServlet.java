@@ -24,6 +24,7 @@ public class CartServlet extends HttpServlet {
                 ItemDaoImpl cartDao = new ItemDaoImpl();
                 cartDao.deleteCartItemsByUserId(userId);
                 resp.setStatus(HttpServletResponse.SC_OK); // 请求成功
+                req.getSession().removeAttribute("cart");
             } catch (SQLException e) {
                 e.printStackTrace();
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 请求失败
