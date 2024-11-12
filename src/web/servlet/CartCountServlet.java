@@ -4,6 +4,7 @@ import Persistence.AddressDao;
 import Persistence.AddressDaoImpl;
 import Persistence.ItemDaoImpl;
 import domain.Address;
+import domain.Cart;
 import domain.CartItem;
 import domain.User;
 
@@ -33,13 +34,17 @@ public class CartCountServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        int totalAmount = cartItems.stream().mapToInt(CartItem::getTotal).sum();
-        session.setAttribute("totalAmount", totalAmount);
-        session.setAttribute("cartItems", cartItems);
-        AddressDao addressDao = new AddressDaoImpl();
-        List<Address> addressList = addressDao.getAllAddressById(userId);
-        session.setAttribute("addressList", addressList);
-        //将用户的收获地址也添加到session中存储
-        req.getRequestDispatcher("/WEB-INF/jsp/CartToOrder.jsp").forward(req, resp);
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart != null) {
+            int totalAmount = cart.getSubTotal();
+            session.setAttribute("totalAmount", totalAmount);
+            session.setAttribute("cartItems", cartItems);
+            AddressDao addressDao = new AddressDaoImpl();
+            List<Address> addressList = addressDao.getAllAddressById(userId);
+            session.setAttribute("addressList", addressList);
+            //将用户的收获地址也添加到session中存储
+            req.getRequestDispatcher("/WEB-INF/jsp/CartToOrder.jsp").forward(req, resp);
+        }
+
     }
 }

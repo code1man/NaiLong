@@ -109,7 +109,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="cartItem" items="${sessionScope.cartItems}">
+            <c:forEach var="cartItem" items="${sessionScope.cart.getCartItemList()}">
             <tr>
                 <td>
                     <img src="${cartItem.item.URL}" style="width: 100px; height: auto;">${cartItem.item.name}
