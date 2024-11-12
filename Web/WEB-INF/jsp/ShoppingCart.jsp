@@ -8,6 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+
+<script type="text/javascript">
+    // 页面加载时立即执行未登录提示
+    if (confirm("您尚未登录，是否前往登录界面？")) {
+        // 用户点击确认，跳转到登录页面
+        window.location.href = "${pageContext.request.contextPath}/login";
+    } else {
+        window.location.href = "${pageContext.request.contextPath}/ShoppingCart";
+    }
+</script>
+
 <head>
     <title>购物界面</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
@@ -204,11 +215,11 @@
                     </div>
                     <div class="price-btn-box">
                         <div class="sale-btn">
-
                             <c:choose>
                                 <c:when test="${sessionScope.LoginUser != null}">
                                     <a href="${pageContext.request.contextPath}/orderForm"
-                                       class="price-btn price-btn-primary">
+                                       class="price-btn price-btn-primary"
+                                       onclick="">
                                         购买
                                     </a>
                                 </c:when>
