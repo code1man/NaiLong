@@ -245,7 +245,7 @@
                              alt="轮播图2">
                     </li>
                     <li>
-                        <img src="https://img14.360buyimg.com/n0/jfs/t1/135035/7/42615/34447/660284caFfb4bc8ff/6f5383ba048b6a30.jpg"
+                        <img src="./static/images/swiper2.png"
                              alt="轮播图3">
                     </li>
                 </ul>
