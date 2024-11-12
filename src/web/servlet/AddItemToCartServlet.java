@@ -35,7 +35,6 @@ public class AddItemToCartServlet extends HttpServlet {
         Cart cart = (Cart) httpSession.getAttribute("cart");
         if (cart == null) {
             cart = new Cart();
-
         }
         HttpSession session = req.getSession();
         session.setAttribute("cart", cart);
@@ -45,9 +44,10 @@ public class AddItemToCartServlet extends HttpServlet {
         } else {
             try {
                 CatalogService catalogService = new CatalogService();
-                cart.addItem(item);
 
-                User user=(User)session.getAttribute("loginUser");
+                User user = (User) session.getAttribute("loginUser");
+
+                cart.addItem(item, user.getId());
 
                 catalogService.executeAdd(cart);
             } catch (SQLException e) {

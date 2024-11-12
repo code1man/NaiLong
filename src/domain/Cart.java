@@ -48,7 +48,7 @@ public class Cart implements Serializable {
         return count1;
     }
 
-    public CartItem addItem(Item item) {
+    public CartItem addItem(Item item, int userid) {
         CartItem cartItem = null;
         if (!containsItemId(String.valueOf(item.getId()))) {
             for (CartItem cartItem1 : itemList) {
@@ -64,6 +64,7 @@ public class Cart implements Serializable {
         if (cartItem == null) {
             cartItem = new CartItem();
             cartItem.setItem(item);
+            cartItem.setUserId(userid);
             cartItem.setQuantity(0);
         }
         cartItem.incrementQuantity();
