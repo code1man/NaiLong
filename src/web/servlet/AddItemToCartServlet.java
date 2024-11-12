@@ -42,7 +42,8 @@ public class AddItemToCartServlet extends HttpServlet {
 
         if (cart.containsItemId(String.valueOf(item.getId()))) {
             cart.incrementQuantityByItemId(String.valueOf(item.getId()));
-        } else {
+        }
+        else {
             try {
                 CatalogService catalogService = new CatalogService();
                 cart.addItem(item);
@@ -54,7 +55,8 @@ public class AddItemToCartServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-        new MainFormServlet().doGet(req, resp);
+
+        resp.sendRedirect(req.getContextPath() + "/MainForm");
     }
 
 }
