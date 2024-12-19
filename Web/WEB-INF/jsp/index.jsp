@@ -35,7 +35,7 @@
                         <em class="iconfont-cart-full cart-mini"></em>
                         购物车
                         <c:choose>
-                            <c:when test="${sessionScope.loginUser != null}">
+                            <c:when test="${sessionScope.loginUser != null && sessionScope.cart != null}">
                                 <%--购物车--%>
                                 <span class="cart-mini-num J_cartNum">（${sessionScope.cart.getTotalNum()}）</span>
                                 <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
@@ -91,7 +91,8 @@
                             <a href="javascript:void(0)" class="link"
                                onclick="openModal()">欢迎回来！${sessionScope.loginUser.username}
                             </a>
-                            <a href="<%= request.getContextPath() %>/mainForm?action=logout" class="link" style="margin-left: 20px;">
+                            <a href="<%= request.getContextPath() %>/mainForm?action=logout" class="link"
+                               style="margin-left: 20px;">
                                 退出登录
                             </a>
                             <div id="modal" class="modal register-container">
@@ -175,24 +176,10 @@
                                 <ul class="site-category-list clearfix site-category-list-custom">
                                     <c:forEach var="product" items="${requestScope.productList}">
                                         <li class="category-item">
-                                            <a href="" class="title">
+                                            <a href="#${product.getProductName()}" class="title">
                                                     ${product.getProductName()}
                                                 <em class="iconfont-arrow-right-big"></em>
                                             </a>
-                                            <div class="children clearfix children-col-2">
-                                                <ul class="children-list children-list-col children-list-col-1">
-                                                    <c:forEach var="cartItem" items="${product.items}">
-                                                        <li>
-                                                            <a href="#" class="link clearfix">
-                                                                <<img src="${cartItem.URL}" width="40" height="40"
-                                                                      alt=""
-                                                                      class="thumb">
-                                                                <span class="text">${cartItem.name}</span>
-                                                            </a>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                            </div>
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -215,8 +202,7 @@
                 </div>
                 <%--搜索按钮--%>
                 <div class="header-search">
-                    <form action="${pageContext.request.contextPath}/SearchServlet" method="get"
-                          class="search-form clearfix">
+                    <form class="search-form clearfix">
                         <label class="hide">站内搜索</label>
                         <label for="search"></label>
                         <input type="search" id="search" name="keyword" autocomplete="off"
@@ -224,7 +210,7 @@
                                placeholder="奶龙"
                                oninput="SearchItem()">
                         <a class="no-style-msq">
-                            <input type="submit" value="" class="search-btn iconfont">
+                            <button class="search-btn iconfont" id="searchButton"></button>
                         </a>
                         <div class="search-hot-words"></div>
                         <div id="J_keywordList" class="keyword-list">
@@ -251,7 +237,7 @@
                              alt="轮播图2">
                     </li>
                     <li>
-                        <img src="https://img14.360buyimg.com/n0/jfs/t1/135035/7/42615/34447/660284caFfb4bc8ff/6f5383ba048b6a30.jpg"
+                        <img src="./static/images/swiper2.jpg"
                              alt="轮播图3">
                     </li>
                 </ul>
@@ -271,7 +257,7 @@
             </div>
             <%--商品展示--%>
             <c:forEach var="product" items="${requestScope.productList}">
-                <div class="home-brick-box home-brick-row-2-box xm-plain-box">
+                <div id="${product.getProductName()}" class="home-brick-box home-brick-row-2-box xm-plain-box">
                     <div class="box-hd">
                         <h2 class="title"
                             style="font-weight: bolder">${product.getProductName()}</h2>

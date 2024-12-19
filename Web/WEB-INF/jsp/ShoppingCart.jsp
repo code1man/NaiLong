@@ -185,7 +185,7 @@
                                placeholder="奶龙"
                                oninput="SearchItem()">
                         <a class="no-style-msq">
-                            <input type="submit" value="" class="search-btn iconfont">
+                            <button class="search-btn iconfont" id="searchButton"></button>
                         </a>
                         <div class="search-hot-words"></div>
                         <div id="J_keywordList" class="keyword-list">

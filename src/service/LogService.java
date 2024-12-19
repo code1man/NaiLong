@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class LogService {
-    private final String BUY_ITEM = "/order";
+    private final String BUY_ITEM = "/CartCount";
     private final String ADD_TO_CART = "/AddItemToCart";
     private final String ITEMSHOW = "/ShoppingCart";
     private final String INDEX = "/mainForm";
