@@ -112,7 +112,7 @@
             <c:forEach var="cartItem" items="${sessionScope.cart.getCartItemList()}">
             <tr>
                 <td>
-                    <img src="${cartItem.item.URL}" style="width: 100px; height: auto;">${cartItem.item.name}
+                    <img src="${cartItem.item.URL}" style="width: 100px; height: auto;"><br>${cartItem.item.name}
                 </td>
                 <td>¥${cartItem.item.price}</td>
                 <td>${cartItem.quantity}</td>
