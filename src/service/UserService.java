@@ -23,6 +23,10 @@ public class UserService {
         return userDao.updateUser(user,username,password,email,age);
     }
 
+    public boolean checkUsername(String username)
+    {
+        return userDao.getUserByUsername(username) != null;
+    }
     public static void main(String[] args) {
         UserService userService = new UserService();
         System.out.println(userService.login("admin", "admin"));

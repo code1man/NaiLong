@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./static/css/Register.css">
     <title>注册</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,9 +27,10 @@
     <form action="${pageContext.request.contextPath}/handlerRegister" method="post">
             <span>
                 <i class="fa-regular fa-user"></i>
-                <input type="text" placeholder="用户名" name="username" required>
+                <input type="text" placeholder="用户名" name="username" id="username" required>
             </span>
         <br>
+            <div id="feedback"></div>
         <span>
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" placeholder="密码" name="password" required>
@@ -75,6 +78,7 @@
 </div>
 
 <script src="./static/js/cursorFollow.js"></script>
+<script src="./static/js/checkuserinfo.js"></script>
 
 <script type="text/javascript">
     // 当用户点击“换一换”链接时，调用此函数以刷新验证码图像

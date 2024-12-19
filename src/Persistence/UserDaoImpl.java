@@ -12,6 +12,7 @@ public class UserDaoImpl implements UserDao {
     private static final String SELECT_USER_BY_USERNAME_AND_PASSWORD = "select * from userinfo where username = ? and password = ?";
     private static final String SELECT_ALL_USER = "select * from userinfo";
     private static final String UPDATE_USER = "UPDATE userinfo SET username = ?,password = ?,email = ?,age = ? WHERE id = ?";
+    private static final String SELECT_USER_BY_USERNAME = "select * from userinfo where username = ?";
 
     @Override
     public List<User> getAllUsers() {                           //获取表中查询到的所有对象
@@ -99,6 +100,25 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
 
+    }
+
+    public User getUserByUsername(String username) {
+        User user = null;
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERNAME);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                user = this.resultSetToUser(resultSet);
+            }
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
     }
 
     @Override
