@@ -12,5 +12,9 @@ public interface UserDao {
 
     public User getUserByUsernameAndPassword(String username, String password);
 
+    public  User getUserByUsername(String username);
+
     public boolean updateUser(User user,String username, String password,String email,int age);
+
+
 }
