@@ -54,6 +54,7 @@ public class ItemDaoImpl implements ItemDao {
         item.setType(productType);
         item.setURL(resultSet.getString(4));
         item.setPrice(resultSet.getInt(5));
+        item.setDescription(resultSet.getString(6));
         return item;
     }
     public ProductType StringToProductType(String s)

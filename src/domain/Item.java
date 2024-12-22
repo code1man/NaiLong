@@ -9,7 +9,7 @@ public class Item implements Serializable {
     private ProductType type;
     private String URL;
     private int price;
-
+    private String description;
 
     public Item() {
     }
@@ -26,6 +26,16 @@ public class Item implements Serializable {
         this.URL = URL;
         this.price = price;
     }
+
+    public Item(int id, String name, ProductType type, String URL, int price, String description) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.URL = URL;
+        this.price = price;
+        this.description = description;
+    }
+
 
     public void setId(int id) {
         this.id = id;
@@ -67,5 +77,12 @@ public class Item implements Serializable {
         return price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
