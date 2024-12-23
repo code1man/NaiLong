@@ -294,7 +294,7 @@
                             <div class="span16">
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="cartItem" items="${product.items}">
-                                        <li class="brick-item brick-ithumbImgtem-m brick-item-m-2">
+                                        <li class="brick-item brick-item-m brick-item-m-2">
                                             <a href="ShoppingCart?item=${cartItem.id}">
                                                 <div class="figure figure-img">
                                                     <img class="thumbImg" width="160" height="160" alt="1"
