@@ -16,6 +16,7 @@
 <head>
     <title>奶龙商店</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%
@@ -25,7 +26,7 @@
     }
 %>
 <!-- 悬浮窗 -->
-<div id="product-hover-info" >
+<div id="product-hover-info">
     <h4 id="hover-product-name"></h4>
     <p id="hover-product-description"></p>
     <p><strong>价格：</strong><span id="hover-product-price"></span>元</p>
@@ -116,12 +117,13 @@
                                         <span>
                                             <label>用户名：
                                                 <input type="text" placeholder="用户名"
-                                                       value="${sessionScope.loginUser.username}" name="username" id="username"
+                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       id="username"
                                                        required>
                                             </label>
                                         </span>
                                         <br>
-                                        <div id="feedback"> </div>
+                                        <div id="feedback"></div>
                                         <span>
                                             <label>邮箱：
                                                 <input type="email" placeholder="邮箱" name="email"
@@ -295,7 +297,8 @@
                                         <li class="brick-item brick-ithumbImgtem-m brick-item-m-2">
                                             <a href="ShoppingCart?item=${cartItem.id}">
                                                 <div class="figure figure-img">
-                                                    <img class="thumbImg" width="160" height="160" alt="1" src="${cartItem.URL}"
+                                                    <img class="thumbImg" width="160" height="160" alt="1"
+                                                         src="${cartItem.URL}"
                                                          data-name="${cartItem.name}"
                                                          data-price="${cartItem.price}"
                                                          data-description="${cartItem.description}">
@@ -319,7 +322,6 @@
 </div>
 
 
-
 <%--鼠标--%>
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
@@ -329,7 +331,6 @@
 </body>
 <script src="/static/js/checkuserinfo.js"></script>
 <script src="/static/js/showDiscription.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./static/js/topBar.js"></script>
 <script src="./static/js/cursorFollow.js"></script>
 <script src="./static/js/Search.js"></script>
