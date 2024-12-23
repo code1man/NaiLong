@@ -24,6 +24,12 @@
         response.sendRedirect(request.getContextPath() + "/mainForm"); // 可选：重定向到登录页面
     }
 %>
+<!-- 悬浮窗 -->
+<div id="product-hover-info" >
+    <h4 id="hover-product-name"></h4>
+    <p id="hover-product-description"></p>
+    <p><strong>价格：</strong><span id="hover-product-price"></span>元</p>
+</div>
 <div>
     <div class="header">
         <!-- topBar -->
@@ -110,11 +116,12 @@
                                         <span>
                                             <label>用户名：
                                                 <input type="text" placeholder="用户名"
-                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       value="${sessionScope.loginUser.username}" name="username" id="username"
                                                        required>
                                             </label>
                                         </span>
                                         <br>
+                                        <div id="feedback"> </div>
                                         <span>
                                             <label>邮箱：
                                                 <input type="email" placeholder="邮箱" name="email"
@@ -285,10 +292,13 @@
                             <div class="span16">
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="cartItem" items="${product.items}">
-                                        <li class="brick-item brick-item-m brick-item-m-2">
+                                        <li class="brick-item brick-ithumbImgtem-m brick-item-m-2">
                                             <a href="ShoppingCart?item=${cartItem.id}">
                                                 <div class="figure figure-img">
-                                                    <img width="160" height="160" alt="1" src="${cartItem.URL}">
+                                                    <img class="thumbImg" width="160" height="160" alt="1" src="${cartItem.URL}"
+                                                         data-name="${cartItem.name}"
+                                                         data-price="${cartItem.price}"
+                                                         data-description="${cartItem.description}">
                                                 </div>
                                                 <h3 class="title">${cartItem.name}</h3>
                                                 <p class="price">
@@ -308,14 +318,17 @@
     </div>
 </div>
 
+
+
 <%--鼠标--%>
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
-</body>
 
-<!-- 引入 jQuery (通过 Google CDN 或者其他CDN) -->
+</body>
+<script src="/static/js/checkuserinfo.js"></script>
+<script src="/static/js/showDiscription.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./static/js/topBar.js"></script>
 <script src="./static/js/cursorFollow.js"></script>

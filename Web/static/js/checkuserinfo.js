@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     $('#username').on('blur', function() {
         let username = $(this).val().trim();  // 获取输入框的值并去除空格
         checkUsername(username);
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 }
             },
             error: function(errorMsg) {
-                console.log(errorMsg);
+                console.log("请求错误:\n"+errorMsg);
             }
         });
     }
