@@ -9,7 +9,7 @@ function SearchItem() {
         return;
     }
 
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("GET", "/SearchServlet?SearchContent=" + encodeURIComponent(query), true);
     xhr.onreadystatechange = function () {
         console.log(xhr.responseText);
@@ -24,18 +24,18 @@ function SearchItem() {
 }
 
 function displayResults(results) {
-    var resultsContainer = document.getElementById("J_keywordList");
-    var resultList = resultsContainer.querySelector('.result-list');
+    let resultsContainer = document.getElementById("J_keywordList");
+    let resultList = resultsContainer.querySelector('.result-list');
     resultList.innerHTML = "";  // 清空之前的搜索结果
 
     if (results.length > 0) {
         resultsContainer.style.display = 'block';
         results.forEach(function (item) {
             // 创建一个 <li> 元素来包含每个搜索结果
-            var li = document.createElement("li");
+            let li = document.createElement("li");
 
             // 创建一个 <a> 元素，将商品的名称作为链接
-            var a = document.createElement("a");
+            let a = document.createElement("a");
             a.textContent = item.name;
             a.href = "/ShoppingCart?item=" + item.id; // 假设商品详情页面使用产品 ID 作为查询参数
             a.classList.add("result-item");
@@ -51,14 +51,14 @@ function displayResults(results) {
         resultList.innerHTML = ''; // 如果没有结果，清空列表
 
         // 添加一个"没有结果"的提示
-        var li = document.createElement("li");
+        let li = document.createElement("li");
         li.textContent = "没有找到相关商品";
         resultList.appendChild(li);
     }
 }
 
 function addButtonClickListener(itemId) {
-    var button = document.getElementById("searchButton");
+    let button = document.getElementById("searchButton");
     button.onclick = function () {
         window.open("/ShoppingCart?item=" + itemId);  // 跳转到第一个搜索结果的URL
     };
