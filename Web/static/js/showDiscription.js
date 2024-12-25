@@ -1,5 +1,5 @@
-    $(function() {
-    $(".thumbImg").mouseenter(function(event) {
+$(function () {
+    $(".thumbImg").mouseenter(function (event) {
         console.log("鼠标移入图片");
 
         // 获取商品的相关数据
@@ -30,8 +30,8 @@
 
     });
 
-    $(".thumbImg").mouseleave(function() {
-    console.log("鼠标移出图片");
-    $("#product-hover-info").hide();
-});
+    $(".thumbImg").mouseleave(function () {
+        console.log("鼠标移出图片");
+        $("#product-hover-info").hide();
+    });
 });

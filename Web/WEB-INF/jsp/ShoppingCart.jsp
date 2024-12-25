@@ -29,7 +29,7 @@
 </head>
 <body>
 <!-- topBar -->
-<div>
+<div style="background-color: rgba(255, 234, 175, 0.8) ">
     <div class="header">
         <!-- topBar -->
         <div class="site-topBar">
@@ -219,7 +219,7 @@
         </div>
     </div>
     <div id="floatingWindow" class="floating">
-        <div class="content">商品名字</div>
+        <div class="content">${requestScope.item.name}</div>
     </div>
 
     <div style="background-color: rgba(255, 234, 175, 0.8) ">

@@ -1,5 +1,5 @@
 body {
-    cursor: none;  /* 隐藏默认光标 */
+    cursor: none; /* 隐藏默认光标 */
     margin: 0;
     padding: 0;
     font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -16,9 +16,9 @@ body {
 }
 
 #feedback {
-    color:red;
+    color: red;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 
@@ -33,10 +33,9 @@ body {
 
 
 .register-container input[type="text"],
-.register-container input[type="password"] ,
+.register-container input[type="password"],
 .register-container input[type="email"],
-.register-container input[type="number"]
-{
+.register-container input[type="number"] {
     width: 80%;
     padding: 10px;
     margin: 10px 0;

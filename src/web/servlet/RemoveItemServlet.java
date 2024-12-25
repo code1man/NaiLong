@@ -1,5 +1,6 @@
 package web.servlet;
 
+import com.google.gson.JsonObject;
 import domain.Cart;
 import domain.Item;
 import service.CatalogService;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 
 public class RemoveItemServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         String pageFrom = req.getParameter("pageFrom");
@@ -30,7 +31,12 @@ public class RemoveItemServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        new MainFormServlet().doGet(req, resp);
+        System.out.println("GET");
+
+        // 设置响应类型为空，无需返回任何数据
+        resp.setStatus(HttpServletResponse.SC_OK); // 设置 HTTP 状态码为 200
+        resp.setContentType("text/plain"); // 可选，设置为纯文本
+        resp.getWriter().flush(); // 返回空响应
     }
 }
 

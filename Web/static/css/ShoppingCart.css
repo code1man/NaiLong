@@ -5,7 +5,7 @@ body {
     cursor: none;
 }
 
-.h2 {
+h2 {
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -61,7 +61,6 @@ body {
     justify-content: center;
     padding-top: 32px;
     padding-bottom: 12px;
-    height: 600px;
 }
 
 .product-box .img-left {

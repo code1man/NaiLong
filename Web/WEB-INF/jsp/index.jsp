@@ -61,12 +61,10 @@
                                                             </a>
                                                             <span id="ItemName"
                                                                   class="name">${cartItem.getItem().name}</span>
-                                                            <span id="ItemPrice"
-                                                                  class="price"> ${cartItem.getItem().price} </span>
+                                                            <span class="price Item-price"> ${cartItem.getItem().price} </span>
                                                             <div class="count-control">
                                                                 <button class="count_d">-</button>
-                                                                <span id="ItemCount"
-                                                                      class="price">${cartItem.getQuantity()}</span>
+                                                                <span class="price item-count">${cartItem.getQuantity()}</span>
                                                                 <button class="count_i">+</button>
                                                             </div>
                                                             <a class="btn-del J_delItem">
