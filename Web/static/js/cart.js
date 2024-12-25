@@ -7,9 +7,12 @@ if (cartList) {
     let currentCartListTotalPrice = parseInt($('#CartListTotalPrice').text()); // 购物车中商品总价格
     if (cartItems && cartItems.length > 0) {
         for (let cartItem of cartItems) {
-            console.log(cartItem);
-            let currentCount = parseInt($('#ItemCount').text()); // 获取商品数量
-            let currentTotalPrice = parseInt($('#ItemPrice').text()); // 获取商品总价格
+            let i_btn = cartItem.querySelector(".count_i");
+            let d_btn = cartItem.querySelector(".count_d");
+            let itemCount = cartItem.querySelector(".Item-count")
+            let itemPrice = cartItem.querySelector(".Item-price");
+            let currentCount = parseInt(itemCount.textContent); // 获取商品数量
+            let currentTotalPrice = parseInt(itemPrice.textContent); // 获取商品总价格
             let ItemPrice = currentTotalPrice / currentCount; // 获取商品的价格
             let itemId = cartItem.getAttribute('data-item-id');  // 获取该商品的 ID
 
@@ -51,18 +54,13 @@ if (cartList) {
                 }
             });
 
-            let i_btn = cartItem.querySelector(".count_i");
-            let d_btn = cartItem.querySelector(".count_d");
-            let itemCount = cartItem.querySelector(".item-count")
-            let itemPrice = cartItem.querySelector(".item-price");
-
             i_btn.addEventListener("click", () => {
                 currentCount++;
                 currentCartListTotalCount++;
                 currentTotalPrice += ItemPrice;
                 currentCartListTotalPrice += ItemPrice;
-                itemPrice.textContent = currentTotalPrice + '';
-                itemCount.textContent = currentCount + '';
+                itemPrice.textContent = String(currentTotalPrice);
+                itemCount.textContent = String(currentCount);
                 $('#CartListTotalCount').text(currentCartListTotalCount);
                 $('#CartListTotalPrice').text(currentCartListTotalPrice);
                 $('#topBarItemCount').text(`(${currentCartListTotalCount})`)

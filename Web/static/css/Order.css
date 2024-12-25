@@ -223,6 +223,18 @@ table td {
     margin-right: 20px;
 }
 
+.Item-price {
+    color: #e60012;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.Item-count {
+    color: #e60012;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
 .submit-order {
     padding: 10px 20px;
     background-color: #d89e00;

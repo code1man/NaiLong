@@ -13,14 +13,15 @@ body {
 }
 
 #feedback {
-    color:red;
+    color: red;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.thumbImg{
+.thumbImg {
     position: relative;
 }
+
 #product-hover-info {
     display: none;
     position: absolute;
@@ -28,7 +29,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;  /* 控制悬浮窗的宽度 */
+    width: 200px; /* 控制悬浮窗的宽度 */
     z-index: 9999;
 }
 
@@ -362,8 +363,8 @@ th {
     background-color: #ddd;
 }
 
-#ItemCount {
-    margin: 0 10px;
+.Item-count {
+    margin: 10px !important;
     font-size: 14px;
     width: 20px;
     text-align: center;

@@ -64,7 +64,7 @@
                                                             <span class="price Item-price"> ${cartItem.getItem().price} </span>
                                                             <div class="count-control">
                                                                 <button class="count_d">-</button>
-                                                                <span class="price item-count">${cartItem.getQuantity()}</span>
+                                                                <span class="price Item-count">${cartItem.getQuantity()}</span>
                                                                 <button class="count_i">+</button>
                                                             </div>
                                                             <a class="btn-del J_delItem">
