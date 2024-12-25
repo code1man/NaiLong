@@ -117,6 +117,61 @@ th {
     background: rgba(255, 234, 175, 0.8);
 }
 
+.site-topBar .topBar-info {
+    position: relative;
+    float: right;
+    height: 40px;
+    line-height: 40px
+}
+
+.site-topBar .topBar-info .link, .site-topBar .topBar-info .message, .site-topBar .topBar-info .sep, .site-topBar .topBar-info .user {
+    float: left
+}
+
+.site-topBar .topBar-info .link {
+    padding: 0 5px;
+    text-align: center
+}
+
+.site-topBar .topBar-info .link-order {
+    width: 70px
+}
+
+.site-topBar .topBar-info .sep {
+    margin: 0
+}
+
+.site-topBar .user {
+    position: relative;
+    width: 110px;
+    padding: 0;
+    white-space: nowrap
+}
+
+.site-topBar .user-name {
+    position: relative;
+    z-index: 5;
+    display: block;
+    width: 110px;
+    height: 40px;
+    text-align: center
+}
+
+.site-topBar .user-name .name {
+    display: inline-block;
+    width: auto;
+    max-width: 75px;
+    text-overflow: ellipsis;
+    vertical-align: text-bottom;
+    overflow: hidden
+}
+
+.site-topBar .user-name i {
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: 9px
+}
+
 .site-header .nav-category .link-category {
     visibility: hidden
 }
@@ -177,7 +232,7 @@ th {
     position: relative;
     z-index: 30;
     height: 40px;
-    font-size: 15px;
+    font-size: 12px;
     color: #b0b0b0;
     background: #ffeb68;
 }
@@ -281,6 +336,37 @@ th {
 
 .site-topBar .cart-item:hover .btn-del {
     opacity: 1
+}
+
+/* 商品数量控制 */
+.count-control {
+    position: absolute;
+    bottom: 8px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.count_d, .count_i {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 0.2rem;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.count_d:hover, .count_i:hover {
+    background-color: #ddd;
+}
+
+#ItemCount {
+    margin: 0 10px;
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
 }
 
 .site-topBar .cart-item .thumb {
@@ -1430,16 +1516,12 @@ th {
     font-size: 14px
 }
 
-.iconfont-cart:before {
-    content: "\E60C"
+.iconfont-cart {
+    background-image: url("../images/cart.png");
 }
 
-.iconfont-cart-full:before {
-    content: "\E60D"
-}
-
-.iconfont-arrow-right-big:before {
-    content: "\E623"
+.iconfont-arrow-right-big {
+    background-image: url("../images/arrow-right.png");
 }
 
 .loading {

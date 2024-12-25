@@ -16,8 +16,7 @@
 <head>
     <title>奶龙商店</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%
@@ -27,7 +26,7 @@
     }
 %>
 <!-- 悬浮窗 -->
-<div id="product-hover-info" >
+<div id="product-hover-info">
     <h4 id="hover-product-name"></h4>
     <p id="hover-product-description"></p>
     <p><strong>价格：</strong><span id="hover-product-price"></span>元</p>
@@ -39,59 +38,63 @@
             <div class="container">
                 <div class="topBar-cart">
                     <a class="link">
-                        <em class="iconfont-cart"></em>
-                        <em class="iconfont-cart-full cart-mini"></em>
+                        <span class="iconfont-cart"></span>
                         购物车
-                        <c:choose>
-                            <c:when test="${sessionScope.loginUser != null && sessionScope.cart != null}">
-                                <%--购物车--%>
-                                <span class="cart-mini-num J_cartNum">（${sessionScope.cart.getTotalNum()}）</span>
-                                <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
-                                    <div class="menu-content">
-                                        <c:choose>
-                                            <c:when test="${sessionScope.cart.getTotalNum() > 0}">
-                                                <ul id="J_miniCartList" class="cart-list">
-                                                    <c:forEach var="cartItem"
-                                                               items="${sessionScope.cart.getCartItemList()}">
-                                                        <li>
-                                                            <div class="cart-item clearfix first">
-                                                                <a class="thumb"
-                                                                   href="//www.mi.com/shop/buy?product_id=1230801081">
-                                                                    <img alt="" src="${cartItem.getItem().URL}">
-                                                                </a>
-                                                                <a class="name" href="javascript: void(0)">
-                                                                        ${cartItem.getItem().name}
-                                                                </a>
-                                                                <span class="price"> ${cartItem.getItem().price} </span>
-                                                                <a class="btn-del J_delItem"
-                                                                   href="/RemoveItem?id=${cartItem.getItem().id}&pageFrom=/mainForm">
-                                                                    <em class="iconfont-close"></em>
-                                                                </a>
-                                                            </div>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
-                                                <div id="J_miniCartListTotal" class="cart-total clearfix">
-                                                    <span class="total">共 <em>${sessionScope.cart.getTotalNum()}</em> 件商品
-                                                        <span class="price"><em>${sessionScope.cart.getSubTotal()}</em>元</span>
-                                                    </span>
-                                                    <a href="${pageContext.request.contextPath}/CartCount"
-                                                       class="btn btn-primary btn-cart">结算</a>
-                                                </div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
-                                            </c:otherwise>
-
-                                        </c:choose>
-                                    </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="cart-mini-num">（0）</span>
-                            </c:otherwise>
-                        </c:choose>
                     </a>
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser != null && sessionScope.cart != null}">
+                            <%--购物车--%>
+                            <span id="topBarItemCount"
+                                  class="cart-mini-num J_cartNum">（${sessionScope.cart.getTotalNum()}）</span>
+                            <div id="J_miniCartMenu" class="cart-menu" style="height: 0;">
+                                <div class="menu-content">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.cart.getTotalNum() > 0}">
+                                            <ul id="J_miniCartList" class="cart-list">
+                                                <c:forEach var="cartItem"
+                                                           items="${sessionScope.cart.getCartItemList()}">
+                                                    <li data-item-id="${cartItem.getItem().id}">
+                                                        <div class="cart-item clearfix first">
+                                                            <a class="thumb"
+                                                               href="//www.mi.com/shop/buy?product_id=1230801081">
+                                                                <img alt="" src="${cartItem.getItem().URL}">
+                                                            </a>
+                                                            <span id="ItemName"
+                                                                  class="name">${cartItem.getItem().name}</span>
+                                                            <span class="price Item-price"> ${cartItem.getItem().price} </span>
+                                                            <div class="count-control">
+                                                                <button class="count_d">-</button>
+                                                                <span class="price item-count">${cartItem.getQuantity()}</span>
+                                                                <button class="count_i">+</button>
+                                                            </div>
+                                                            <a class="btn-del J_delItem">
+                                                                <em class="iconfont-close"></em>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                            <div id="J_miniCartListTotal" class="cart-total clearfix">
+                                                    <span class="total">共 <em
+                                                            id="CartListTotalCount">${sessionScope.cart.getTotalNum()}</em> 件商品
+                                                        <span class="price"><em
+                                                                id="CartListTotalPrice">${sessionScope.cart.getSubTotal()}</em>元</span>
+                                                    </span>
+                                                <a href="${pageContext.request.contextPath}/CartCount"
+                                                   class="btn btn-primary btn-cart">结算</a>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="msg msg-empty">购物车中还没有商品，赶紧选购吧！</div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="cart-mini-num">（0）</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="topBar-info">
                     <c:choose>
@@ -112,12 +115,13 @@
                                         <span>
                                             <label>用户名：
                                                 <input type="text" placeholder="用户名"
-                                                       value="${sessionScope.loginUser.username}" name="username" id="username"
+                                                       value="${sessionScope.loginUser.username}" name="username"
+                                                       id="username"
                                                        required>
                                             </label>
                                         </span>
                                         <br>
-                                        <div id="feedback"> </div>
+                                        <div id="feedback"></div>
                                         <span>
                                             <label>邮箱：
                                                 <input type="email" placeholder="邮箱" name="email"
@@ -220,7 +224,7 @@
                                placeholder="奶龙"
                                oninput="SearchItem()">
                         <a class="no-style-msq">
-                            <button class="search-btn iconfont" id="searchButton"></button>
+                            <button class="search-btn iconfont-arrow-right-big" id="searchButton"></button>
                         </a>
                         <div class="search-hot-words"></div>
                         <div id="J_keywordList" class="keyword-list">
@@ -288,10 +292,11 @@
                             <div class="span16">
                                 <ul class="brick-list clearfix">
                                     <c:forEach var="cartItem" items="${product.items}">
-                                        <li class="brick-item brick-ithumbImgtem-m brick-item-m-2">
+                                        <li class="brick-item brick-item-m brick-item-m-2">
                                             <a href="ShoppingCart?item=${cartItem.id}">
                                                 <div class="figure figure-img">
-                                                    <img class="thumbImg" width="160" height="160" alt="1" src="${cartItem.URL}"
+                                                    <img class="thumbImg" width="160" height="160" alt="1"
+                                                         src="${cartItem.URL}"
                                                          data-name="${cartItem.name}"
                                                          data-price="${cartItem.price}"
                                                          data-description="${cartItem.description}">
@@ -315,22 +320,19 @@
 </div>
 
 
-
 <%--鼠标--%>
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
     <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 
+</body>
 <script src="/static/js/checkuserinfo.js"></script>
 <script src="/static/js/showDiscription.js"></script>
-
-</body>
-
-
 <script src="./static/js/topBar.js"></script>
 <script src="./static/js/cursorFollow.js"></script>
 <script src="./static/js/Search.js"></script>
+<script src="./static/js/cart.js"></script>
 <script>
     window.onload = function () {
         let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';

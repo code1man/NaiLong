@@ -34,12 +34,13 @@ const cartButton = document.querySelector('.topBar-cart');
 
 // 显示购物车菜单
 cartButton.addEventListener('mouseenter', () => {
-    cartMenu.style.height = `auto`; // 设置为内容高度
+    if (cartMenu)
+        cartMenu.style.height = `auto`; // 设置为内容高度
 });
 
 // 隐藏购物车菜单
 document.addEventListener('mousemove', (event) => {
-    if (cartMenu.style.height !== '0px') {
+    if (cartMenu && cartMenu.style.height !== '0px') {
         const cartMenuRect = cartMenu.getBoundingClientRect();
         const cartButtonRect = cartButton.getBoundingClientRect();
 

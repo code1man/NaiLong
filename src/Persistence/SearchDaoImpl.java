@@ -44,10 +44,10 @@ public class SearchDaoImpl implements SearchDao {
         return new Item(id, name);
     }
 
-//    public static void main(String[] args) {
-//        List<Item> list = new SearchDaoImpl().SearchItems("表情包");
-//        for (Item item : list) {
-//            System.out.println(item.getId() + " " + item.getName());
-//        }
-//    }
+    public static void main(String[] args) {
+        List<Item> list = new SearchDaoImpl().SearchItems("奶龙");
+        for (Item item : list) {
+            System.out.println(item.getId() + " " + item.getName());
+        }
+    }
 }
