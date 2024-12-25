@@ -10,7 +10,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.io.IOException;
 
 @WebFilter("/*")
@@ -36,7 +35,7 @@ public class LogFilter implements Filter {
 
         int itemId = -1;
         Object idObject = req.getAttribute("item");
-        if (idObject != null && idObject instanceof Integer)
+        if (idObject instanceof Integer)
             itemId = (int) idObject;
         else {
             Item item = null;

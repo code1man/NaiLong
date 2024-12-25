@@ -2,6 +2,7 @@ package web.servlet;
 
 import domain.Cart;
 import domain.CartItem;
+import domain.User;
 import service.CatalogService;
 
 import javax.servlet.ServletException;
@@ -20,30 +21,24 @@ public class updateCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        Iterator<CartItem> cartItems = cart.getAllCartItems();
+        Cart cart = new Cart();
+        User user = (User) session.getAttribute("loginUser");
+        int userId = user.getId();
+        int itemId = Integer.parseInt(req.getParameter("itemID"));
+        int count = Integer.parseInt(req.getParameter("count"));
 
-        while (cartItems.hasNext()) {
-            CartItem cartItem = (CartItem) cartItems.next();
-            int itemId = cartItem.getItem().getId();
-            try {
-                String quantityString = req.getParameter("itemId");
-                int quantity = Integer.parseInt((quantityString));
-                cart.setQuantityByItemId(String.valueOf(itemId), quantity);
-                if (quantity < 1) {
-                    cartItems.remove();
-                }
-            } catch (Exception e) {
-                //ignore parse exceptions on purpose
-            }
-        }
         CatalogService catalogService = new CatalogService();
         try {
-            cart = catalogService.executeUpdate(cart);
+            cart = catalogService.executeUpdate(userId, itemId, count);
             session.setAttribute("cart", cart);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        // 设置响应类型为空，无需返回任何数据
+        resp.setStatus(HttpServletResponse.SC_OK); // 设置 HTTP 状态码为 200
+        resp.setContentType("text/plain"); // 可选，设置为纯文本
+        resp.getWriter().flush(); // 返回空响应
     }
 }
 

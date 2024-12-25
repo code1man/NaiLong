@@ -48,9 +48,10 @@ public class CatalogService {
         return itemDao.getItem(itemId);
     }
 
-    private static final String Add_Item = "INSERT INTO cart (userID,ItemID,ItemNum,date) VALUES(?,?,?,?)";
+    private static final String Add_Item = "INSERT INTO cart (userID,ItemID,ItemNum) VALUES(?,?,?)";
     private static final String Remove_Item = "DELETE FROM cart where ItemID=?";
-    private static final String Update_Item = "SELECT * FROM cart where userID=?";
+    private static final String Search_Item = "SELECT * FROM cart WHERE userID = ? AND isCovered = false AND isDeleted = false";
+    private static final String Update_Item = "UPDATE cart SET isCovered=true WHERE userID=? AND ItemID=?";
 
     public void executeAdd(Cart cart) throws SQLException {
 
@@ -60,9 +61,6 @@ public class CatalogService {
         statement.setInt(1, cart.itemList.get(cart.itemList.size() - 1).getUserId());
         statement.setInt(2, cart.itemList.get(cart.itemList.size() - 1).getItem().getId());
         statement.setInt(3, cart.itemList.get(cart.itemList.size() - 1).getQuantity());
-        LocalDate currentDate = LocalDate.now();
-        Date sqlDate = Date.valueOf(currentDate);
-        statement.setDate(4, sqlDate);
 
         statement.executeUpdate();
 
@@ -96,13 +94,33 @@ public class CatalogService {
         return cart;
     }
 
-    public Cart executeUpdate(Cart cart) throws SQLException {
+    public Cart executeQuery(Cart cart) throws SQLException {
         Connection connection = DBUtil.getConnection();
-        PreparedStatement statement = connection.prepareStatement(Update_Item);
+        PreparedStatement statement = connection.prepareStatement(Search_Item);
         statement.setInt(1, cart.itemList.get(cart.itemList.size() - 1).getUserId());
         ResultSet resultSet = statement.executeQuery();
         Cart cart1 = ResultToCart(resultSet);
         return cart1;
+    }
+
+    public Cart executeUpdate(int userid, int itemid, int itemNum) throws SQLException {
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement updatedStatement = connection.prepareStatement(Update_Item);
+        updatedStatement.setInt(1, userid);
+        updatedStatement.setInt(2, itemid);
+        updatedStatement.executeUpdate();
+
+        PreparedStatement insertedStatement = connection.prepareStatement(Add_Item);
+        insertedStatement.setInt(1, userid);
+        insertedStatement.setInt(2, itemid);
+        insertedStatement.setInt(3, itemNum);
+        insertedStatement.executeUpdate();
+
+        PreparedStatement getCartStatement = connection.prepareStatement(Search_Item);
+        getCartStatement.setInt(1, userid);
+        ResultSet resultSet = getCartStatement.executeQuery();
+
+        return ResultToCart(resultSet);
     }
 
 }

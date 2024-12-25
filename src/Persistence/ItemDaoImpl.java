@@ -14,8 +14,9 @@ import java.util.List;
 public class ItemDaoImpl implements ItemDao {
     private static final String Get_ItemList_By_Product = " SELECT  * from item where product_id = ?";
     private static final String Get_Item = "SELECT * from item where id=?";
-    private static final String deleteQuery = "DELETE FROM Cart WHERE userID = ?";
-    private static final  String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ?";
+    private static final String deleteQuery = "UPDATE Cart SET isDeleted = TRUE WHERE userID = ? AND isDeleted = FALSE";
+    private static final String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ?";
+
     @Override
     public List<Item> getItemListByProduct(int product_id) throws SQLException {
         List<Item> itemList = new ArrayList<>();
@@ -57,21 +58,31 @@ public class ItemDaoImpl implements ItemDao {
         item.setDescription(resultSet.getString(6));
         return item;
     }
-    public ProductType StringToProductType(String s)
-    {
-        switch (s)
-        {
-            case "NAILONG_TANGTANG_EMOJI":return ProductType.NAILONG_TANGTANG_EMOJI;
-            case "NAILONG_EMOTION_EMOJI":return ProductType.NAILONG_EMOTION_EMOJI;
-            case "NAILONG_DOLL":return ProductType.NAILONG_DOLL;
-            case "NAILONG_BLIND_BOX":return ProductType.NAILONG_BLIND_BOX;
-            case "NAILONG_KEYCHAIN":return ProductType.NAILONG_KEYCHAIN;
-            case "NAILONG_OTHER_EMOJI":return ProductType.NAILONG_OTHER_EMOJI;
-            case "NAILONG_WALLPAPER":return ProductType.NAILONG_WALLPAPER;
-            case "NAILONG_EDUCATIONAL_TOY":return ProductType.NAILONG_EDUCATIONAL_TOY;
-            case "NAILONG_CUP":return ProductType.NAILONG_CUP;
-            case "NAILONG_FIGURE":return ProductType.NAILONG_FIGURE;
-            default: return null;
+
+    public ProductType StringToProductType(String s) {
+        switch (s) {
+            case "NAILONG_TANGTANG_EMOJI":
+                return ProductType.NAILONG_TANGTANG_EMOJI;
+            case "NAILONG_EMOTION_EMOJI":
+                return ProductType.NAILONG_EMOTION_EMOJI;
+            case "NAILONG_DOLL":
+                return ProductType.NAILONG_DOLL;
+            case "NAILONG_BLIND_BOX":
+                return ProductType.NAILONG_BLIND_BOX;
+            case "NAILONG_KEYCHAIN":
+                return ProductType.NAILONG_KEYCHAIN;
+            case "NAILONG_OTHER_EMOJI":
+                return ProductType.NAILONG_OTHER_EMOJI;
+            case "NAILONG_WALLPAPER":
+                return ProductType.NAILONG_WALLPAPER;
+            case "NAILONG_EDUCATIONAL_TOY":
+                return ProductType.NAILONG_EDUCATIONAL_TOY;
+            case "NAILONG_CUP":
+                return ProductType.NAILONG_CUP;
+            case "NAILONG_FIGURE":
+                return ProductType.NAILONG_FIGURE;
+            default:
+                return null;
         }
 
     }
@@ -92,11 +103,11 @@ public class ItemDaoImpl implements ItemDao {
             while (resultSet.next()) {
                 CartItem cartItem = new CartItem();
                 cartItem.setUserId(userId);
-                cartItem.setTotal(resultSet.getInt("ItemNum")*resultSet.getInt("price"));//总价格获取有问题，不会改！！！！
+                cartItem.setTotal(resultSet.getInt("ItemNum") * resultSet.getInt("price"));//总价格获取有问题，不会改！！！！
                 cartItem.setQuantity(resultSet.getInt("itemNum"));
 
                 // 将 item 信息映射到 Item 对象
-                Item item = new Item(resultSet.getInt("id"),resultSet.getString("name"));
+                Item item = new Item(resultSet.getInt("id"), resultSet.getString("name"));
                 item.setURL(resultSet.getString("url"));
                 item.setPrice(resultSet.getInt("price"));
                 cartItem.setItem(item);

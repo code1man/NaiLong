@@ -27,8 +27,6 @@ if (cartList) {
                         url: `/RemoveItem?id=${itemId}&pageFrom=/mainForm`,
                         success: () => {
                             console.log("SUCCESS");
-
-                            // 通过某些方法获取当前商品的数量和价格
                             currentCartListTotalCount -= currentCount;
                             currentCartListTotalPrice -= currentTotalPrice;
 
@@ -45,7 +43,6 @@ if (cartList) {
                             }
                         },
                         error: (xhr, status, error) => {
-                            console.log("ERROR");
                             console.error(`Error: ${status}, ${error}`);
                             alert("删除失败");
                         }
@@ -66,11 +63,13 @@ if (cartList) {
                 $('#topBarItemCount').text(`(${currentCartListTotalCount})`)
 
                 // 上传数据库进行保存
+                updateDatabase(itemId, currentCount);
             });
             d_btn.addEventListener("click", (event) => {
                 currentCount--;
                 currentCartListTotalCount--;
                 currentCartListTotalPrice -= ItemPrice;
+                currentTotalPrice -= ItemPrice;
                 if (currentCount === 0) {
                     // 删除
                     let result = confirm("本次操作将将从购物车移除此商品，确定删除吗?");
@@ -85,15 +84,30 @@ if (cartList) {
                         }
                     }
                 } else {
-                    itemPrice.textContent = currentTotalPrice + '';
-                    itemCount.textContent = currentCount + '';
+                    itemPrice.textContent = String(currentTotalPrice);
+                    itemCount.textContent = String(currentCount);
                     $('#CartListTotalCount').text(currentCartListTotalCount);
                     $('#CartListTotalPrice').text(currentCartListTotalPrice);
                     $('#topBarItemCount').text(`(${currentCartListTotalCount})`)
                 }
 
                 // 上传数据库进行保存
+                updateDatabase(itemId, currentCount)
             })
         }
     }
+}
+
+var updateDatabase = (itemID, count) => {
+    $.ajax({
+        type: "POST",  // 使用 POST 方法
+        url: `/updateCart?itemID=${itemID}&count=${count}`,
+        success: () => {
+            console.log("改变数目成功")
+        },
+        error: (xhr, status, error) => {
+            console.error(`Error: ${status}, ${error}`);
+            console.log('改变数目失败')
+        }
+    });
 }
