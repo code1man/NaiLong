@@ -58,6 +58,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>订单确认</title>
     <link rel="stylesheet" href="./static/css/Order.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -236,6 +238,7 @@
 
         // 表单提交事件
         const form = document.getElementById("addAddressForm");
+
         form.onsubmit = function (e) {
             e.preventDefault(); // 防止页面刷新
 
@@ -249,13 +252,11 @@
             const is_default = document.getElementById("isDefault").checked;
 
 
-            // 发送 AJAX 请求到服务器
-            fetch('${pageContext.request.contextPath}/order', {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/order',
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
+                contentType: 'application/json',
+                data: JSON.stringify({
                     province: province,
                     city: city,
                     district: district,
@@ -263,18 +264,20 @@
                     phone_number: phone_number,
                     receiver_name: receiver_name,
                     is_default: is_default
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
+                }),
+                success: function(data) {
                     console.log(data);
                     // 关闭模态框
                     modal.style.display = "none";
                     location.reload();
-                })
-                .catch(error => console.error('Error:', error));
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
         }
     });
+
 
 </script>
 </body>
