@@ -8,6 +8,7 @@
 <%--主页面--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import ="javax.servlet.ServletContext" %>
 
 <html>
 <head>
@@ -22,6 +23,15 @@
         response.sendRedirect(request.getContextPath() + "/mainForm"); // 可选：重定向到登录页面
     }
 %>
+
+<%
+    ServletContext context = application;
+    Integer onlineCount = (Integer) context.getAttribute("onlineUserCount");
+    if (onlineCount == null) {
+        onlineCount = 0;
+    }
+%>
+
 <!-- 悬浮窗 -->
 <div id="product-hover-info">
     <h4 id="hover-product-name"></h4>
@@ -32,7 +42,10 @@
     <div class="header">
         <!-- topBar -->
         <div class="site-topBar">
-            <div class="container">
+            <div>
+                <label topBar-cart">
+                    当前在线人数: <%= onlineCount %>
+                </label>
                 <div class="topBar-cart">
                     <a class="link">
                         <span class="iconfont-cart"></span>

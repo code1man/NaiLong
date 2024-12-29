@@ -235,6 +235,10 @@
                     <div class="price-info">
                         <span>${requestScope.item.price}</span>
                     </div>
+                    <br/>
+                    <div class="product-desc">
+                        ${requestScope.item.description}
+                    </div>
                     <div class="price-line"></div>
                 </div>
                 <div class="price-btn-box">
