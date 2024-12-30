@@ -35,6 +35,13 @@
     </span>
         <input type="submit" value="登录">
     </form>
+    <div class="agreement">
+        <input type="checkbox" id="agreement">
+        <label for="agreement">我已阅读并同意
+            <a href="#">《用户协议》</a>
+            <a href="#">《隐私政策》</a>
+        </label>
+    </div>
     <div class="footer-text">
         <a href="register">还没有账号？立即注册！</a>
     </div>

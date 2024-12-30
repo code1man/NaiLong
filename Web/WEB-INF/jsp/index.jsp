@@ -187,7 +187,7 @@
                                 <ul class="site-category-list clearfix site-category-list-custom">
                                     <c:forEach var="product" items="${requestScope.productList}">
                                         <li class="category-item">
-                                            <a href="#${product.getProductName()}" class="title">
+                                            <a href="#${product.getProductName()}" class="title itemTitle">
                                                     ${product.getProductName()}
                                                 <em class="iconfont-arrow-right-big"></em>
                                             </a>
@@ -238,20 +238,26 @@
     <div style="background-color: rgba(255, 234, 175, 0.8) ">
         <div class="home-hero-container container">
             <div class="home-hero box">
-                <ul>
+                <ul id="carousel">
                     <li>
-                        <img src="./static/images/swiper1.jpg"
+                        <img src="./static/images/我.png"
                              alt="轮播图1">
                     </li>
                     <li>
-                        <img src="./static/images/swiper.png"
+                        <img src="./static/images/是.png"
                              alt="轮播图2">
                     </li>
                     <li>
-                        <img src="./static/images/swiper2.jpg"
+                        <img src="./static/images/奶龙.png"
                              alt="轮播图3">
                     </li>
                 </ul>
+                <!-- 分页导航 -->
+                <div class="carousel-indicators">
+                    <span data-index="0" class="active"></span>
+                    <span data-index="1"></span>
+                    <span data-index="2"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -330,6 +336,8 @@
 <script src="./static/js/cursorFollow.js"></script>
 <script src="./static/js/Search.js"></script>
 <script src="./static/js/cart.js"></script>
+<script src="./static/js/scroll.js"></script>
+<script src="./static/js/carousel.js"></script>
 <script>
     window.onload = function () {
         let updateMsg = '<%= session.getAttribute("UpdateMsg") != null ? session.getAttribute("UpdateMsg") : "" %>';
