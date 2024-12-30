@@ -15,6 +15,29 @@
     <title>奶龙商店</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // 定时请求在线人数
+        function updateOnlineCount() {
+            $.ajax({
+                url: '/getOnlineUserCount',  // 上面创建的 Servlet URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // 更新显示的在线人数
+                    $('#onlineCount').text(response.onlineUserCount);
+                },
+                error: function() {
+                    console.error('获取在线人数失败');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // 每隔5秒更新一次在线人数
+            setInterval(updateOnlineCount, 5000);
+        });
+    </script>
+
 </head>
 <body>
 <%
@@ -43,8 +66,8 @@
         <!-- topBar -->
         <div class="site-topBar">
             <div>
-                <label topBar-cart">
-                    当前在线人数: <%= onlineCount %>
+                <label>
+                    当前在线人数: <span id="onlineCount">1</span>
                 </label>
                 <div class="topBar-cart">
                     <a class="link">
