@@ -67,7 +67,7 @@
         </div>
         <input type="submit" value="注册">
         <div class="agreement">
-            <input type="checkbox" id="agreement">
+            <input type="checkbox" id="agreement" checked>
             <label for="agreement">我已阅读并同意
                 <a href="#">《用户协议》</a>
                 <a href="#">《隐私政策》</a>
