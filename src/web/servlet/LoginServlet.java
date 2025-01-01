@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/handler"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"handler"})
 public class LoginServlet extends HttpServlet {
     private static final String Search_userID = "SELECT userID,ItemID,itemNum from cart where userID=? AND isDeleted=false AND isCovered=false";
     private String username;
@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-
         this.username = req.getParameter("username");
         this.password = req.getParameter("password");
 
@@ -78,7 +77,12 @@ public class LoginServlet extends HttpServlet {
         return true; // 如果通过验证，返回 true
     }
 
-//    public static void main(String[] args) throws SQLException {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req, resp);
+    }
+
+    //    public static void main(String[] args) throws SQLException {
 //        Connection connection= DBUtil.getConnection();
 //
 //        PreparedStatement statement= connection.prepareStatement(Search_userID);

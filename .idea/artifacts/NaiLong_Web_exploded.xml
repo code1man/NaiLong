@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="NaiLong:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/NaiLong_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="NaiLong/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="NaiLong" />
@@ -21,12 +20,12 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Java EE 6-Java EE 6" />
           <element id="library" level="project" name="jstl" />
-          <element id="library" level="project" name="gson-2.10.1" />
-          <element id="library" level="project" name="jsp-api" />
           <element id="library" level="project" name="mysql-connector-java-8.0.11" />
+          <element id="library" level="project" name="jsp-api" />
+          <element id="library" level="project" name="gson-2.10.1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="NaiLong/web/Web2" />
+      <element id="javaee-facet-resources" facet="NaiLong/web/Web" />
     </root>
   </artifact>
 </component>

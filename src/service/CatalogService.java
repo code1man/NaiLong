@@ -104,7 +104,7 @@ public class CatalogService {
     }
 
     public Cart executeUpdate(int userid, int itemid, int itemNum) throws SQLException {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = DBUtil.getConnection();//
         PreparedStatement updatedStatement = connection.prepareStatement(Update_Item);
         updatedStatement.setInt(1, userid);
         updatedStatement.setInt(2, itemid);

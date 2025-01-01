@@ -8,12 +8,36 @@
 <%--主页面--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import ="javax.servlet.ServletContext" %>
 
 <html>
 <head>
     <title>奶龙商店</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // 定时请求在线人数
+        function updateOnlineCount() {
+            $.ajax({
+                url: '/getOnlineUserCount',  // 上面创建的 Servlet URL
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // 更新显示的在线人数
+                    $('#onlineCount').text(response.onlineUserCount);
+                },
+                error: function() {
+                    console.error('获取在线人数失败');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // 每隔5秒更新一次在线人数
+            setInterval(updateOnlineCount, 5000);
+        });
+    </script>
+
 </head>
 <body>
 <%
@@ -22,6 +46,15 @@
         response.sendRedirect(request.getContextPath() + "/mainForm"); // 可选：重定向到登录页面
     }
 %>
+
+<%
+    ServletContext context = application;
+    Integer onlineCount = (Integer) context.getAttribute("onlineUserCount");
+    if (onlineCount == null) {
+        onlineCount = 0;
+    }
+%>
+
 <!-- 悬浮窗 -->
 <div id="product-hover-info">
     <h4 id="hover-product-name"></h4>
@@ -32,7 +65,10 @@
     <div class="header">
         <!-- topBar -->
         <div class="site-topBar">
-            <div class="container">
+            <div>
+                <label>
+                    当前在线人数: <span id="onlineCount">1</span>
+                </label>
                 <div class="topBar-cart">
                     <a class="link">
                         <span class="iconfont-cart"></span>
