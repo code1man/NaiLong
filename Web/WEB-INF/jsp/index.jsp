@@ -8,7 +8,7 @@
 <%--主页面--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="javax.servlet.ServletContext" %>
+<%@ page import ="javax.servlet.ServletContext" %>
 
 <html>
 <head>
@@ -23,8 +23,8 @@
                 url: '/getOnlineUserCount',  // 上面创建的 Servlet URL
                 type: 'GET',
                 dataType: 'json',
-                success: function (response) {
-                    // 更新显示的在线人数
+                success: function(response) {
+                    // 操作Dom元素实现局部刷新
                     $('#onlineCount').text(response.onlineUserCount);
                 },
                 error: function () {

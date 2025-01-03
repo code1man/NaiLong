@@ -13,7 +13,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./static/css/LoginPage.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/LoginPage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>登陆</title>
 </head>
 
@@ -43,10 +44,10 @@
 
 <div class="mouse-follow-icon" id="mouse-follow-icon"
      style="display: inline-flex; align-items: center; justify-content: center;">
-    <img src="./static/images/cursor.gif" alt="跟随鼠标的GIF"/>
+    <img src="/static/images/cursor.gif" alt="跟随鼠标的GIF"/>
 </div>
 
-<script src="./static/js/cursorFollow.js"></script>
+<script src="/static/js/cursorFollow.js"></script>
 <script>
     // 检查是否有注册成功的消息
     window.addEventListener('DOMContentLoaded', (event) => {
@@ -61,7 +62,7 @@
     });
 </script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
-<script src="./static/js/checkAgreement.js"></script>
+<script src="/static/js/checkAgreement.js"></script>
 </body>
 
 </html>
