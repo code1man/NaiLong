@@ -23,7 +23,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    // 更新显示的在线人数
+                    // 操作Dom元素实现局部刷新
                     $('#onlineCount').text(response.onlineUserCount);
                 },
                 error: function() {

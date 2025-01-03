@@ -249,11 +249,11 @@
             const detail_address = document.getElementById("detailAddress").value;
             const phone_number = document.getElementById("phoneNumber").value;
             const receiver_name = document.getElementById("receiverName").value;
-            const is_default = document.getElementById("isDefault").checked;
+            const is_default = document.getElementById("isDefault").value;
 
 
             $.ajax({
-                url: '${pageContext.request.contextPath}/order',
+                url: '/order',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
