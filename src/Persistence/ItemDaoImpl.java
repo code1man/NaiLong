@@ -15,7 +15,7 @@ public class ItemDaoImpl implements ItemDao {
     private static final String Get_ItemList_By_Product = " SELECT  * from item where product_id = ?";
     private static final String Get_Item = "SELECT * from item where id=?";
     private static final String deleteQuery = "UPDATE Cart SET isDeleted = TRUE WHERE userID = ? AND isDeleted = FALSE";
-    private static final String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ?";
+    private static final String query = "SELECT c.ItemID, c.itemNum, i.id, i.name, i.product_id, i.url, i.price FROM cart c JOIN item i ON c.ItemID = i.id WHERE c.userID = ? AND isDeleted = FALSE AND isCovered = FALSE";
 
     @Override
     public List<Item> getItemListByProduct(int product_id) throws SQLException {

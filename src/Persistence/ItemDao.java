@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ItemDao {
 
-
     List<Item> getItemListByProduct(int product_Id) throws SQLException;
 
     Item getItem(int itemId) throws SQLException;

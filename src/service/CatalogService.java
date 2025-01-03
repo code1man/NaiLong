@@ -110,11 +110,13 @@ public class CatalogService {
         updatedStatement.setInt(2, itemid);
         updatedStatement.executeUpdate();
 
-        PreparedStatement insertedStatement = connection.prepareStatement(Add_Item);
-        insertedStatement.setInt(1, userid);
-        insertedStatement.setInt(2, itemid);
-        insertedStatement.setInt(3, itemNum);
-        insertedStatement.executeUpdate();
+        if (itemNum != 0) {
+            PreparedStatement insertedStatement = connection.prepareStatement(Add_Item);
+            insertedStatement.setInt(1, userid);
+            insertedStatement.setInt(2, itemid);
+            insertedStatement.setInt(3, itemNum);
+            insertedStatement.executeUpdate();
+        }
 
         PreparedStatement getCartStatement = connection.prepareStatement(Search_Item);
         getCartStatement.setInt(1, userid);

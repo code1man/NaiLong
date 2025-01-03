@@ -13,30 +13,21 @@ public class Cart implements Serializable {
     public List<CartItem> itemList = new ArrayList<CartItem>();
     private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
 
+    public Cart() {
+    }
+
     public boolean containsItemId(String itemId) {
         return itemMap.containsKey(itemId);
     }
-//    public Iterator<CartItem> getCartItems() {
-//        return itemList.iterator();
-//    }
 
     public List<CartItem> getCartItemList() {
         return itemList;
     }
 
-//    public int getNumberOfItems() {
-//        return itemList.size();
-//    }
-
     public Iterator<CartItem> getAllCartItems() {
         return itemList.iterator();
     }
 
-    //    public Cart()
-//    {
-//        this.itemList=new ArrayList<>();
-//
-//}
     public int count(Iterator iterator) {
         int count1 = 0;
         iterator = this.getAllCartItems();

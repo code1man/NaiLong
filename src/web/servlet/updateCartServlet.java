@@ -1,7 +1,6 @@
 package web.servlet;
 
 import domain.Cart;
-import domain.CartItem;
 import domain.User;
 import service.CatalogService;
 
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 
 @WebServlet(name = "updateCartServlet", urlPatterns = {"/updateCart"})
 

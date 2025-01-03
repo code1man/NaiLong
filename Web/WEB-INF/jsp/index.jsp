@@ -14,6 +14,7 @@
 <head>
     <title>奶龙商店</title>
     <link rel="stylesheet" type="text/css" href="./static/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // 定时请求在线人数
@@ -26,18 +27,17 @@
                     // 操作Dom元素实现局部刷新
                     $('#onlineCount').text(response.onlineUserCount);
                 },
-                error: function() {
+                error: function () {
                     console.error('获取在线人数失败');
                 }
             });
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             // 每隔5秒更新一次在线人数
             setInterval(updateOnlineCount, 5000);
         });
     </script>
-
 </head>
 <body>
 <%
@@ -48,7 +48,7 @@
 %>
 
 <%
-    ServletContext context = application;
+    ServletContext context = (ServletContext) application;
     Integer onlineCount = (Integer) context.getAttribute("onlineUserCount");
     if (onlineCount == null) {
         onlineCount = 0;
