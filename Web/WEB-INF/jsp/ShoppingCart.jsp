@@ -236,6 +236,7 @@
                         <span>${requestScope.item.price}</span>
                     </div>
                     <br/>
+
                     <div class="product-desc">
                         ${requestScope.item.description}
                     </div>
