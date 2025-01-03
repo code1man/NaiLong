@@ -135,5 +135,10 @@ body {
     z-index: 1000; /* 确保在其他元素上方 */
 }
 
-
-
+.agreement {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}

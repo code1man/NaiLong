@@ -23,17 +23,17 @@
         <img src="./static/images/welcome.gif" alt="奶龙图片" class="naidragon-image">
     </div>
     <h1>奶龙商店 </h1>
-    <form action="${pageContext.request.contextPath}/handler" method="post">
-    <span>
-      <i class="fa-regular fa-user"></i>
-      <input type="text" placeholder="用户名" name="username" required>
-    </span>
-        </br>
-        <span>
-      <i class="fa-solid fa-lock"></i>
-      <input type="password" placeholder="密码" name="password" required>
-    </span>
-        <input type="submit" value="登录">
+    <form id="loginForm" action="${pageContext.request.contextPath}/handler" method="post">
+        <input type="text" name="username" placeholder="用户名" required>
+        <input type="password" name="password" placeholder="密码" required>
+        <div class="agreement">
+            <input type="checkbox" id="agreement" checked>
+            <label for="agreement">我已阅读并同意
+                <a href="#">《用户协议》</a>
+                <a href="#">《隐私政策》</a>
+            </label>
+        </div>
+        <input id="submitButton" type="submit" value="登录">
     </form>
     <div class="footer-text">
         <a href="register">还没有账号？立即注册！</a>
@@ -61,6 +61,7 @@
     });
 </script>
 <script src="https://kit.fontawesome.com/8c320534de.js" crossorigin="anonymous"></script>
+<script src="./static/js/checkAgreement.js"></script>
 </body>
 
 </html>

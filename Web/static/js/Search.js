@@ -60,6 +60,6 @@ function displayResults(results) {
 function addButtonClickListener(itemId) {
     let button = document.getElementById("searchButton");
     button.onclick = function () {
-        window.open("/ShoppingCart?item=" + itemId);  // 跳转到第一个搜索结果的URL
+        window.location.href = "/ShoppingCart?item=" + itemId;  // 当前页面跳转到指定URL
     };
 }
